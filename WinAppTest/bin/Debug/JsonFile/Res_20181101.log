@@ -1,30 +1,44 @@
-[DEBUG] 2018-11-01 12:14:54,906 96642ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:15:03,667 105403ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:15:13,653 115389ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:15:23,635 125370ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:15:33,655 135391ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:15:43,648 145384ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:15:53,641 155377ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:03,650 165386ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:13,661 175397ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:23,641 185377ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:33,661 195397ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:34,080 195816ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:43,636 205372ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:43,858 205594ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:53,640 215376ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:16:53,853 215589ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:03,654 225390ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:03,878 225614ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:13,642 235378ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:13,876 235612ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:23,665 245401ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:23,893 245629ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:33,649 255385ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:33,879 255615ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:43,655 265391ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:43,890 265626ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:53,625 275361ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:17:53,864 275600ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:18:03,666 285402ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
-[DEBUG] 2018-11-01 12:18:03,891 285627ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[ERROR] 2018-11-01 16:15:25,503 35848ms [Program:Main(line:39)] - Input string was not in a correct format.
+[DEBUG] 2018-11-01 16:17:11,643 91275ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:16,125 95757ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:21,080 100712ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:21,576 101208ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:26,081 105713ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:26,395 106027ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:31,079 110711ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:31,384 111016ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:36,063 115695ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:36,388 116019ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:41,092 120724ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:41,426 121058ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:46,060 125692ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:46,380 126012ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:51,061 130693ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:51,379 131011ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:56,059 135691ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:17:56,363 135995ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:01,081 140712ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:01,398 141030ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:06,050 145682ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:06,374 146006ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:11,103 150735ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:11,426 151057ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:16,071 155703ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:16,406 156038ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:21,064 160696ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:21,385 161017ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:26,070 165701ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:26,376 166008ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:31,070 170702ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:31,362 170993ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:36,070 175702ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:36,365 175997ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:41,069 180701ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:18:41,370 181002ms [wTestCallDll:W_SETtEOD(line:711)] - [RES DaySummary5 Status] = Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:24:41,095 540727ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:24:46,084 545716ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:24:51,044 550676ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:24:56,076 555708ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:25:01,062 560693ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:25:06,070 565702ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล
+[DEBUG] 2018-11-01 16:25:11,045 570677ms [wTestCallDll:W_GETtSale(line:184)] - [RES Sale Status]=Code: [Message]=สถานะ:ไม่พบขัอมูล

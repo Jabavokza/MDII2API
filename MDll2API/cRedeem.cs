@@ -113,39 +113,44 @@ namespace MDll2API
                     tFileName = oSP.SP_WRItJSON(tJson, "REDEEM");
 
                     //Call API
-                    HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(tUriApi);
-                    oWebReq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(tUsrApi + ":" + tPwdApi)));
-                    oWebReq.Method = "POST";
-                    byte[] aData = Encoding.UTF8.GetBytes(tJson.ToString());
+                    if (tC_APIEnable == "true")
+                    {
+                        #region "Call API"
+                        HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(tUriApi);
+                        oWebReq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(tUsrApi + ":" + tPwdApi)));
+                        oWebReq.Method = "POST";
+                        byte[] aData = Encoding.UTF8.GetBytes(tJson.ToString());
 
-                    oWebReq.ContentLength = aData.Length;
-                    oWebReq.ContentType = "application/json;charset=utf8";
-                    using (var oStream = oWebReq.GetRequestStream())
-                    {
-                        oStream.Write(aData, 0, aData.Length);
-                    }
-                    using (HttpWebResponse oResp = (HttpWebResponse)oWebReq.GetResponse())
-                    {
-                        HttpStatusCode oHttp = oResp.StatusCode;
-                        switch (oHttp)
+                        oWebReq.ContentLength = aData.Length;
+                        oWebReq.ContentType = "application/json;charset=utf8";
+                        using (var oStream = oWebReq.GetRequestStream())
                         {
-                            case HttpStatusCode.OK:
-                                {
-                                    tStatusCode = "200";
-                                }
-                                break;
-                            case HttpStatusCode.Accepted:
-                                {
-                                    tStatusCode = "202";
-                                }
-                                break;
-                            case HttpStatusCode.NotAcceptable:
-                                {
-                                    tStatusCode = "406";
-                                }
-                                break;
+                            oStream.Write(aData, 0, aData.Length);
                         }
-                        tResCode = oResp.StatusCode.ToString();
+                        using (HttpWebResponse oResp = (HttpWebResponse)oWebReq.GetResponse())
+                        {
+                            HttpStatusCode oHttp = oResp.StatusCode;
+                            switch (oHttp)
+                            {
+                                case HttpStatusCode.OK:
+                                    {
+                                        tStatusCode = "200";
+                                    }
+                                    break;
+                                case HttpStatusCode.Accepted:
+                                    {
+                                        tStatusCode = "202";
+                                    }
+                                    break;
+                                case HttpStatusCode.NotAcceptable:
+                                    {
+                                        tStatusCode = "406";
+                                    }
+                                    break;
+                            }
+                            tResCode = oResp.StatusCode.ToString();
+                        }
+                        #endregion
                     }
 
                     dEnd = DateTime.Now;
@@ -177,7 +182,7 @@ namespace MDll2API
                         {
                             oSql.AppendLine(" WHERE CONVERT(varchar(8),TPSTRPremium.FDDateUpd,112) + REPLACE(TPSTRPremium.FTTimeUpd,':','') >= '" + tLastUpd + "'");
                         }
-                        oSql.AppendLine("    ORDER BY FDDateUpd, FTTimeUpd) TTmp");
+                        oSql.AppendLine(" ORDER BY FDDateUpd, FTTimeUpd) TTmp");
                         oSP.SP_SQLxExecute(oSql.ToString(), tConnDB);
 
                     }
@@ -335,7 +340,7 @@ namespace MDll2API
 
                 if (tC_Auto == "AUTO")
                 {
-
+                    oSQL.AppendLine("WHERE ISNULL(FTStaSentOnOff,'') ='' ");
                 }
 
                 else if (tC_Auto == "MANUAL")

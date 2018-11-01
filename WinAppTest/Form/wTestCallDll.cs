@@ -1727,29 +1727,31 @@ namespace WinAppTest
         private void ocmAct_Click(object sender, EventArgs e)
         {
             //string
-            if (olaSchSta2.Text == "Disable")
+            if (olaSchSta2.Text.Equals("Disable"))
             {
                 olaSchSta2.Text = "Enable";
                 olaSchSta2.ForeColor = System.Drawing.Color.Green;
                 olaCountDown.Visible = true;
                 ocmAct.Text = "Disable";
-                olaSta.Text = "Enable";
+                olaSta.Text = "Schedule : Enable";
                 otmStart.Interval = (Convert.ToInt32(otbShcSS.Text) * 1000);
                 nW_CDStr = Convert.ToInt32(otbShcSS.Text);
 
                 nW_CDWait = Convert.ToInt32(otbShcSS.Text);
                 otmWait.Enabled = true;
                 olaCountDown.Text = olaCountDown.Text = "Off";
-
                 otmStart.Enabled = true;
+                otbShcSS.Enabled = false;
             }
-            else
+            else if(olaSchSta2.Text.Equals("Enable"))
             {
                 olaSchSta2.Text = "Disable";
                 olaSchSta2.ForeColor = System.Drawing.Color.Red;
                 ocmAct.Text = "Enable";
-                olaSta.Text = "Enable";
+                olaSta.Text = "Schedule : Disable";
                 otmStart.Enabled = false;
+                otmWait.Enabled = false;
+                otbShcSS.Enabled = true;
             }
         }
 

@@ -151,6 +151,8 @@
             this.ossSta = new System.Windows.Forms.StatusStrip();
             this.olaSta = new System.Windows.Forms.ToolStripStatusLabel();
             this.otmAutoFuc = new System.Windows.Forms.Timer(this.components);
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.otaMain1.SuspendLayout();
             this.otaMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -183,6 +185,8 @@
             this.otaDBTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ogdDataConnection)).BeginInit();
             this.ossSta.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // otaMain1
@@ -1247,16 +1251,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox13);
+            this.groupBox1.Controls.Add(this.groupBox8);
             this.groupBox1.Controls.Add(this.ockAPI);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.otbDTrn);
-            this.groupBox1.Controls.Add(this.olaCountDown);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.otbShcSS);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.ocmAct);
-            this.groupBox1.Controls.Add(this.olaSchSta2);
-            this.groupBox1.Controls.Add(this.olaSchSta1);
             this.groupBox1.Location = new System.Drawing.Point(12, 7);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
@@ -1269,7 +1268,7 @@
             // ockAPI
             // 
             this.ockAPI.AutoSize = true;
-            this.ockAPI.Location = new System.Drawing.Point(329, 54);
+            this.ockAPI.Location = new System.Drawing.Point(329, 53);
             this.ockAPI.Name = "ockAPI";
             this.ockAPI.Size = new System.Drawing.Size(88, 20);
             this.ockAPI.TabIndex = 13;
@@ -1279,7 +1278,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(231, 20);
+            this.label22.Location = new System.Drawing.Point(276, 18);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(34, 16);
             this.label22.TabIndex = 23;
@@ -1288,7 +1287,7 @@
             // otbDTrn
             // 
             this.otbDTrn.Enabled = false;
-            this.otbDTrn.Location = new System.Drawing.Point(272, 18);
+            this.otbDTrn.Location = new System.Drawing.Point(317, 16);
             this.otbDTrn.Name = "otbDTrn";
             this.otbDTrn.Size = new System.Drawing.Size(100, 23);
             this.otbDTrn.TabIndex = 22;
@@ -1297,7 +1296,7 @@
             // 
             this.olaCountDown.AutoSize = true;
             this.olaCountDown.ForeColor = System.Drawing.Color.DarkOrange;
-            this.olaCountDown.Location = new System.Drawing.Point(245, 54);
+            this.olaCountDown.Location = new System.Drawing.Point(97, 41);
             this.olaCountDown.Name = "olaCountDown";
             this.olaCountDown.Size = new System.Drawing.Size(42, 16);
             this.olaCountDown.TabIndex = 14;
@@ -1306,7 +1305,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(215, 54);
+            this.label2.Location = new System.Drawing.Point(72, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 13;
@@ -1314,16 +1313,16 @@
             // 
             // otbShcSS
             // 
-            this.otbShcSS.Location = new System.Drawing.Point(134, 51);
+            this.otbShcSS.Location = new System.Drawing.Point(8, 39);
             this.otbShcSS.Name = "otbShcSS";
-            this.otbShcSS.Size = new System.Drawing.Size(75, 23);
+            this.otbShcSS.Size = new System.Drawing.Size(62, 23);
             this.otbShcSS.TabIndex = 12;
             this.otbShcSS.Text = "10";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(131, 20);
+            this.label1.Location = new System.Drawing.Point(5, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 16);
             this.label1.TabIndex = 11;
@@ -1332,10 +1331,10 @@
             // ocmAct
             // 
             this.ocmAct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ocmAct.Location = new System.Drawing.Point(13, 49);
+            this.ocmAct.Location = new System.Drawing.Point(10, 37);
             this.ocmAct.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ocmAct.Name = "ocmAct";
-            this.ocmAct.Size = new System.Drawing.Size(87, 28);
+            this.ocmAct.Size = new System.Drawing.Size(98, 28);
             this.ocmAct.TabIndex = 10;
             this.ocmAct.Text = "Enable";
             this.ocmAct.UseVisualStyleBackColor = true;
@@ -1344,7 +1343,7 @@
             // olaSchSta2
             // 
             this.olaSchSta2.AutoSize = true;
-            this.olaSchSta2.Location = new System.Drawing.Point(70, 20);
+            this.olaSchSta2.Location = new System.Drawing.Point(64, 14);
             this.olaSchSta2.Name = "olaSchSta2";
             this.olaSchSta2.Size = new System.Drawing.Size(49, 16);
             this.olaSchSta2.TabIndex = 2;
@@ -1353,7 +1352,7 @@
             // olaSchSta1
             // 
             this.olaSchSta1.AutoSize = true;
-            this.olaSchSta1.Location = new System.Drawing.Point(11, 20);
+            this.olaSchSta1.Location = new System.Drawing.Point(8, 14);
             this.olaSchSta1.Name = "olaSchSta1";
             this.olaSchSta1.Size = new System.Drawing.Size(53, 16);
             this.olaSchSta1.TabIndex = 1;
@@ -1464,6 +1463,29 @@
             this.otmAutoFuc.Interval = 1000;
             this.otmAutoFuc.Tick += new System.EventHandler(this.otmAutoFuc_Tick);
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.otbShcSS);
+            this.groupBox8.Controls.Add(this.label1);
+            this.groupBox8.Controls.Add(this.label2);
+            this.groupBox8.Controls.Add(this.olaCountDown);
+            this.groupBox8.Location = new System.Drawing.Point(132, 9);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(140, 73);
+            this.groupBox8.TabIndex = 13;
+            this.groupBox8.TabStop = false;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.ocmAct);
+            this.groupBox13.Controls.Add(this.olaSchSta1);
+            this.groupBox13.Controls.Add(this.olaSchSta2);
+            this.groupBox13.Location = new System.Drawing.Point(6, 9);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(120, 73);
+            this.groupBox13.TabIndex = 13;
+            this.groupBox13.TabStop = false;
+            // 
             // wTestCallDll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1529,6 +1551,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ogdDataConnection)).EndInit();
             this.ossSta.ResumeLayout(false);
             this.ossSta.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1656,6 +1682,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox ockSaleAuto;
         public System.Windows.Forms.CheckBox ockAPI;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.GroupBox groupBox8;
     }
 }
 
