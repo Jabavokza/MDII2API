@@ -42,23 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cAutomatic.cs" />
-    <Compile Include="cBankDeposit.cs" />
-    <Compile Include="cCash.cs" />
-    <Compile Include="cEDC.cs" />
-    <Compile Include="cEOD.cs" />
+    <Compile Include="Class\POSLog\cAutomatic.cs" />
+    <Compile Include="Class\POSLog\cBankDeposit.cs" />
+    <Compile Include="Class\POSLog\cCash.cs" />
+    <Compile Include="Class\POSLog\cEDC.cs" />
+    <Compile Include="Class\POSLog\cEOD.cs" />
+    <Compile Include="Class\POSLog\cPoint.cs" />
     <Compile Include="Class\POSLog\cPOSBankDeposit.cs" />
     <Compile Include="Class\POSLog\cPOSSale..cs" />
     <Compile Include="Class\POSLog\cPOSCash.cs" />
+    <Compile Include="Class\POSLog\cRedeem.cs" />
+    <Compile Include="Class\POSLog\cSale.cs" />
+    <Compile Include="Class\POSLog\cSaleOrder.cs" />
     <Compile Include="Class\ReceivApp\cRcvBank.cs" />
     <Compile Include="Class\ReceivApp\cRcvRedeem.cs" />
     <Compile Include="Class\ReceivApp\cRcvSale.cs" />
     <Compile Include="Class\Standard\cSP.cs" />
     <Compile Include="Class\Standard\cVB.cs" />
-    <Compile Include="cPoint.cs" />
-    <Compile Include="cRedeem.cs" />
-    <Compile Include="cSale.cs" />
-    <Compile Include="cSaleOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

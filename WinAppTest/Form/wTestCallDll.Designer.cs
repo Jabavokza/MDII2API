@@ -129,16 +129,18 @@
             this.olaPreminumNo = new System.Windows.Forms.Label();
             this.otbNoRdm = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.ocmAct = new System.Windows.Forms.Button();
+            this.olaSchSta1 = new System.Windows.Forms.Label();
+            this.olaSchSta2 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.otbShcSS = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.olaCountDown = new System.Windows.Forms.Label();
             this.ockAPI = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
             this.otbDTrn = new System.Windows.Forms.TextBox();
-            this.olaCountDown = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.otbShcSS = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ocmAct = new System.Windows.Forms.Button();
-            this.olaSchSta2 = new System.Windows.Forms.Label();
-            this.olaSchSta1 = new System.Windows.Forms.Label();
             this.otaDBTest = new System.Windows.Forms.TabPage();
             this.ocmEdit = new System.Windows.Forms.Button();
             this.ocmTestConnection = new System.Windows.Forms.Button();
@@ -151,8 +153,7 @@
             this.ossSta = new System.Windows.Forms.StatusStrip();
             this.olaSta = new System.Windows.Forms.ToolStripStatusLabel();
             this.otmAutoFuc = new System.Windows.Forms.Timer(this.components);
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.ocmShortOver = new System.Windows.Forms.Button();
             this.otaMain1.SuspendLayout();
             this.otaMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -182,11 +183,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ogdRdm)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.otaDBTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ogdDataConnection)).BeginInit();
             this.ossSta.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // otaMain1
@@ -196,7 +197,7 @@
             this.otaMain1.Location = new System.Drawing.Point(1, 1);
             this.otaMain1.Name = "otaMain1";
             this.otaMain1.SelectedIndex = 0;
-            this.otaMain1.Size = new System.Drawing.Size(930, 678);
+            this.otaMain1.Size = new System.Drawing.Size(784, 587);
             this.otaMain1.TabIndex = 8;
             this.otaMain1.Selected += new System.Windows.Forms.TabControlEventHandler(this.otaMain1_Selected);
             // 
@@ -208,7 +209,7 @@
             this.otaMenu.Location = new System.Drawing.Point(4, 25);
             this.otaMenu.Name = "otaMenu";
             this.otaMenu.Padding = new System.Windows.Forms.Padding(3);
-            this.otaMenu.Size = new System.Drawing.Size(922, 649);
+            this.otaMenu.Size = new System.Drawing.Size(776, 558);
             this.otaMenu.TabIndex = 0;
             this.otaMenu.Text = "Menu";
             this.otaMenu.UseVisualStyleBackColor = true;
@@ -223,7 +224,7 @@
             this.groupBox2.Controls.Add(this.ockShortOverAuto);
             this.groupBox2.Location = new System.Drawing.Point(447, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(307, 88);
+            this.groupBox2.Size = new System.Drawing.Size(314, 88);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             // 
@@ -295,10 +296,10 @@
             this.otcManin2.Controls.Add(this.ocmEDC);
             this.otcManin2.Controls.Add(this.ocmBnkIn);
             this.otcManin2.Controls.Add(this.ocmRdm);
-            this.otcManin2.Location = new System.Drawing.Point(12, 103);
+            this.otcManin2.Location = new System.Drawing.Point(12, 108);
             this.otcManin2.Name = "otcManin2";
             this.otcManin2.SelectedIndex = 0;
-            this.otcManin2.Size = new System.Drawing.Size(873, 540);
+            this.otcManin2.Size = new System.Drawing.Size(753, 459);
             this.otcManin2.TabIndex = 11;
             this.otcManin2.SelectedIndexChanged += new System.EventHandler(this.otcManin2_SelectedIndexChanged);
             // 
@@ -310,7 +311,7 @@
             this.otbSale.Location = new System.Drawing.Point(4, 25);
             this.otbSale.Name = "otbSale";
             this.otbSale.Padding = new System.Windows.Forms.Padding(3);
-            this.otbSale.Size = new System.Drawing.Size(865, 511);
+            this.otbSale.Size = new System.Drawing.Size(745, 430);
             this.otbSale.TabIndex = 0;
             this.otbSale.Text = "Sale";
             this.otbSale.UseVisualStyleBackColor = true;
@@ -329,15 +330,15 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(847, 42);
+            this.groupBox3.Size = new System.Drawing.Size(726, 42);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             // 
             // ocmSchSale
             // 
-            this.ocmSchSale.Location = new System.Drawing.Point(746, 12);
+            this.ocmSchSale.Location = new System.Drawing.Point(640, 12);
             this.ocmSchSale.Name = "ocmSchSale";
-            this.ocmSchSale.Size = new System.Drawing.Size(101, 23);
+            this.ocmSchSale.Size = new System.Drawing.Size(80, 23);
             this.ocmSchSale.TabIndex = 18;
             this.ocmSchSale.Text = "Search";
             this.ocmSchSale.UseVisualStyleBackColor = true;
@@ -345,7 +346,7 @@
             // 
             // otbTrnDSale
             // 
-            this.otbTrnDSale.Location = new System.Drawing.Point(80, 12);
+            this.otbTrnDSale.Location = new System.Drawing.Point(80, 13);
             this.otbTrnDSale.Name = "otbTrnDSale";
             this.otbTrnDSale.Size = new System.Drawing.Size(100, 23);
             this.otbTrnDSale.TabIndex = 17;
@@ -353,7 +354,7 @@
             // olaSaleDateManual
             // 
             this.olaSaleDateManual.AutoSize = true;
-            this.olaSaleDateManual.Location = new System.Drawing.Point(6, 15);
+            this.olaSaleDateManual.Location = new System.Drawing.Point(6, 16);
             this.olaSaleDateManual.Name = "olaSaleDateManual";
             this.olaSaleDateManual.Size = new System.Drawing.Size(68, 16);
             this.olaSaleDateManual.TabIndex = 19;
@@ -364,13 +365,13 @@
             this.olaPlantSale.AutoSize = true;
             this.olaPlantSale.Location = new System.Drawing.Point(186, 16);
             this.olaPlantSale.Name = "olaPlantSale";
-            this.olaPlantSale.Size = new System.Drawing.Size(81, 16);
+            this.olaPlantSale.Size = new System.Drawing.Size(85, 16);
             this.olaPlantSale.TabIndex = 3;
-            this.olaPlantSale.Text = "Store/Plant :";
+            this.olaPlantSale.Text = "Store /Plant :";
             // 
             // otbPlantSale
             // 
-            this.otbPlantSale.Location = new System.Drawing.Point(273, 12);
+            this.otbPlantSale.Location = new System.Drawing.Point(273, 13);
             this.otbPlantSale.Name = "otbPlantSale";
             this.otbPlantSale.Size = new System.Drawing.Size(100, 23);
             this.otbPlantSale.TabIndex = 16;
@@ -379,7 +380,7 @@
             // 
             this.otbTerNoSale.Location = new System.Drawing.Point(464, 13);
             this.otbTerNoSale.Name = "otbTerNoSale";
-            this.otbTerNoSale.Size = new System.Drawing.Size(201, 23);
+            this.otbTerNoSale.Size = new System.Drawing.Size(170, 23);
             this.otbTerNoSale.TabIndex = 18;
             // 
             // olaTerminalNo
@@ -411,7 +412,7 @@
             this.ogbSendSale.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ogbSendSale.Name = "ogbSendSale";
             this.ogbSendSale.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ogbSendSale.Size = new System.Drawing.Size(850, 54);
+            this.ogbSendSale.Size = new System.Drawing.Size(726, 54);
             this.ogbSendSale.TabIndex = 22;
             this.ogbSendSale.TabStop = false;
             this.ogbSendSale.Text = "Send status";
@@ -463,7 +464,7 @@
             // 
             // ocmSendSale
             // 
-            this.ocmSendSale.Location = new System.Drawing.Point(746, 12);
+            this.ocmSendSale.Location = new System.Drawing.Point(619, 13);
             this.ocmSendSale.Name = "ocmSendSale";
             this.ocmSendSale.Size = new System.Drawing.Size(101, 35);
             this.ocmSendSale.TabIndex = 18;
@@ -479,7 +480,7 @@
             this.ogdSale.Name = "ogdSale";
             this.ogdSale.RowHeadersVisible = false;
             this.ogdSale.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ogdSale.Size = new System.Drawing.Size(847, 373);
+            this.ogdSale.Size = new System.Drawing.Size(726, 308);
             this.ogdSale.TabIndex = 21;
             // 
             // ocmDSum
@@ -490,7 +491,7 @@
             this.ocmDSum.Location = new System.Drawing.Point(4, 25);
             this.ocmDSum.Name = "ocmDSum";
             this.ocmDSum.Padding = new System.Windows.Forms.Padding(3);
-            this.ocmDSum.Size = new System.Drawing.Size(865, 511);
+            this.ocmDSum.Size = new System.Drawing.Size(745, 430);
             this.ocmDSum.TabIndex = 3;
             this.ocmDSum.Text = "Day Summary";
             this.ocmDSum.UseVisualStyleBackColor = true;
@@ -499,11 +500,11 @@
             // 
             this.ogdDaySum.AllowUserToAddRows = false;
             this.ogdDaySum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ogdDaySum.Location = new System.Drawing.Point(9, 118);
+            this.ogdDaySum.Location = new System.Drawing.Point(12, 108);
             this.ogdDaySum.Name = "ogdDaySum";
             this.ogdDaySum.RowHeadersVisible = false;
             this.ogdDaySum.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ogdDaySum.Size = new System.Drawing.Size(850, 373);
+            this.ogdDaySum.Size = new System.Drawing.Size(726, 308);
             this.ogdDaySum.TabIndex = 28;
             // 
             // groupBox9
@@ -513,18 +514,18 @@
             this.groupBox9.Controls.Add(this.radioButton2);
             this.groupBox9.Controls.Add(this.radioButton3);
             this.groupBox9.Controls.Add(this.ocmSendDaySumManual);
-            this.groupBox9.Location = new System.Drawing.Point(9, 57);
+            this.groupBox9.Location = new System.Drawing.Point(12, 47);
             this.groupBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox9.Size = new System.Drawing.Size(850, 54);
+            this.groupBox9.Size = new System.Drawing.Size(726, 54);
             this.groupBox9.TabIndex = 27;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Send status";
             // 
             // ocmDaySumAll
             // 
-            this.ocmDaySumAll.Location = new System.Drawing.Point(10, 21);
+            this.ocmDaySumAll.Location = new System.Drawing.Point(9, 21);
             this.ocmDaySumAll.Name = "ocmDaySumAll";
             this.ocmDaySumAll.Size = new System.Drawing.Size(68, 23);
             this.ocmDaySumAll.TabIndex = 25;
@@ -569,7 +570,7 @@
             // 
             // ocmSendDaySumManual
             // 
-            this.ocmSendDaySumManual.Location = new System.Drawing.Point(743, 12);
+            this.ocmSendDaySumManual.Location = new System.Drawing.Point(619, 13);
             this.ocmSendDaySumManual.Name = "ocmSendDaySumManual";
             this.ocmSendDaySumManual.Size = new System.Drawing.Size(101, 35);
             this.ocmSendDaySumManual.TabIndex = 18;
@@ -584,19 +585,19 @@
             this.groupBox6.Controls.Add(this.otbEOD);
             this.groupBox6.Controls.Add(this.olaPlantDaySum);
             this.groupBox6.Controls.Add(this.otbPlantEOD);
-            this.groupBox6.Location = new System.Drawing.Point(9, 7);
+            this.groupBox6.Location = new System.Drawing.Point(12, 2);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox6.Size = new System.Drawing.Size(847, 42);
+            this.groupBox6.Size = new System.Drawing.Size(726, 42);
             this.groupBox6.TabIndex = 20;
             this.groupBox6.TabStop = false;
             // 
             // ocmDaySumSearch
             // 
-            this.ocmDaySumSearch.Location = new System.Drawing.Point(740, 12);
+            this.ocmDaySumSearch.Location = new System.Drawing.Point(640, 12);
             this.ocmDaySumSearch.Name = "ocmDaySumSearch";
-            this.ocmDaySumSearch.Size = new System.Drawing.Size(101, 23);
+            this.ocmDaySumSearch.Size = new System.Drawing.Size(80, 23);
             this.ocmDaySumSearch.TabIndex = 19;
             this.ocmDaySumSearch.Text = "Search";
             this.ocmDaySumSearch.UseVisualStyleBackColor = true;
@@ -605,15 +606,15 @@
             // olaSaleDate
             // 
             this.olaSaleDate.AutoSize = true;
-            this.olaSaleDate.Location = new System.Drawing.Point(7, 15);
+            this.olaSaleDate.Location = new System.Drawing.Point(6, 16);
             this.olaSaleDate.Name = "olaSaleDate";
-            this.olaSaleDate.Size = new System.Drawing.Size(72, 16);
+            this.olaSaleDate.Size = new System.Drawing.Size(68, 16);
             this.olaSaleDate.TabIndex = 3;
-            this.olaSaleDate.Text = "Sale Date :";
+            this.olaSaleDate.Text = "SaleDate :";
             // 
             // otbEOD
             // 
-            this.otbEOD.Location = new System.Drawing.Point(84, 12);
+            this.otbEOD.Location = new System.Drawing.Point(80, 13);
             this.otbEOD.Name = "otbEOD";
             this.otbEOD.Size = new System.Drawing.Size(100, 23);
             this.otbEOD.TabIndex = 13;
@@ -621,15 +622,15 @@
             // olaPlantDaySum
             // 
             this.olaPlantDaySum.AutoSize = true;
-            this.olaPlantDaySum.Location = new System.Drawing.Point(190, 15);
+            this.olaPlantDaySum.Location = new System.Drawing.Point(186, 16);
             this.olaPlantDaySum.Name = "olaPlantDaySum";
-            this.olaPlantDaySum.Size = new System.Drawing.Size(80, 16);
+            this.olaPlantDaySum.Size = new System.Drawing.Size(85, 16);
             this.olaPlantDaySum.TabIndex = 14;
-            this.olaPlantDaySum.Text = "Stroe Plant :";
+            this.olaPlantDaySum.Text = "Store /Plant :";
             // 
             // otbPlantEOD
             // 
-            this.otbPlantEOD.Location = new System.Drawing.Point(276, 12);
+            this.otbPlantEOD.Location = new System.Drawing.Point(273, 13);
             this.otbPlantEOD.Name = "otbPlantEOD";
             this.otbPlantEOD.Size = new System.Drawing.Size(100, 23);
             this.otbPlantEOD.TabIndex = 15;
@@ -642,7 +643,7 @@
             this.ocmShtOvr.Location = new System.Drawing.Point(4, 25);
             this.ocmShtOvr.Name = "ocmShtOvr";
             this.ocmShtOvr.Padding = new System.Windows.Forms.Padding(3);
-            this.ocmShtOvr.Size = new System.Drawing.Size(865, 511);
+            this.ocmShtOvr.Size = new System.Drawing.Size(745, 430);
             this.ocmShtOvr.TabIndex = 4;
             this.ocmShtOvr.Text = "Short/Over";
             this.ocmShtOvr.UseVisualStyleBackColor = true;
@@ -651,31 +652,32 @@
             // 
             this.ogdShortOver.AllowUserToAddRows = false;
             this.ogdShortOver.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ogdShortOver.Location = new System.Drawing.Point(9, 113);
+            this.ogdShortOver.Location = new System.Drawing.Point(12, 108);
             this.ogdShortOver.Name = "ogdShortOver";
             this.ogdShortOver.RowHeadersVisible = false;
             this.ogdShortOver.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ogdShortOver.Size = new System.Drawing.Size(850, 373);
+            this.ogdShortOver.Size = new System.Drawing.Size(726, 308);
             this.ogdShortOver.TabIndex = 29;
             // 
             // groupBox10
             // 
+            this.groupBox10.Controls.Add(this.ocmShortOver);
             this.groupBox10.Controls.Add(this.ocmShortAll);
             this.groupBox10.Controls.Add(this.radioButton4);
             this.groupBox10.Controls.Add(this.radioButton5);
             this.groupBox10.Controls.Add(this.radioButton6);
-            this.groupBox10.Location = new System.Drawing.Point(9, 52);
+            this.groupBox10.Location = new System.Drawing.Point(12, 47);
             this.groupBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox10.Size = new System.Drawing.Size(850, 54);
+            this.groupBox10.Size = new System.Drawing.Size(726, 54);
             this.groupBox10.TabIndex = 28;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Send status";
             // 
             // ocmShortAll
             // 
-            this.ocmShortAll.Location = new System.Drawing.Point(12, 21);
+            this.ocmShortAll.Location = new System.Drawing.Point(9, 21);
             this.ocmShortAll.Name = "ocmShortAll";
             this.ocmShortAll.Size = new System.Drawing.Size(68, 23);
             this.ocmShortAll.TabIndex = 26;
@@ -725,19 +727,19 @@
             this.groupBox7.Controls.Add(this.otbShortPlant);
             this.groupBox7.Controls.Add(this.olaTranShort);
             this.groupBox7.Controls.Add(this.otbDateShortManual);
-            this.groupBox7.Location = new System.Drawing.Point(9, 2);
+            this.groupBox7.Location = new System.Drawing.Point(12, 2);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox7.Size = new System.Drawing.Size(850, 42);
+            this.groupBox7.Size = new System.Drawing.Size(726, 42);
             this.groupBox7.TabIndex = 20;
             this.groupBox7.TabStop = false;
             // 
             // ocmShortManual
             // 
-            this.ocmShortManual.Location = new System.Drawing.Point(743, 11);
+            this.ocmShortManual.Location = new System.Drawing.Point(640, 12);
             this.ocmShortManual.Name = "ocmShortManual";
-            this.ocmShortManual.Size = new System.Drawing.Size(101, 23);
+            this.ocmShortManual.Size = new System.Drawing.Size(80, 23);
             this.ocmShortManual.TabIndex = 18;
             this.ocmShortManual.Text = "Search";
             this.ocmShortManual.UseVisualStyleBackColor = true;
@@ -746,15 +748,15 @@
             // olaPlantShort
             // 
             this.olaPlantShort.AutoSize = true;
-            this.olaPlantShort.Location = new System.Drawing.Point(235, 15);
+            this.olaPlantShort.Location = new System.Drawing.Point(235, 16);
             this.olaPlantShort.Name = "olaPlantShort";
-            this.olaPlantShort.Size = new System.Drawing.Size(81, 16);
+            this.olaPlantShort.Size = new System.Drawing.Size(85, 16);
             this.olaPlantShort.TabIndex = 3;
-            this.olaPlantShort.Text = "Store/Plant :";
+            this.olaPlantShort.Text = "Store /Plant :";
             // 
             // otbShortPlant
             // 
-            this.otbShortPlant.Location = new System.Drawing.Point(322, 12);
+            this.otbShortPlant.Location = new System.Drawing.Point(322, 13);
             this.otbShortPlant.Name = "otbShortPlant";
             this.otbShortPlant.Size = new System.Drawing.Size(100, 23);
             this.otbShortPlant.TabIndex = 13;
@@ -762,7 +764,7 @@
             // olaTranShort
             // 
             this.olaTranShort.AutoSize = true;
-            this.olaTranShort.Location = new System.Drawing.Point(9, 14);
+            this.olaTranShort.Location = new System.Drawing.Point(9, 15);
             this.olaTranShort.Name = "olaTranShort";
             this.olaTranShort.Size = new System.Drawing.Size(114, 16);
             this.olaTranShort.TabIndex = 14;
@@ -770,7 +772,7 @@
             // 
             // otbDateShortManual
             // 
-            this.otbDateShortManual.Location = new System.Drawing.Point(129, 12);
+            this.otbDateShortManual.Location = new System.Drawing.Point(129, 13);
             this.otbDateShortManual.Name = "otbDateShortManual";
             this.otbDateShortManual.Size = new System.Drawing.Size(100, 23);
             this.otbDateShortManual.TabIndex = 15;
@@ -783,7 +785,7 @@
             this.ocmEDC.Location = new System.Drawing.Point(4, 25);
             this.ocmEDC.Name = "ocmEDC";
             this.ocmEDC.Padding = new System.Windows.Forms.Padding(3);
-            this.ocmEDC.Size = new System.Drawing.Size(865, 511);
+            this.ocmEDC.Size = new System.Drawing.Size(745, 430);
             this.ocmEDC.TabIndex = 5;
             this.ocmEDC.Text = "EDC";
             this.ocmEDC.UseVisualStyleBackColor = true;
@@ -792,11 +794,11 @@
             // 
             this.ogdEDC.AllowUserToAddRows = false;
             this.ogdEDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ogdEDC.Location = new System.Drawing.Point(6, 118);
+            this.ogdEDC.Location = new System.Drawing.Point(12, 108);
             this.ogdEDC.Name = "ogdEDC";
             this.ogdEDC.RowHeadersVisible = false;
             this.ogdEDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ogdEDC.Size = new System.Drawing.Size(853, 373);
+            this.ogdEDC.Size = new System.Drawing.Size(726, 308);
             this.ogdEDC.TabIndex = 30;
             // 
             // groupBox12
@@ -806,11 +808,11 @@
             this.groupBox12.Controls.Add(this.radioButton8);
             this.groupBox12.Controls.Add(this.radioButton9);
             this.groupBox12.Controls.Add(this.ocmSchEDC);
-            this.groupBox12.Location = new System.Drawing.Point(6, 57);
+            this.groupBox12.Location = new System.Drawing.Point(12, 47);
             this.groupBox12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox12.Size = new System.Drawing.Size(853, 54);
+            this.groupBox12.Size = new System.Drawing.Size(726, 54);
             this.groupBox12.TabIndex = 29;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Send status";
@@ -862,7 +864,7 @@
             // 
             // ocmSchEDC
             // 
-            this.ocmSchEDC.Location = new System.Drawing.Point(746, 12);
+            this.ocmSchEDC.Location = new System.Drawing.Point(619, 13);
             this.ocmSchEDC.Name = "ocmSchEDC";
             this.ocmSchEDC.Size = new System.Drawing.Size(101, 35);
             this.ocmSchEDC.TabIndex = 18;
@@ -877,17 +879,17 @@
             this.groupBox11.Controls.Add(this.ocmEDCSearch);
             this.groupBox11.Controls.Add(this.olaTranDateEDC);
             this.groupBox11.Controls.Add(this.otbEDCDate);
-            this.groupBox11.Location = new System.Drawing.Point(9, 7);
+            this.groupBox11.Location = new System.Drawing.Point(12, 2);
             this.groupBox11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox11.Size = new System.Drawing.Size(850, 42);
+            this.groupBox11.Size = new System.Drawing.Size(726, 42);
             this.groupBox11.TabIndex = 21;
             this.groupBox11.TabStop = false;
             // 
             // otbSchPlant
             // 
-            this.otbSchPlant.Location = new System.Drawing.Point(322, 11);
+            this.otbSchPlant.Location = new System.Drawing.Point(322, 12);
             this.otbSchPlant.Name = "otbSchPlant";
             this.otbSchPlant.Size = new System.Drawing.Size(100, 23);
             this.otbSchPlant.TabIndex = 20;
@@ -895,17 +897,17 @@
             // olaPlantEDC
             // 
             this.olaPlantEDC.AutoSize = true;
-            this.olaPlantEDC.Location = new System.Drawing.Point(235, 14);
+            this.olaPlantEDC.Location = new System.Drawing.Point(235, 15);
             this.olaPlantEDC.Name = "olaPlantEDC";
-            this.olaPlantEDC.Size = new System.Drawing.Size(81, 16);
+            this.olaPlantEDC.Size = new System.Drawing.Size(85, 16);
             this.olaPlantEDC.TabIndex = 19;
-            this.olaPlantEDC.Text = "Store/Plant :";
+            this.olaPlantEDC.Text = "Store /Plant :";
             // 
             // ocmEDCSearch
             // 
-            this.ocmEDCSearch.Location = new System.Drawing.Point(743, 11);
+            this.ocmEDCSearch.Location = new System.Drawing.Point(640, 12);
             this.ocmEDCSearch.Name = "ocmEDCSearch";
-            this.ocmEDCSearch.Size = new System.Drawing.Size(101, 23);
+            this.ocmEDCSearch.Size = new System.Drawing.Size(80, 23);
             this.ocmEDCSearch.TabIndex = 18;
             this.ocmEDCSearch.Text = "Search";
             this.ocmEDCSearch.UseVisualStyleBackColor = true;
@@ -922,7 +924,7 @@
             // 
             // otbEDCDate
             // 
-            this.otbEDCDate.Location = new System.Drawing.Point(129, 11);
+            this.otbEDCDate.Location = new System.Drawing.Point(129, 12);
             this.otbEDCDate.Name = "otbEDCDate";
             this.otbEDCDate.Size = new System.Drawing.Size(100, 23);
             this.otbEDCDate.TabIndex = 15;
@@ -935,7 +937,7 @@
             this.ocmBnkIn.Location = new System.Drawing.Point(4, 25);
             this.ocmBnkIn.Name = "ocmBnkIn";
             this.ocmBnkIn.Padding = new System.Windows.Forms.Padding(3);
-            this.ocmBnkIn.Size = new System.Drawing.Size(865, 511);
+            this.ocmBnkIn.Size = new System.Drawing.Size(745, 430);
             this.ocmBnkIn.TabIndex = 2;
             this.ocmBnkIn.Text = "BankIn";
             this.ocmBnkIn.UseVisualStyleBackColor = true;
@@ -948,7 +950,7 @@
             this.ogdBnk.Name = "ogdBnk";
             this.ogdBnk.RowHeadersVisible = false;
             this.ogdBnk.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ogdBnk.Size = new System.Drawing.Size(847, 373);
+            this.ogdBnk.Size = new System.Drawing.Size(726, 308);
             this.ogdBnk.TabIndex = 25;
             // 
             // groupBox5
@@ -962,31 +964,31 @@
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox5.Size = new System.Drawing.Size(847, 42);
+            this.groupBox5.Size = new System.Drawing.Size(726, 42);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             // 
             // olaPlantBnk
             // 
             this.olaPlantBnk.AutoSize = true;
-            this.olaPlantBnk.Location = new System.Drawing.Point(186, 15);
+            this.olaPlantBnk.Location = new System.Drawing.Point(186, 16);
             this.olaPlantBnk.Name = "olaPlantBnk";
-            this.olaPlantBnk.Size = new System.Drawing.Size(81, 16);
+            this.olaPlantBnk.Size = new System.Drawing.Size(85, 16);
             this.olaPlantBnk.TabIndex = 20;
-            this.olaPlantBnk.Text = "Store/Plant :";
+            this.olaPlantBnk.Text = "Store /Plant :";
             // 
             // otbPlantBnk
             // 
-            this.otbPlantBnk.Location = new System.Drawing.Point(273, 12);
+            this.otbPlantBnk.Location = new System.Drawing.Point(273, 13);
             this.otbPlantBnk.Name = "otbPlantBnk";
             this.otbPlantBnk.Size = new System.Drawing.Size(100, 23);
             this.otbPlantBnk.TabIndex = 19;
             // 
             // ocmSchBnk
             // 
-            this.ocmSchBnk.Location = new System.Drawing.Point(740, 12);
+            this.ocmSchBnk.Location = new System.Drawing.Point(640, 12);
             this.ocmSchBnk.Name = "ocmSchBnk";
-            this.ocmSchBnk.Size = new System.Drawing.Size(101, 23);
+            this.ocmSchBnk.Size = new System.Drawing.Size(80, 23);
             this.ocmSchBnk.TabIndex = 18;
             this.ocmSchBnk.Text = "Search";
             this.ocmSchBnk.UseVisualStyleBackColor = true;
@@ -995,7 +997,7 @@
             // olaTranBnk
             // 
             this.olaTranBnk.AutoSize = true;
-            this.olaTranBnk.Location = new System.Drawing.Point(6, 15);
+            this.olaTranBnk.Location = new System.Drawing.Point(6, 16);
             this.olaTranBnk.Name = "olaTranBnk";
             this.olaTranBnk.Size = new System.Drawing.Size(68, 16);
             this.olaTranBnk.TabIndex = 3;
@@ -1003,7 +1005,7 @@
             // 
             // otbDBnk
             // 
-            this.otbDBnk.Location = new System.Drawing.Point(80, 12);
+            this.otbDBnk.Location = new System.Drawing.Point(80, 13);
             this.otbDBnk.Name = "otbDBnk";
             this.otbDBnk.Size = new System.Drawing.Size(100, 23);
             this.otbDBnk.TabIndex = 13;
@@ -1019,14 +1021,14 @@
             this.ogbSendBnk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ogbSendBnk.Name = "ogbSendBnk";
             this.ogbSendBnk.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ogbSendBnk.Size = new System.Drawing.Size(847, 54);
+            this.ogbSendBnk.Size = new System.Drawing.Size(726, 54);
             this.ogbSendBnk.TabIndex = 26;
             this.ogbSendBnk.TabStop = false;
             this.ogbSendBnk.Text = "Send status";
             // 
             // ocmCheckAll
             // 
-            this.ocmCheckAll.Location = new System.Drawing.Point(6, 19);
+            this.ocmCheckAll.Location = new System.Drawing.Point(9, 21);
             this.ocmCheckAll.Name = "ocmCheckAll";
             this.ocmCheckAll.Size = new System.Drawing.Size(68, 23);
             this.ocmCheckAll.TabIndex = 22;
@@ -1071,7 +1073,7 @@
             // 
             // ocmSendBnk
             // 
-            this.ocmSendBnk.Location = new System.Drawing.Point(740, 12);
+            this.ocmSendBnk.Location = new System.Drawing.Point(619, 13);
             this.ocmSendBnk.Name = "ocmSendBnk";
             this.ocmSendBnk.Size = new System.Drawing.Size(101, 35);
             this.ocmSendBnk.TabIndex = 18;
@@ -1087,7 +1089,7 @@
             this.ocmRdm.Location = new System.Drawing.Point(4, 25);
             this.ocmRdm.Name = "ocmRdm";
             this.ocmRdm.Padding = new System.Windows.Forms.Padding(3);
-            this.ocmRdm.Size = new System.Drawing.Size(865, 511);
+            this.ocmRdm.Size = new System.Drawing.Size(745, 430);
             this.ocmRdm.TabIndex = 1;
             this.ocmRdm.Text = "Redeem";
             this.ocmRdm.UseVisualStyleBackColor = true;
@@ -1103,7 +1105,7 @@
             this.ogbSendRdm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ogbSendRdm.Name = "ogbSendRdm";
             this.ogbSendRdm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ogbSendRdm.Size = new System.Drawing.Size(847, 54);
+            this.ogbSendRdm.Size = new System.Drawing.Size(726, 54);
             this.ogbSendRdm.TabIndex = 24;
             this.ogbSendRdm.TabStop = false;
             this.ogbSendRdm.Text = "Send status";
@@ -1155,7 +1157,7 @@
             // 
             // ocmSendRdm
             // 
-            this.ocmSendRdm.Location = new System.Drawing.Point(746, 15);
+            this.ocmSendRdm.Location = new System.Drawing.Point(619, 13);
             this.ocmSendRdm.Name = "ocmSendRdm";
             this.ocmSendRdm.Size = new System.Drawing.Size(101, 35);
             this.ocmSendRdm.TabIndex = 18;
@@ -1171,7 +1173,7 @@
             this.ogdRdm.Name = "ogdRdm";
             this.ogdRdm.RowHeadersVisible = false;
             this.ogdRdm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ogdRdm.Size = new System.Drawing.Size(847, 373);
+            this.ogdRdm.Size = new System.Drawing.Size(726, 308);
             this.ogdRdm.TabIndex = 23;
             // 
             // groupBox4
@@ -1187,15 +1189,15 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox4.Size = new System.Drawing.Size(873, 42);
+            this.groupBox4.Size = new System.Drawing.Size(726, 42);
             this.groupBox4.TabIndex = 20;
             this.groupBox4.TabStop = false;
             // 
             // ocmSchRdm
             // 
-            this.ocmSchRdm.Location = new System.Drawing.Point(746, 12);
+            this.ocmSchRdm.Location = new System.Drawing.Point(640, 12);
             this.ocmSchRdm.Name = "ocmSchRdm";
-            this.ocmSchRdm.Size = new System.Drawing.Size(101, 23);
+            this.ocmSchRdm.Size = new System.Drawing.Size(80, 23);
             this.ocmSchRdm.TabIndex = 18;
             this.ocmSchRdm.Text = "Search";
             this.ocmSchRdm.UseVisualStyleBackColor = true;
@@ -1212,9 +1214,9 @@
             // 
             // otbIdRdm
             // 
-            this.otbIdRdm.Location = new System.Drawing.Point(490, 12);
+            this.otbIdRdm.Location = new System.Drawing.Point(482, 12);
             this.otbIdRdm.Name = "otbIdRdm";
-            this.otbIdRdm.Size = new System.Drawing.Size(201, 23);
+            this.otbIdRdm.Size = new System.Drawing.Size(152, 23);
             this.otbIdRdm.TabIndex = 17;
             // 
             // otbDateRdm
@@ -1265,6 +1267,95 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Schedule Task Status";
             // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.ocmAct);
+            this.groupBox13.Controls.Add(this.olaSchSta1);
+            this.groupBox13.Controls.Add(this.olaSchSta2);
+            this.groupBox13.Location = new System.Drawing.Point(6, 9);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(120, 73);
+            this.groupBox13.TabIndex = 13;
+            this.groupBox13.TabStop = false;
+            // 
+            // ocmAct
+            // 
+            this.ocmAct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ocmAct.Location = new System.Drawing.Point(10, 37);
+            this.ocmAct.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ocmAct.Name = "ocmAct";
+            this.ocmAct.Size = new System.Drawing.Size(98, 28);
+            this.ocmAct.TabIndex = 10;
+            this.ocmAct.Text = "Enable";
+            this.ocmAct.UseVisualStyleBackColor = true;
+            this.ocmAct.Click += new System.EventHandler(this.ocmAct_Click);
+            // 
+            // olaSchSta1
+            // 
+            this.olaSchSta1.AutoSize = true;
+            this.olaSchSta1.Location = new System.Drawing.Point(8, 14);
+            this.olaSchSta1.Name = "olaSchSta1";
+            this.olaSchSta1.Size = new System.Drawing.Size(53, 16);
+            this.olaSchSta1.TabIndex = 1;
+            this.olaSchSta1.Text = "Status :";
+            // 
+            // olaSchSta2
+            // 
+            this.olaSchSta2.AutoSize = true;
+            this.olaSchSta2.Location = new System.Drawing.Point(64, 14);
+            this.olaSchSta2.Name = "olaSchSta2";
+            this.olaSchSta2.Size = new System.Drawing.Size(49, 16);
+            this.olaSchSta2.TabIndex = 2;
+            this.olaSchSta2.Text = "Disable";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.otbShcSS);
+            this.groupBox8.Controls.Add(this.label1);
+            this.groupBox8.Controls.Add(this.label2);
+            this.groupBox8.Controls.Add(this.olaCountDown);
+            this.groupBox8.Location = new System.Drawing.Point(132, 9);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(140, 73);
+            this.groupBox8.TabIndex = 13;
+            this.groupBox8.TabStop = false;
+            // 
+            // otbShcSS
+            // 
+            this.otbShcSS.Location = new System.Drawing.Point(8, 39);
+            this.otbShcSS.Name = "otbShcSS";
+            this.otbShcSS.Size = new System.Drawing.Size(62, 23);
+            this.otbShcSS.TabIndex = 12;
+            this.otbShcSS.Text = "10";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 16);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Run Every";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(72, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "SS";
+            // 
+            // olaCountDown
+            // 
+            this.olaCountDown.AutoSize = true;
+            this.olaCountDown.ForeColor = System.Drawing.Color.DarkOrange;
+            this.olaCountDown.Location = new System.Drawing.Point(97, 41);
+            this.olaCountDown.Name = "olaCountDown";
+            this.olaCountDown.Size = new System.Drawing.Size(42, 16);
+            this.olaCountDown.TabIndex = 14;
+            this.olaCountDown.Text = "label3";
+            // 
             // ockAPI
             // 
             this.ockAPI.AutoSize = true;
@@ -1292,72 +1383,6 @@
             this.otbDTrn.Size = new System.Drawing.Size(100, 23);
             this.otbDTrn.TabIndex = 22;
             // 
-            // olaCountDown
-            // 
-            this.olaCountDown.AutoSize = true;
-            this.olaCountDown.ForeColor = System.Drawing.Color.DarkOrange;
-            this.olaCountDown.Location = new System.Drawing.Point(97, 41);
-            this.olaCountDown.Name = "olaCountDown";
-            this.olaCountDown.Size = new System.Drawing.Size(42, 16);
-            this.olaCountDown.TabIndex = 14;
-            this.olaCountDown.Text = "label3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "SS";
-            // 
-            // otbShcSS
-            // 
-            this.otbShcSS.Location = new System.Drawing.Point(8, 39);
-            this.otbShcSS.Name = "otbShcSS";
-            this.otbShcSS.Size = new System.Drawing.Size(62, 23);
-            this.otbShcSS.TabIndex = 12;
-            this.otbShcSS.Text = "10";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 16);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Run Every";
-            // 
-            // ocmAct
-            // 
-            this.ocmAct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ocmAct.Location = new System.Drawing.Point(10, 37);
-            this.ocmAct.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ocmAct.Name = "ocmAct";
-            this.ocmAct.Size = new System.Drawing.Size(98, 28);
-            this.ocmAct.TabIndex = 10;
-            this.ocmAct.Text = "Enable";
-            this.ocmAct.UseVisualStyleBackColor = true;
-            this.ocmAct.Click += new System.EventHandler(this.ocmAct_Click);
-            // 
-            // olaSchSta2
-            // 
-            this.olaSchSta2.AutoSize = true;
-            this.olaSchSta2.Location = new System.Drawing.Point(64, 14);
-            this.olaSchSta2.Name = "olaSchSta2";
-            this.olaSchSta2.Size = new System.Drawing.Size(49, 16);
-            this.olaSchSta2.TabIndex = 2;
-            this.olaSchSta2.Text = "Disable";
-            // 
-            // olaSchSta1
-            // 
-            this.olaSchSta1.AutoSize = true;
-            this.olaSchSta1.Location = new System.Drawing.Point(8, 14);
-            this.olaSchSta1.Name = "olaSchSta1";
-            this.olaSchSta1.Size = new System.Drawing.Size(53, 16);
-            this.olaSchSta1.TabIndex = 1;
-            this.olaSchSta1.Text = "Status :";
-            // 
             // otaDBTest
             // 
             this.otaDBTest.Controls.Add(this.ocmEdit);
@@ -1368,7 +1393,7 @@
             this.otaDBTest.Location = new System.Drawing.Point(4, 25);
             this.otaDBTest.Name = "otaDBTest";
             this.otaDBTest.Padding = new System.Windows.Forms.Padding(3);
-            this.otaDBTest.Size = new System.Drawing.Size(922, 649);
+            this.otaDBTest.Size = new System.Drawing.Size(797, 558);
             this.otaDBTest.TabIndex = 1;
             this.otaDBTest.Text = "Connection";
             this.otaDBTest.UseVisualStyleBackColor = true;
@@ -1421,7 +1446,7 @@
             this.ogdDataConnection.Name = "ogdDataConnection";
             this.ogdDataConnection.ReadOnly = true;
             this.ogdDataConnection.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ogdDataConnection.Size = new System.Drawing.Size(888, 598);
+            this.ogdDataConnection.Size = new System.Drawing.Size(783, 511);
             this.ogdDataConnection.TabIndex = 0;
             this.ogdDataConnection.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ogdDataConnection_CellDoubleClick);
             // 
@@ -1447,9 +1472,9 @@
             this.ossSta.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ossSta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.olaSta});
-            this.ossSta.Location = new System.Drawing.Point(0, 675);
+            this.ossSta.Location = new System.Drawing.Point(0, 587);
             this.ossSta.Name = "ossSta";
-            this.ossSta.Size = new System.Drawing.Size(931, 22);
+            this.ossSta.Size = new System.Drawing.Size(781, 22);
             this.ossSta.TabIndex = 9;
             // 
             // olaSta
@@ -1463,34 +1488,21 @@
             this.otmAutoFuc.Interval = 1000;
             this.otmAutoFuc.Tick += new System.EventHandler(this.otmAutoFuc_Tick);
             // 
-            // groupBox8
+            // ocmShortOver
             // 
-            this.groupBox8.Controls.Add(this.otbShcSS);
-            this.groupBox8.Controls.Add(this.label1);
-            this.groupBox8.Controls.Add(this.label2);
-            this.groupBox8.Controls.Add(this.olaCountDown);
-            this.groupBox8.Location = new System.Drawing.Point(132, 9);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(140, 73);
-            this.groupBox8.TabIndex = 13;
-            this.groupBox8.TabStop = false;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.ocmAct);
-            this.groupBox13.Controls.Add(this.olaSchSta1);
-            this.groupBox13.Controls.Add(this.olaSchSta2);
-            this.groupBox13.Location = new System.Drawing.Point(6, 9);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(120, 73);
-            this.groupBox13.TabIndex = 13;
-            this.groupBox13.TabStop = false;
+            this.ocmShortOver.Location = new System.Drawing.Point(619, 13);
+            this.ocmShortOver.Name = "ocmShortOver";
+            this.ocmShortOver.Size = new System.Drawing.Size(101, 35);
+            this.ocmShortOver.TabIndex = 27;
+            this.ocmShortOver.Text = "Manual Send";
+            this.ocmShortOver.UseVisualStyleBackColor = true;
+            this.ocmShortOver.Click += new System.EventHandler(this.ocmShortOver_Click);
             // 
             // wTestCallDll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 697);
+            this.ClientSize = new System.Drawing.Size(781, 609);
             this.Controls.Add(this.ossSta);
             this.Controls.Add(this.otaMain1);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -1547,14 +1559,14 @@
             this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.otaDBTest.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ogdDataConnection)).EndInit();
             this.ossSta.ResumeLayout(false);
             this.ossSta.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1684,6 +1696,7 @@
         public System.Windows.Forms.CheckBox ockAPI;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button ocmShortOver;
     }
 }
 

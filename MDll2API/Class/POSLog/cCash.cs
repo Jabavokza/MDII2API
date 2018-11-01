@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using MDll2API.Class;
 using System.IO;
 
-namespace MDll2API
+namespace MDll2API.Class.POSLog
 {
     public class cCash
     {

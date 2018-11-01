@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 using WinAppTest.ST_Class;
 using WinAppTest.X_Class;
 using System.Linq;
-using MDll2API.Class;
+using MDll2API.Class.POSLog;
 using MDll2API.Class.ReceivApp;
 using log4net;
 
@@ -3061,6 +3061,59 @@ namespace WinAppTest
             catch { }
         }
 
-     
+        private void ocmShortOver_Click(object sender, EventArgs e)
+        {
+            bool bCheck;
+            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
+            List<string> atValuePlantCodeList;
+            int nLoop = 0;
+            try
+            {
+                //if (otbDateShortManual.Text == "")
+                //{
+                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual ShortOver", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+                //else
+                //{
+                atValuePlantCodeList = new List<string>();
+
+                foreach (DataGridViewRow oRow in ogdShortOver.Rows)
+                {
+                    if (!string.IsNullOrEmpty(ogdShortOver.Rows[nLoop].Cells[0].Value.ToString()))
+                    {
+                        bCheck = Convert.ToBoolean(ogdShortOver.Rows[nLoop].Cells[0].Value.ToString());
+                    }
+                    else
+                    {
+                        bCheck = false;
+                    }
+
+                    if (bCheck)
+                    {
+                        //if (nLoop == 0)
+                        //{
+                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
+                        //}
+
+                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
+                        //{
+                        //    otbTrnDSale.Focus();
+                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
+                        //    return;
+                        //}
+
+                        tValueSaleDate = Convert.ToDateTime(ogdShortOver.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                        tValuePlantCode = ogdShortOver.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
+                        atValuePlantCodeList.Add(tValuePlantCode);
+                    }
+
+                    nLoop++;
+                }
+
+                W_GETxCash("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
+                //}
+            }
+            catch (Exception oEx) { }
+        }
     }
 }

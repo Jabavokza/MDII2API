@@ -6,3 +6,4 @@ D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.csproj.CoreCompileI
 D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.csproj.CopyComplete
 D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.dll
 D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.pdb
+D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.csprojAssemblyReference.cache

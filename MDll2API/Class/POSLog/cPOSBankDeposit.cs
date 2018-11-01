@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MDll2API.Class
+namespace MDll2API.Class.POSLog
 {
     public class cPOSBankDeposit
     {

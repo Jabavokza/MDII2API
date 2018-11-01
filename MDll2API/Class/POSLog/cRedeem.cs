@@ -7,7 +7,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace MDll2API
+namespace MDll2API.Class.POSLog
 {
     public class cRedeem
     {

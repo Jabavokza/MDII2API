@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using MDll2API.Class;
 using MDll2API.Class.ReceivApp;
 
-namespace MDll2API
+namespace MDll2API.Class.POSLog
 {
     public class cSale
     {

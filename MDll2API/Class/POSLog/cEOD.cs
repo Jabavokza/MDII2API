@@ -5,7 +5,7 @@ using System.Data;
 using System.Net;
 using System.Text;
 
-namespace MDll2API
+namespace MDll2API.Class.POSLog
 {
     public class cEOD
     {
