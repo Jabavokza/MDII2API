@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDll2API", "MDll2API\MDll2API.csproj", "{9C80137D-10BC-489A-8D6F-496607291700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAppTest", "WinAppTest\WinAppTest.csproj", "{DE2CCAEC-18EA-4E3D-A722-247DB4FDCAA2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9C80137D-10BC-489A-8D6F-496607291700} = {9C80137D-10BC-489A-8D6F-496607291700}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C80137D-10BC-489A-8D6F-496607291700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C80137D-10BC-489A-8D6F-496607291700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C80137D-10BC-489A-8D6F-496607291700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C80137D-10BC-489A-8D6F-496607291700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE2CCAEC-18EA-4E3D-A722-247DB4FDCAA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE2CCAEC-18EA-4E3D-A722-247DB4FDCAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE2CCAEC-18EA-4E3D-A722-247DB4FDCAA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE2CCAEC-18EA-4E3D-A722-247DB4FDCAA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D1E004A-1ED8-4EA6-8E1D-D9FD4D23A928}
+	EndGlobalSection
+EndGlobal
