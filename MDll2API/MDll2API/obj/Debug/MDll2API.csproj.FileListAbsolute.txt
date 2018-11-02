@@ -7,3 +7,11 @@ D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.csproj.CopyComplete
 D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.dll
 D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.pdb
 D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Debug\MDll2API.csprojAssemblyReference.cache
+D:\Project\2018\MDll2API\MDll2API\bin\Debug\MDll2API.dll
+D:\Project\2018\MDll2API\MDll2API\bin\Debug\MDll2API.pdb
+D:\Project\2018\MDll2API\MDll2API\bin\Debug\Newtonsoft.Json.dll
+D:\Project\2018\MDll2API\MDll2API\bin\Debug\Newtonsoft.Json.xml
+D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.csproj.CoreCompileInputs.cache
+D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.csproj.CopyComplete
+D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.dll
+D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.pdb

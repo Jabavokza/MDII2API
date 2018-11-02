@@ -1,4 +1,5 @@
-﻿using MDll2API.Class;
+﻿
+using MDll2API.Class.Modale;
 using MDll2API.Class.ReceivApp;
 using MDll2API.Class.Standard;
 using Newtonsoft.Json;
@@ -48,7 +49,7 @@ namespace MDll2API.Class.POSLog
             string tStatusCode = "";
             string tWorkStationID = ""; //*Em 61-08-04
             string tWorkStation = ""; //*Em 61-08-04
-            cPOSBankDeposit oPOSBankDeposit = null;
+            mlPOSBankDeposit oPOSBankDeposit = null;
             tC_DateTrn = ptDTrn;
             oC_RcvBank = poRcvBank;
             tC_Auto = ptAuto;
@@ -235,7 +236,7 @@ namespace MDll2API.Class.POSLog
 
 
                         //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
-                        oPOSBankDeposit = JsonConvert.DeserializeObject<cPOSBankDeposit>(tJson);
+                        oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(tJson);
 
                         for (int i = 0; i < oPOSBankDeposit.POSLog.Transaction.Length; i++)
                         {

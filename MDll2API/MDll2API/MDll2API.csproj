@@ -42,15 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Modale\mlPOSBankDeposit.cs" />
+    <Compile Include="Class\Modale\mlPOSCash.cs" />
+    <Compile Include="Class\Modale\mlPOSSale..cs" />
     <Compile Include="Class\POSLog\cAutomatic.cs" />
     <Compile Include="Class\POSLog\cBankDeposit.cs" />
     <Compile Include="Class\POSLog\cCash.cs" />
     <Compile Include="Class\POSLog\cEDC.cs" />
     <Compile Include="Class\POSLog\cEOD.cs" />
     <Compile Include="Class\POSLog\cPoint.cs" />
-    <Compile Include="Class\POSLog\cPOSBankDeposit.cs" />
-    <Compile Include="Class\POSLog\cPOSSale..cs" />
-    <Compile Include="Class\POSLog\cPOSCash.cs" />
     <Compile Include="Class\POSLog\cRedeem.cs" />
     <Compile Include="Class\POSLog\cSale.cs" />
     <Compile Include="Class\POSLog\cSaleOrder.cs" />

@@ -31,4 +31,15 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D1E004A-1ED8-4EA6-8E1D-D9FD4D23A928}
 	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccLocalPath0 = .
+		CanCheckoutShared = true
+		SccProjectUniqueName1 = MDll2API\\MDll2API.csproj
+		SccLocalPath1 = .
+		SccProjectFilePathRelativizedFromConnection1 = MDll2API\\
+		SccProjectUniqueName2 = WinAppTest\\WinAppTest.csproj
+		SccLocalPath2 = .
+		SccProjectFilePathRelativizedFromConnection2 = WinAppTest\\
+	EndGlobalSection
 EndGlobal
