@@ -9,19 +9,21 @@ using System.Text;
 using System.Xml;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace MDll2API.Class.Standard
+namespace MDll2API.Class.ST_Class
 {
-    class cSP
+   public static class cCNSP
     {
-       
-
+        public static string GETtVertionDll()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
         /// <summary>
         /// สำหรับสร้าง Text ประกอบโครงสร้าง Json
         /// </summary>
         /// <param name="ptQuery">Query สร้าง Json</param>
         /// <param name="ptConnDB">Connnection String Databass</param>
         /// <returns></returns>
-        public string SP_SQLxExecuteJson(string ptQuery, string ptConnDB)
+        public static string SP_SQLtExecuteJson(string ptQuery, string ptConnDB)
         {
             SqlCommand oCmdSql = new SqlCommand();
             SqlConnection oDbCon = new SqlConnection(ptConnDB);
@@ -58,7 +60,7 @@ namespace MDll2API.Class.Standard
         /// <param name="ptQuery"></param>
         /// <param name="ptConnDB"></param>
         /// <returns>Int ตามสถานะ Rows</returns>
-        public int SP_SQLxExecute(string ptQuery, string ptConnDB)
+        public static int SP_SQLnExecute(string ptQuery, string ptConnDB)
         {
             SqlCommand oCmdSql = new SqlCommand();
             SqlConnection oDbCon = new SqlConnection(ptConnDB);
@@ -80,38 +82,38 @@ namespace MDll2API.Class.Standard
             }
         }
 
-        public string SP_WRItJSON(string ptJson,string ptType)
+        public static string SP_WRItJSON(string ptJson,string ptType)
         {
             string tName1 = "";
             try
             {
                 // SALE_YYYY - MM - DD:HH: mm: ss
-                cSP oSP = new cSP();
+
                 string tName = "";
           
                 if (ptType == "SALE")
                 {
-                    tName = "SALE_" + oSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
+                    tName = "SALE_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
                 }
                 else if (ptType == "BANK")
                 {
-                    tName = "BANKIN_" + oSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
+                    tName = "BANKIN_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
                 }
                 else if (ptType == "REDEEM")
                 {
-                    tName = "REDEEM_" + oSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
+                    tName = "REDEEM_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
                 }
                 else if (ptType == "EOD")
                 {
-                    tName = "DAYSUMARY_" + oSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
+                    tName = "DAYSUMARY_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
                 }
                 else if (ptType == "EDC")
                 {
-                    tName = "EDC_" + oSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
+                    tName = "EDC_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
                 }
                 else if (ptType == "CASH")
                 {
-                    tName = "SHORTOVER_" + oSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
+                    tName = "SHORTOVER_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
                 }
                 string tPathLocal = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\JsonFile\\"+ tName +".json";
                 if (ptJson!="")
@@ -131,7 +133,7 @@ namespace MDll2API.Class.Standard
         /// Load Config XML เข้า Datatable
         /// </summary>
         /// <returns>โครงสร้าง Config XML ตามรูปแบบ Datatable</returns>
-        public DataTable SP_GEToConnDB()
+        public static DataTable SP_GEToConnDB()
         {
             XmlReader oXmlFile;
             DataSet oDs = new DataSet();
@@ -160,7 +162,7 @@ namespace MDll2API.Class.Standard
         /// โหลดข้อมูล  POSCenter เพื่อใช้หา ข้อมูล Master
         /// </summary>
         /// <returns>โครงสร้าง Config XML ตามรูปแบบ Datatable</returns>
-        public DataTable SP_GEToPosCnt()
+        public static DataTable SP_GEToPosCnt()
         {
             XmlReader oXmlFile;
             DataSet oDs = new DataSet();
@@ -188,7 +190,7 @@ namespace MDll2API.Class.Standard
         /// สร้าง Query check LogHis ให้สร้าง Table กรณียังไม่สร้าง
         /// </summary>
         /// <returns>string Query สร้างตรวจสอบ Table</returns>
-        public string SP_GETtCHKDBLogHis()
+        public static string SP_GETtCHKDBLogHis()
         {
             string rtResult = "";
             StringBuilder oSQL = new StringBuilder();
@@ -234,7 +236,7 @@ namespace MDll2API.Class.Standard
         /// <param name="ptType">Type Value ที่ต้องการ Return ตาม Function</param>
         /// <param name="ptConnDB">String Connect</param>
         /// <returns>string ค่า Max Date</returns>
-        public string SP_GETtMaxDateLogHis(string ptType,string ptConnDB)
+        public static string SP_GETtMaxDateLogHis(string ptType,string ptConnDB)
         {
             string rtResult = "";
             StringBuilder oSQL = new StringBuilder();
@@ -267,7 +269,7 @@ namespace MDll2API.Class.Standard
         /// <param name="ptConnDB">Connection String</param>
         /// <param name="ptTypeVal">Type Value ที่ต้องการ Return T:string,N;Int,C:Double</param>
         /// <returns>สถานะ|value|Description</returns>
-        public string SP_GETtExecuteScalarSQL(string ptSql, string ptConnDB,string ptTypeVal)
+        public static string SP_GETtExecuteScalarSQL(string ptSql, string ptConnDB,string ptTypeVal)
         {
             SqlConnection oConn = new SqlConnection();
             SqlCommand oCmd = new SqlCommand();
@@ -327,7 +329,7 @@ namespace MDll2API.Class.Standard
             }
             return tResult;
         }
-        public  string SP_DTEtByFormat(string ptDate, string ptFormat)
+        public static string SP_DTEtByFormat(string ptDate, string ptFormat)
         {
             string tRet = "";
             DateTime odt = Convert.ToDateTime(ptDate);
@@ -374,6 +376,188 @@ namespace MDll2API.Class.Standard
                     break;
             }
             return tRet;
+        }
+
+        public static void SP_ADDxLog(string ptLogMsg)
+        {
+            // Call SP_ADDxLog(tVB_LogPath & "\Error" & Format(Date.Now, "yyyyMMdd"), Format(Date.Now, "HH:mm:ss") & "XXX") 'เรียกใช้
+            // SP_WRITExLog(ptPath & ".txt", ptLog)
+            SP_WRITExLog(SP_DTEtByFormat(DateTime.Now.ToString(), "YYYY/MM/DD HH:MM:SS") + ":MsgLog:" + ptLogMsg);
+        }
+
+        public static void SP_WRITExLog(string ptLog)
+        {
+            string tPath = Directory.GetCurrentDirectory();
+            string tName = SP_DTEtByFormat(DateTime.Now.ToString(), "YYYY-MM-DD");
+            tName = tName + "_SAPMInterface";
+            tPath = tPath + "\\Log\\" + tName + ".txt";
+            try
+            {
+                if (!(File.Exists(tPath)))
+                {
+                    using (StreamWriter oSw = File.CreateText(tPath))
+                    {
+                        oSw.Close();
+                    }
+                }
+                using (StreamWriter oSw = File.AppendText(tPath))
+                {
+                    var _with1 = oSw;
+                    _with1.WriteLine(ptLog);
+                    _with1.Flush();
+                    _with1.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                // SP_ADDxLog("mCNSP:SP_WRITExLog:" + ex.Message);
+            }
+        }
+
+        public static DataTable SP_SQLvExecute(string ptQeury, string tConStr)
+        {
+            SqlDataAdapter oDbAdt = null;
+            DataSet oDbDtsSet = null;
+            DataTable oDbTblDt = new DataTable();
+            //  SP_SETxConClient();
+            try
+            {
+                SqlConnection ocnForm = new SqlConnection(tConStr);
+                {
+                    ocnForm.Open();
+                    oDbAdt = new SqlDataAdapter(ptQeury, ocnForm);
+                    oDbDtsSet = new DataSet();
+                    oDbAdt.Fill(oDbDtsSet, "TEMP");
+                    oDbTblDt = oDbDtsSet.Tables["TEMP"];
+
+                    ocnForm.Dispose();
+                    oDbAdt.Dispose();
+                    oDbDtsSet.Dispose();
+
+                    return oDbTblDt;
+                }
+            }
+            catch (Exception oEx)
+            {
+                throw oEx;
+            }
+            finally
+            {
+                if (oDbAdt != null) { oDbAdt.Dispose(); }
+                if (oDbDtsSet != null) { oDbDtsSet.Dispose(); }
+            }
+        }
+
+        public static DataTable SP_SQLvFillTable(string ptQeury, DataTable poDt)
+        {
+            SqlDataAdapter oDbAdt = null;
+            //  SP_SETxConClient();
+            try
+            {
+                SqlConnection ocnForm = new SqlConnection(cCNVB.tConStr);
+                {
+                    ocnForm.Open();
+                    oDbAdt = new SqlDataAdapter(ptQeury, ocnForm);
+                    oDbAdt.Fill(poDt);
+
+                    ocnForm.Dispose();
+                    oDbAdt.Dispose();
+
+                    return poDt;
+                }
+            }
+            catch (Exception oEx)
+            {
+                throw oEx;
+            }
+            finally
+            {
+                if (oDbAdt != null) { oDbAdt.Dispose(); }
+            }
+        }
+
+        public static string GETtLang(string ptLang, string ptText)
+        {
+            string tText = "";
+            tText = (ptLang == "TH") ? ptText.Substring(0, ptText.IndexOf("|")) : //    TH
+                                       ptText.Substring((ptText.IndexOf("|") + 1), ptText.Length - (ptText.IndexOf("|") + 1)); //EN
+            return tText;
+        }
+
+        public static void SP_SETxConClient()
+        {
+            string tCon = null;
+            tCon = "Data Source = 172.16.30.14\\SQL2012";
+            tCon = tCon + Environment.NewLine + ";Initial Catalog = ProjectControl";
+            tCon = tCon + Environment.NewLine + ";Persist Security Info=True;User ID = sa";
+            tCon = tCon + Environment.NewLine + ";Password =adasoft";
+            // cCNVB.tVB_ConStr = tCon;
+        }
+
+        public static void SETxConDBMain()
+        {
+            // string tCon = "";
+
+            string tPath = "\\Config\\DBCli.xml";
+            string tSever = "";
+            string tUsr = "";
+            string tPsw = "";
+            string tDB = "";
+            string tTime = "";
+            try
+            {
+                if (File.Exists(tPath))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    Directory.CreateDirectory(Path.GetDirectoryName(tPath));
+                    FileStream oFs = new FileStream(tPath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+
+                    doc.Load(oFs);
+                    XmlNodeList elemList = doc.GetElementsByTagName("CI");
+
+                    foreach (XmlNode node in elemList)
+                    {
+                        XmlElement oElement = (XmlElement)node;
+
+                        tSever = oElement.GetElementsByTagName("Server")[0].InnerText;
+                        tUsr = oElement.GetElementsByTagName("User")[0].InnerText;
+                        tPsw = oElement.GetElementsByTagName("Password")[0].InnerText;
+                        tDB = oElement.GetElementsByTagName("DBName")[0].InnerText;
+                        tTime = oElement.GetElementsByTagName("Time")[0].InnerText;
+                        cCNVB.tTDuration = oElement.GetElementsByTagName("TimeDuration")[0].InnerText;
+                    }
+
+                    oFs.Flush();
+                    oFs.Close();
+                }
+
+                cCNVB.tConStr = "Data Source = " + tSever;
+                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Initial Catalog =" + tDB;
+                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Persist Security Info=True;User ID =" + tUsr;
+                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Password =" + tPsw;
+                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Connection Timeout =" + tTime;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static string GETtCutStr(string ptText, int pnLengFix)
+        {
+            //(value.Length <= 32 ? value.Substring(0, value.Length) : value.Substring(0, 32));
+            string tStr = "";
+            if (ptText.Length <= pnLengFix)
+            {
+                tStr = ptText.Substring(0, ptText.Length);
+            }
+            else
+            {
+                tStr = ptText.Substring(0, pnLengFix);
+            }
+            return tStr;
         }
     }
 }

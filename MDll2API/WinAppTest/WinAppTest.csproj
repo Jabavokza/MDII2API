@@ -108,5 +108,8 @@
     <None Include="ontMain.Icon.ico" />
     <Content Include="Senddata.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Class\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

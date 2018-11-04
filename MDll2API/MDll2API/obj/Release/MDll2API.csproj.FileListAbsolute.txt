@@ -1,9 +1,0 @@
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\bin\Release\MDll2API.dll
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\bin\Release\MDll2API.pdb
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\bin\Release\Newtonsoft.Json.dll
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\bin\Release\Newtonsoft.Json.xml
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Release\MDll2API.csproj.CoreCompileInputs.cache
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Release\MDll2API.csproj.CopyComplete
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Release\MDll2API.dll
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Release\MDll2API.pdb
-D:\Phakin\ProjectGithub\MDII2API\MDll2API\obj\Release\MDll2API.csprojAssemblyReference.cache

@@ -1,5 +1,4 @@
-﻿using MDll2API.Class.Standard;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -10,7 +9,8 @@ using System.Web;
 using Newtonsoft.Json;
 using MDll2API.Class;
 using MDll2API.Class.ReceivApp;
-using MDll2API.Class.Modale;
+using MDll2API.Modale;
+using MDll2API.Class.ST_Class;
 
 namespace MDll2API.Class.POSLog
 {
@@ -39,10 +39,8 @@ namespace MDll2API.Class.POSLog
             DataRow[] aoRow;
             Double cPointValue = 1;  //*Em 61-08-04
             mlPOSSale oPOSSale;
-            cSP oSP;
             try
             {
-                oSP = new cSP();
                 oPOSSale = new mlPOSSale();
                 oC_RcvSale = poRcvSale;
                 tC_Auto = ptAuto;
@@ -55,7 +53,7 @@ namespace MDll2API.Class.POSLog
                 dStart = DateTime.Now;
                 // load Config
 
-                oTblConfig = oSP.SP_GEToConnDB();
+                oTblConfig = cCNSP.SP_GEToConnDB();
                 // Sort  Group Function
                 aoRow = oTblConfig.Select("GroupIndex='" + tFunction + "'");
 
@@ -77,18 +75,18 @@ namespace MDll2API.Class.POSLog
                     tConnDB += "; User ID=" + aoRow[nRow]["User"].ToString() + "; Password=" + aoRow[nRow]["Password"].ToString();
 
                     // Check TPOSLogHis  Existing
-                    tSQL = oSP.SP_GETtCHKDBLogHis();
-                    oSP.SP_SQLxExecute(tSQL, tConnDB);
+                    tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                    cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                     // Get Max FTBathNo Condition To Json
                     tLastUpd = "";
-                    tLastUpd = oSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
+                    tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
 
                     //  Condition ตาม FTBatchNo Get Json
                     //tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]));
                     tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(aoRow[nRow]["TopRow"]), cPointValue); //*Em 61-08-04
 
-                    tExecute = oSP.SP_SQLxExecuteJson(tSQL, tConnDB);
+                    tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
                     if (tExecute != "")
                     {
                         if (tJsonTrn == "")
@@ -120,7 +118,7 @@ namespace MDll2API.Class.POSLog
 
                     //WRITE JSON Gen SALE_YYYY-MM-DD:HH:mm:ss
                     tJson = tJson.Replace("amp;", ""); //คือ & เอาออก
-                    tFileName = oSP.SP_WRItJSON(tJson, "SALE");
+                    tFileName = cCNSP.SP_WRItJSON(tJson, "SALE");
 
                     //Call API
                   
@@ -177,7 +175,7 @@ namespace MDll2API.Class.POSLog
 
                         // Get Max FTBathNo Condition To Json
                         tLastUpd = "";
-                        tLastUpd = oSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
+                        tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
                         // Keep Log
                         oSql = new StringBuilder();
                         oSql.AppendLine("INSERT INTO TPOSLogHis(");
@@ -198,7 +196,7 @@ namespace MDll2API.Class.POSLog
                             oSql.AppendLine("    AND CONVERT(varchar(8), FDDateUpd, 112) + REPLACE(FTTimeUpd, ':', '') > '" + tLastUpd + "'");
                         }
                         oSql.AppendLine("    ORDER BY FDDateUpd, FTTimeUpd) TTmp");
-                        oSP.SP_SQLxExecute(oSql.ToString(), tConnDB);
+                        cCNSP.SP_SQLnExecute(oSql.ToString(), tConnDB);
 
                         //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
                         oPOSSale = JsonConvert.DeserializeObject<mlPOSSale>(tJson);
@@ -218,7 +216,7 @@ namespace MDll2API.Class.POSLog
                             string tTrnNo = "";
                             tTrnNo = oPOSSale.POSLog.Transaction[i].SequenceNumber.Substring(oPOSSale.POSLog.Transaction[i].SequenceNumber.Length - 10, 10);
                             tUPD = "UPDATE TPSTSalHD SET FTStaSentOnOff = '"+ tStaSentOnOff + "',FTJsonFileName='"+ tFileName + "' WHERE  FTTmnNum+FTShdTransNo='" + tTrnNo + "' AND FTShdPlantCode='" + oPOSSale.POSLog.Transaction[i].BusinessUnit.UnitID + "' ";
-                            oSP.SP_SQLxExecute(tUPD, tConnDB);
+                            cCNSP.SP_SQLnExecute(tUPD, tConnDB);
                         }
                         //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
                     }
@@ -256,7 +254,7 @@ namespace MDll2API.Class.POSLog
                 tUsrApi = null;
                 tPwdApi = null;
                 oSql = null;
-                oSP = null;
+               // oSP = null;
                 tConnDB = null;
                 tFunction = null;
                 oTblConfig = null;
@@ -271,13 +269,12 @@ namespace MDll2API.Class.POSLog
             string tPosLnkDB = "";
             string tPosCntDB = "";
        
-            cSP oSP = new cSP();
             DataTable oTblPosCenter;
             try
             {
                 //2018-08-28 Add config POS Center เพื่อใช้ดึงข้อมูล Master
                 //load poscenter config
-                oTblPosCenter = oSP.SP_GEToPosCnt();
+                oTblPosCenter = cCNSP.SP_GEToPosCnt();
 
                 if (oTblPosCenter != null)
                 {
@@ -422,38 +419,6 @@ namespace MDll2API.Class.POSLog
                 oSQL.AppendLine("        CHAR(9) + ISNULL( ");
                 oSQL.AppendLine("        STUFF((");
 
-                //oSQL.AppendLine("        SELECT ' {' + CHAR(10) +");
-                ////oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SequenceNumber\": \"' + CONVERT(VARCHAR, FNScdSeqNo) + '\",' + CHAR(10) +");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SequenceNumber\": \"' + CONVERT(VARCHAR,ROW_NUMBER() OVER (PARTITION BY FNSdtSeqNo ORDER BY FNScdSeqNo)) + '\",' + CHAR(10) +");  //*Em 61-07-18
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": {' + CHAR(10) +");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@Action\": \"Subtract\",' + CHAR(10) +");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"$\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCScdAmt)) + '\"' + CHAR(10) + ");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '},' + CHAR(10) + ");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionID\": \"' + FTScdBBYNo + '\",' + CHAR(10) + ");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Description\": \"' + FTScdBBYDesc + '\",' + CHAR(10) + ");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionArea\": \"' + FTScdProArea + '\",' + CHAR(10) + ");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionProfile\": \"' + FTScdBBYProfID + '\"' + CHAR(10) + ");
-                //oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '}' + CASE WHEN ISNULL(HD.FTCstPointName3, '') <> '' AND " +
-                //    " (SELECT COUNT(*) " +
-                //    " FROM TPSTSalePoint with(nolock)" +
-                //    " WHERE FTTmnNum = TPSTSalDT.FTTmnNum AND FTShdTransNo = TPSTSalDT.FTShdTransNo" +
-                //    " AND FDShdTransDate = TPSTSalDT.FDShdTransDate " +
-                //    " AND FTSpoID = TPSTSalDT.FTSkuCode " +
-                //    " AND FTSRVName = TPSTSalDT.FTSRVName) >= 1 " +
-                //    " OR ((SELECT COUNT(*) " +
-                //    " FROM TPSTSalDT DT1 with(nolock)" +
-                //    " WHERE DT1.FTTmnNum = TPSTSalDT.FTTmnNum AND DT1.FTShdTransNo = TPSTSalDT.FTShdTransNo" +
-                //    " AND DT1.FDShdTransDate = TPSTSalDT.FDShdTransDate " +
-                //    " AND DT1.FTSRVName = TPSTSalDT.FTSRVName) > 1 and (SELECT COUNT(*) " +
-                //    " FROM TPSTSalDT DT1 with(nolock)" +
-                //    " WHERE DT1.FTTmnNum = TPSTSalDT.FTTmnNum AND DT1.FTShdTransNo = TPSTSalDT.FTShdTransNo" +
-                //    " AND DT1.FDShdTransDate = TPSTSalDT.FDShdTransDate " +
-                //    " AND DT1.FTSRVName = TPSTSalDT.FTSRVName) <> CONVERT(VARCHAR,ROW_NUMBER() OVER (PARTITION BY FNSdtSeqNo ORDER BY FNScdSeqNo))" +
-                //    " THEN ',' ELSE '' END  + CHAR(10) + '' "); // M!ke [26][09][2018] Comma
-                //oSQL.AppendLine("        FROM TPSTSalCD with(nolock) ");
-                //oSQL.AppendLine("        WHERE FTTmnNum = TPSTSalDT.FTTmnNum AND FTShdTransNo = TPSTSalDT.FTShdTransNo ");
-                //oSQL.AppendLine("        AND FDShdTransDate = TPSTSalDT.FDShdTransDate AND FNSdtSeqNo = TPSTSalDT.FNSdtSeqNo  AND FTSRVName = TPSTSalDT.FTSRVName");
-
                 oSQL.AppendLine("SELECT ',{' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SequenceNumber\": \"' + CONVERT(VARCHAR, ROW_NUMBER() OVER(PARTITION BY FNSdtSeqNo ORDER BY FNScdSeqNo)) + '\",' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": {' + CHAR(10) +");
@@ -481,29 +446,6 @@ namespace MDll2API.Class.POSLog
                 oSQL.AppendLine(") as xdata");
                 oSQL.AppendLine("        FOR XML PATH('') ");
                 oSQL.AppendLine("        ), 1, 1, ''), '') + CHAR(10) + ");
-
-                //oSQL.AppendLine("   CASE WHEN ISNULL(HD.FTCstPointName3, '') <> '' THEN");
-                //oSQL.AppendLine("       CHAR(9) + ISNULL( ");
-                //oSQL.AppendLine("       STUFF((");
-                //oSQL.AppendLine("       SELECT ' {' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SequenceNumber\": \"' + (select CONVERT(VARCHAR, CONVERT(int, Count(*) + 1)) from TPSTSalCD cd WHERE cd.FTTmnNum = TPSTSalDT.FTTmnNum AND cd.FTShdTransNo = TPSTSalDT.FTShdTransNo AND cd.FDShdTransDate = TPSTSalDT.FDShdTransDate AND cd.FNSdtSeqNo = TPSTSalDT.FNSdtSeqNo  AND cd.FTSRVName = TPSTSalDT.FTSRVName) + '\",' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": {' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@Action\": \"Subtract\",' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"$\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCSpoPoint *  " + pcPoint + ")) + '\"' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '},' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionID\": \"' + FTSpoBBYNo + '\",' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Description\": \"' + FTSpoBBYDesc + '\",' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionArea\": \"' + FTSpoProArea + '\",' + CHAR(10) +");
-                //oSQL.AppendLine("       CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionProfile\": \"' + FTSpoBBYProfID + '\"' + CHAR(10) +");
-                //oSQL.AppendLine("  CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '}' + CHAR(10) + ''");
-                //oSQL.AppendLine("  FROM TPSTSalePoint with(nolock)");
-                //oSQL.AppendLine("  WHERE FTTmnNum = TPSTSalDT.FTTmnNum AND FTShdTransNo = TPSTSalDT.FTShdTransNo");
-                //oSQL.AppendLine("  AND FDShdTransDate = TPSTSalDT.FDShdTransDate AND FTSpoID = TPSTSalDT.FTSkuCode  AND FTSRVName = TPSTSalDT.FTSRVName");
-                //oSQL.AppendLine("  FOR XML PATH('')");
-                //oSQL.AppendLine("  ), 1, 1, ''), '') + CHAR(10)");
-                //oSQL.AppendLine("   ELSE");
-                //oSQL.AppendLine("   ''");
-                //oSQL.AppendLine("   END + ");
 
                 oSQL.AppendLine("        CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '],' + CHAR(10) ");
 
@@ -572,24 +514,7 @@ namespace MDll2API.Class.POSLog
                 oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"$\": \"' + '1' + '\"' + CHAR(10) + ");
                 oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '},' + CHAR(10) + ");
                 oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Associate\": { \"AssociateID\": \"''\" },' + CHAR(10) + ");
-                // add Tax
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Tax\": {' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@TaxType\": \"VAT\",' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SequenceNumber\": \"' + CONVERT(VARCHAR, FNSdtSeqNo) + '\",' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SequenceNumber\": \"' + CONVERT(VARCHAR,ROW_NUMBER() OVER (PARTITION BY FNSdtSeqNo ORDER BY FNSdtSeqNo)) + '\",' + CHAR(10) + ");    //*Em 61-07-18
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"TaxableAmount\": {' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@TaxIncludedInTaxableAmountFlag\": \"' + 'true' + '\",' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@TaxIncludedInTaxableAmountFlag\": \"' + 'false' + '\",' + CHAR(10) + ");  //*Em 61-07-19  Fixed false
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"$\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCSdtSaleAmt)) + '\"' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"$\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), DT15.FCSdtVatable)) + '\"' + CHAR(10) + "); //*Em 61-07-12
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '},' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"TaxablePercentage\": \"100.00\",' + CHAR(10) + ");   //*Em 61-07-19  Fixed 100
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), DT15.FCSdtVat)) + '\",' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Percent\": \"' + CONVERT(VARCHAR, DT15.FCSdtTax) + '\",' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"TaxRuleID\": \"' + (CASE DT15.FTTaxCode WHEN '00' THEN 'ON' WHEN '01' THEN 'O7' WHEN '02' THEN 'O0' END) + '\"' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '},' + CHAR(10) + ");
-                //oSQL.AppendLine("     CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SerialNumber\": \"' + DT15.FTSdtDisChgTxt + '\"' + ");
-                //
+            
                 oSQL.AppendLine("   CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Tax\": {' + CHAR(10) + ");
                 oSQL.AppendLine("   CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@TaxType\": \"VAT\",' + CHAR(10) + ");
                 oSQL.AppendLine("   CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"SequenceNumber\": \"1\",' + CHAR(10) + ");
@@ -715,24 +640,6 @@ namespace MDll2API.Class.POSLog
                 oSQL.AppendLine("AND FTSRVName = HD.FTSRVName");
                 oSQL.AppendLine("AND FCSrcNet<> 0");
 
-                //oSQL.AppendLine("UNION ALL");
-                //oSQL.AppendLine("SELECT");
-                //oSQL.AppendLine("'2' AS FTType,");
-                //oSQL.AppendLine(" (");
-                //oSQL.AppendLine("CHAR(9) + '\"Tender\":{' + CHAR(10) +");
-                //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@TenderType\": \"T029\",' + CHAR(10) +");
-                //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@SequenceNumber\": \"' + CONVERT(VARCHAR, DTB.FNSdtSeqNo) + '\",' + CHAR(10) +");
-                //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": {' + CHAR(10) +");
-                //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"@Currency\": \"THB\",' + CHAR(10) +");
-                //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"$\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCSdtSaleAmt)) + '\"' + CHAR(10) +");
-                //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '}' + CHAR(10) +");
-                //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '},'");
-                //oSQL.AppendLine(") AS FTData,''");
-                //oSQL.AppendLine("FROM TPSTSalDT DTB with(nolock)");
-                //oSQL.AppendLine("WHERE DTB.FTTmnNum = HD.FTTmnNum AND DTB.FTShdTransNo = HD.FTShdTransNo");
-                //oSQL.AppendLine("AND DTB.FDShdTransDate = HD.FDShdTransDate");
-                //oSQL.AppendLine("AND DTB.FTSRVName = HD.FTSRVName");
-                //oSQL.AppendLine("AND DTB.FTShdTransType = '07' AND DTB.FTSdtStaSalType = '2'");
 
                 //*Em 61-08-06  Rounding ให้ถือว่าเป็น Tender อย่างหนึ่ง ++++++++++++
                 oSQL.AppendLine("UNION ALL");
@@ -879,7 +786,7 @@ namespace MDll2API.Class.POSLog
             }
             catch (Exception oEx)
             {
-                return "";
+                throw oEx;
             }
             finally
             {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MDll2API.Class.Modale
+namespace MDll2API.Modale
 {
     public class mlPOSBankDeposit
     {

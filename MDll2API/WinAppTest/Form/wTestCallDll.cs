@@ -14,7 +14,9 @@ using WinAppTest.X_Class;
 using System.Linq;
 using MDll2API.Class.POSLog;
 using MDll2API.Class.ReceivApp;
+using MDll2API.Class.ST_Class;
 using log4net;
+using cCNSP = MDll2API.Class.ST_Class.cCNSP;
 
 namespace WinAppTest
 {

@@ -42,9 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\Modale\mlPOSBankDeposit.cs" />
-    <Compile Include="Class\Modale\mlPOSCash.cs" />
-    <Compile Include="Class\Modale\mlPOSSale..cs" />
     <Compile Include="Class\POSLog\cAutomatic.cs" />
     <Compile Include="Class\POSLog\cBankDeposit.cs" />
     <Compile Include="Class\POSLog\cCash.cs" />
@@ -57,8 +54,11 @@
     <Compile Include="Class\ReceivApp\cRcvBank.cs" />
     <Compile Include="Class\ReceivApp\cRcvRedeem.cs" />
     <Compile Include="Class\ReceivApp\cRcvSale.cs" />
-    <Compile Include="Class\Standard\cSP.cs" />
-    <Compile Include="Class\Standard\cVB.cs" />
+    <Compile Include="Class\ST-Class\cCNSP.cs" />
+    <Compile Include="Class\ST-Class\cCNVB.cs" />
+    <Compile Include="Modale\mlPOSBankDeposit.cs" />
+    <Compile Include="Modale\mlPOSCash.cs" />
+    <Compile Include="Modale\mlPOSSale..cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using MDll2API.Class.Standard;
+﻿using MDll2API.Class.ST_Class;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,7 +32,6 @@ namespace MDll2API.Class.POSLog
             string tPwdApi = "";
             string tResp = "";
             StringBuilder oSql;
-            cSP oSP = new cSP();
             string tConnDB = "";
             string tFunction = "9";  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order ,8:Bank Deposit ,9:EDC
             DataTable oTblConfig;
@@ -49,7 +48,7 @@ namespace MDll2API.Class.POSLog
                 tC_DateTrn = ptDTrn;
                 dStart = DateTime.Now;
                 // load Config
-                oTblConfig = oSP.SP_GEToConnDB();
+                oTblConfig = cCNSP.SP_GEToConnDB();
 
                 // Sort  Group Function
                 oRow = oTblConfig.Select("GroupIndex='" + tFunction + "'");
@@ -85,18 +84,18 @@ namespace MDll2API.Class.POSLog
                         tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
 
                         // Check TPOSLogHis  Existing
-                        tSQL = oSP.SP_GETtCHKDBLogHis();
-                        oSP.SP_SQLxExecute(tSQL, tConnDB);
+                        tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                        cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                         // Get Max FTBathNo Condition To Json
                         tLastUpd = "";
-                        tLastUpd = oSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
+                        tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
 
                         //  Condition ตาม FTBatchNo Get Json
                         //tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]));
                         tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]), tWorkStationID, tWorkStation, ptMode);  //*Em 61-07-24
 
-                        tExecute = oSP.SP_SQLxExecuteJson(tSQL, tConnDB);
+                        tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
                         if (tExecute != "")
                         {
                             if (tJsonTrn == "")
@@ -131,7 +130,7 @@ namespace MDll2API.Class.POSLog
                         tJson = tJson + "}" + Environment.NewLine;
 
                         //WRITE JSON Gen SALE_YYYY-MM-DD:HH:mm:ss
-                        tFileName = oSP.SP_WRItJSON(tJson, "EDC");
+                        tFileName = cCNSP.SP_WRItJSON(tJson, "EDC");
 
                         //Call API
                         if (tC_APIEnable == "true")
@@ -185,7 +184,7 @@ namespace MDll2API.Class.POSLog
 
                             // Get Max FTBathNo Condition To Json
                             tLastUpd = "";
-                            tLastUpd = oSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
+                            tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
                             // Keep Log
                             oSql = new StringBuilder();
                             oSql.AppendLine("INSERT INTO TPOSLogHis(");
@@ -206,7 +205,7 @@ namespace MDll2API.Class.POSLog
                                 oSql.AppendLine("    AND CONVERT(varchar(8), FDDateUpd, 112) + REPLACE(FTTimeUpd, ':', '') > '" + tLastUpd + "'");
                             }
                             oSql.AppendLine("    ORDER BY FDDateUpd, FTTimeUpd) TTmp");
-                            oSP.SP_SQLxExecute(oSql.ToString(), tConnDB);
+                            cCNSP.SP_SQLnExecute(oSql.ToString(), tConnDB);
 
                         }
                     }
@@ -288,7 +287,7 @@ namespace MDll2API.Class.POSLog
                 tPwdApi = null;
                 tResp = null;
                 oSql = null;
-                oSP = null;
+             //   oSP = null;
                 tConnDB = null;
                 tFunction = null;
                 oTblConfig = null;
@@ -303,8 +302,6 @@ namespace MDll2API.Class.POSLog
             string tPosLnkDB = "";
             string tPosCntDB = "";
 
-            cSP oSP = new cSP();
-
             DataTable oTblPosCenter;
 
             try
@@ -312,7 +309,7 @@ namespace MDll2API.Class.POSLog
 
                 //2018-08-28 Add config POS Center เพื่อใช้ดึงข้อมูล Master
                 //load poscenter config
-                oTblPosCenter = oSP.SP_GEToPosCnt();
+                oTblPosCenter = cCNSP.SP_GEToPosCnt();
                 if (oTblPosCenter != null)
                 {
                     try

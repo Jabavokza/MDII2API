@@ -1,4 +1,4 @@
-﻿using MDll2API.Class.Standard;
+﻿using MDll2API.Class.ST_Class;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,7 +28,6 @@ namespace MDll2API.Class.POSLog
             string tUsrApi = "";
             string tPwdApi = "";
             StringBuilder oSql;
-            cSP oSP = new cSP();
             string tConnDB = "";
             string tFunction = "6";  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order
             DataTable oTblConfig;
@@ -40,7 +39,7 @@ namespace MDll2API.Class.POSLog
             {
                 dStart = DateTime.Now;
                 // load Config
-                oTblConfig = oSP.SP_GEToConnDB();
+                oTblConfig = cCNSP.SP_GEToConnDB();
 
                 // Sort  Group Function
                 oRow = oTblConfig.Select("GroupIndex='" + tFunction + "'");
@@ -58,17 +57,17 @@ namespace MDll2API.Class.POSLog
                         tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
 
                         // Check TPOSLogHis  Existing
-                        tSQL = oSP.SP_GETtCHKDBLogHis();
-                        oSP.SP_SQLxExecute(tSQL, tConnDB);
+                        tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                        cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                         // Get Max FTBathNo Condition To Json
                         tLastUpd = "";
-                        tLastUpd = oSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
+                        tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
 
                         //  Condition ตาม FTBatchNo Get Json
                         tSQL = C_GETtSQL(ptCheck, ptmove_type, ptFTTmnNum, pnFNSdtSeqNo, tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]));
 
-                        tExecute = oSP.SP_SQLxExecuteJson(tSQL, tConnDB);
+                        tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
                         if (tExecute != "")
                         {
                             if (tJsonTrn == "")
@@ -148,7 +147,7 @@ namespace MDll2API.Class.POSLog
 
                             // Get Max FTBathNo Condition To Json
                             tLastUpd = "";
-                            tLastUpd = oSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
+                            tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
                             // Keep Log
                             oSql = new StringBuilder();
                             oSql.AppendLine("INSERT INTO TPOSLogHis(");
@@ -172,7 +171,7 @@ namespace MDll2API.Class.POSLog
                                 oSql.AppendLine("    AND CONVERT(varchar(8), FDDateUpd, 112) + REPLACE(FTTimeUpd, ':', '') > '" + tLastUpd + "'");
                             }
                             oSql.AppendLine("    ORDER BY FDDateUpd, FTTimeUpd) TTmp");
-                            oSP.SP_SQLxExecute(oSql.ToString(), tConnDB);
+                            cCNSP.SP_SQLnExecute(oSql.ToString(), tConnDB);
 
                         }
                     }
@@ -256,7 +255,6 @@ namespace MDll2API.Class.POSLog
                 tUsrApi = null;
                 tPwdApi = null;
                 oSql = null;
-                oSP = null;
                 tConnDB = null;
                 tFunction = null;
                 oTblConfig = null;
