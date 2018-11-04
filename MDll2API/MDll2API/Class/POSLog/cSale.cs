@@ -10,6 +10,7 @@ using System.Web;
 using Newtonsoft.Json;
 using MDll2API.Class;
 using MDll2API.Class.ReceivApp;
+using MDll2API.Class.Modale;
 
 namespace MDll2API.Class.POSLog
 {
@@ -37,12 +38,12 @@ namespace MDll2API.Class.POSLog
             DateTime dStart, dEnd;
             DataRow[] aoRow;
             Double cPointValue = 1;  //*Em 61-08-04
-            cPOSSale oPOSSale;
+            mlPOSSale oPOSSale;
             cSP oSP;
             try
             {
                 oSP = new cSP();
-                oPOSSale = new cPOSSale();
+                oPOSSale = new mlPOSSale();
                 oC_RcvSale = poRcvSale;
                 tC_Auto = ptAuto;
                 tC_DateTrn = ptDTrn;
@@ -200,7 +201,7 @@ namespace MDll2API.Class.POSLog
                         oSP.SP_SQLxExecute(oSql.ToString(), tConnDB);
 
                         //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
-                        oPOSSale = JsonConvert.DeserializeObject<cPOSSale>(tJson);
+                        oPOSSale = JsonConvert.DeserializeObject<mlPOSSale>(tJson);
 
                         if (tStatusCode == "500")
                         {

@@ -15,3 +15,7 @@ D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.csproj.CoreCompileInputs.ca
 D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.csproj.CopyComplete
 D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.dll
 D:\Project\2018\MDll2API\MDll2API\obj\Debug\MDll2API.pdb
+H:\GitHub\MDII2API\MDll2API\MDll2API\obj\Debug\MDll2API.csprojAssemblyReference.cache
+H:\GitHub\MDII2API\MDll2API\MDll2API\obj\Debug\MDll2API.csproj.CoreCompileInputs.cache
+H:\GitHub\MDII2API\MDll2API\MDll2API\obj\Debug\MDll2API.dll
+H:\GitHub\MDII2API\MDll2API\MDll2API\obj\Debug\MDll2API.pdb
