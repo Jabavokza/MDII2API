@@ -8,122 +8,122 @@ namespace MDll2API.Class.Modale
     public class mlPOSBankDeposit
     {
         [JsonProperty("POSLog")]
-        public POSLog_BankDeposit POSLog { get; set; }
+        public mlPOSLog_BankDeposit oML_POSLog { get; set; }
     }
-    public class POSLog_BankDeposit
+    public class mlPOSLog_BankDeposit
     {
 
         [JsonProperty("@xmlns")]
-        public string @xmlns { get; set; }
+        public string tML_xmlns { get; set; }
 
         [JsonProperty("@MajorVersion")]
-        public string @MajorVersion { get; set; }
+        public string tML_MajorVersion { get; set; }
 
         [JsonProperty("@xmlns:xsi")]
-        public string @XmlnsXsi { get; set; }
+        public string tML_XmlnsXsi { get; set; }
 
         [JsonProperty("@xsi:schemaLocation")]
-        public string @XsiSchemaLocation { get; set; }
+        public string tML_XsiSchemaLocation { get; set; }
 
         //[JsonProperty("Transaction")]
         //public IList<Transaction_BankDeposit> Transaction { get; set; }
         //[JsonProperty("Transaction")]
         //public IList<IList<Transaction_BankDeposit>> Transaction { get; set; }
         [JsonProperty("Transaction")]
-        public Transaction_BankDeposit[][] Transaction;
+        public mlTransaction_BankDeposit[][] Transaction;
     }
 
-    public class Transaction_BankDeposit
+    public class mlTransaction_BankDeposit
     {
         [JsonProperty("WorkstationID")]
-        public string WorkstationID { get; set; }
+        public string tML_WorkstationID { get; set; }
 
         [JsonProperty("SequenceNumber")]
-        public string SequenceNumber { get; set; }
+        public string tML_SequenceNumber { get; set; }
 
         [JsonProperty("OperatorID")]
-        public string OperatorID { get; set; }
+        public string tML_OperatorID { get; set; }
 
         [JsonProperty("CurrencyCode")]
-        public string CurrencyCode { get; set; }
+        public string tML_CurrencyCode { get; set; }
 
         [JsonProperty("BusinessDayDate")]
-        public string BusinessDayDate { get; set; }
+        public string tML_BusinessDayDate { get; set; }
 
         [JsonProperty("BusinessUnit")]
-        public BusinessUnit_BankDeposit BusinessUnit { get; set; }
+        public mlBusinessUnit_BankDeposit oML_BusinessUnit { get; set; }
 
         [JsonProperty("TenderControlTransaction")]
-        public TenderControlTransaction TenderControlTransaction { get; set; }
+        public mlTenderControlTransaction oML_TenderControlTransaction { get; set; }
         
     }
-    public class BusinessUnit_BankDeposit
+    public class mlBusinessUnit_BankDeposit
     {
         [JsonProperty("UnitID")]
-        public string UnitID { get; set; }
+        public string tML_UnitID { get; set; }
     }
-    public class TenderControlTransaction
+    public class mlTenderControlTransaction
     {
         [JsonProperty("TillSettle")]
-        public TillSettle TillSettle { get; set; }
+        public mlTillSettle oML_TillSettle { get; set; }
     }
-    public class BusinessUnit
+    public class mlBusinessUnit
     {
 
         [JsonProperty("UnitID")]
-        public string UnitID { get; set; }
+        public string tML_UnitID { get; set; }
     }
 
-    public class Sale_BankDeposit
+    public class mlSale_BankDeposit
     {
 
         [JsonProperty("@TenderType")]
-        public string @TenderType { get; set; }
+        public string tML_TenderType { get; set; }
 
         [JsonProperty("Amount")]
-        public string Amount { get; set; }
+        public string tML_Amount { get; set; }
 
         [JsonProperty("BusinessUnit")]
-        public BusinessUnit BusinessUnit { get; set; }
+        public mlBusinessUnit oML_BusinessUnit { get; set; }
     }
 
-    public class Deposit
+    public class mlDeposit
     {
 
         [JsonProperty("Amount")]
-        public string Amount { get; set; }
+        public string tML_Amount { get; set; }
 
         [JsonProperty("GLAccount")]
-        public string GLAccount { get; set; }
+        public string tML_GLAccount { get; set; }
 
         [JsonProperty("Reference")]
-        public string Reference { get; set; }
+        public string tML_Reference { get; set; }
 
         [JsonProperty("BankInDate")]
-        public string BankInDate { get; set; }
+        public string tML_BankInDate { get; set; }
 
         [JsonProperty("BusinessDate")]
-        public string BusinessDate { get; set; }
+        public string tML_BusinessDate { get; set; }
     }
 
-    public class TenderSummary
+    public class mlTenderSummary
     {
 
         [JsonProperty("@LedgerType")]
-        public string @LedgerType { get; set; }
+        public string tML_LedgerType { get; set; }
 
         [JsonProperty("Sales")]
-        public IList<Sale_BankDeposit> Sales { get; set; }
+        public IList<mlSale_BankDeposit> aML_Sales { get; set; }
 
         [JsonProperty("Deposit")]
-        public Deposit Deposit { get; set; }
+        public mlDeposit oML_Deposit { get; set; }
     }
 
-    public class TillSettle
+    public class mlTillSettle
     {
 
         [JsonProperty("TenderSummary")]
-        public TenderSummary TenderSummary { get; set; }
+        public mlTenderSummary oML_TenderSummary { get; set; }
     }
 
 }

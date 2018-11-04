@@ -238,14 +238,14 @@ namespace MDll2API.Class.POSLog
                         //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
                         oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(tJson);
 
-                        for (int i = 0; i < oPOSBankDeposit.POSLog.Transaction.Length; i++)
+                        for (int i = 0; i < oPOSBankDeposit.oML_POSLog.Transaction.Length; i++)
                         {
-                            for (int j = 0; j < oPOSBankDeposit.POSLog.Transaction[i].Length; j++)
+                            for (int j = 0; j < oPOSBankDeposit.oML_POSLog.Transaction[i].Length; j++)
                             {
                                 string tUPD = "";
-                                string tDate = oPOSBankDeposit.POSLog.Transaction[i][j].BusinessDayDate;
-                                string tOper = oPOSBankDeposit.POSLog.Transaction[i][j].OperatorID;
-                                string tPlant = oPOSBankDeposit.POSLog.Transaction[i][j].BusinessUnit.UnitID;
+                                string tDate = oPOSBankDeposit.oML_POSLog.Transaction[i][j].tML_BusinessDayDate;
+                                string tOper = oPOSBankDeposit.oML_POSLog.Transaction[i][j].tML_OperatorID;
+                                string tPlant = oPOSBankDeposit.oML_POSLog.Transaction[i][j].oML_BusinessUnit.tML_UnitID;
                                 tUPD = "UPDATE TPSTBankDeposit SET FTStaSentOnOff='1',FTJsonFileName='" + tFileName + "' WHERE FTBdpPlantCode='" + tPlant + "' AND FTBdpDepositBy='" + tOper + "' AND FDBdpDepositDate='" + tDate + "' ";
                                 oSP.SP_SQLxExecute(tUPD, tConnDB);
                             }
