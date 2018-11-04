@@ -51,19 +51,36 @@
     <Compile Include="Class\POSLog\cRedeem.cs" />
     <Compile Include="Class\POSLog\cSale.cs" />
     <Compile Include="Class\POSLog\cSaleOrder.cs" />
-    <Compile Include="Class\ReceivApp\cRcvBank.cs" />
-    <Compile Include="Class\ReceivApp\cRcvRedeem.cs" />
-    <Compile Include="Class\ReceivApp\cRcvSale.cs" />
     <Compile Include="Class\ST-Class\cCNSP.cs" />
     <Compile Include="Class\ST-Class\cCNVB.cs" />
-    <Compile Include="Modale\mlPOSBankDeposit.cs" />
-    <Compile Include="Modale\mlPOSCash.cs" />
-    <Compile Include="Modale\mlPOSSale..cs" />
+    <Compile Include="Class\X-Class\cCHKDBLogHis.cs" />
+    <Compile Include="Modale\POSLog\mlPOSBankDeposit.cs" />
+    <Compile Include="Modale\POSLog\mlPOSCash.cs" />
+    <Compile Include="Modale\POSLog\mlPOSSale..cs" />
+    <Compile Include="Modale\ReceivApp\cRcvBank.cs" />
+    <Compile Include="Modale\ReceivApp\cRcvRedeem.cs" />
+    <Compile Include="Modale\ReceivApp\cRcvSale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\MDll2API.csproj.CopyComplete" />
+    <None Include="obj\Debug\MDll2API.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\MDll2API.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="bin\Debug\MDll2API.dll" />
+    <Content Include="bin\Debug\MDll2API.pdb" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="obj\Debug\MDll2API.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\MDll2API.dll" />
+    <Content Include="obj\Debug\MDll2API.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

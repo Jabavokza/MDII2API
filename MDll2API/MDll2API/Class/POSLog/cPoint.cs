@@ -1,4 +1,5 @@
 ﻿using MDll2API.Class.ST_Class;
+using MDll2API.Class.X_Class;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,6 +34,7 @@ namespace MDll2API.Class.POSLog
             string tPwdApi = "";
             string tJsonTrn = "";
             string rtResult;
+            cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             try
             {
                 dStart = DateTime.Now;
@@ -55,7 +57,7 @@ namespace MDll2API.Class.POSLog
                         tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
 
                         // Check TPOSLogHis  Existing
-                        tCHKDBLogHis = cCNSP.SP_GETtCHKDBLogHis();
+                        tCHKDBLogHis = oCHKDBLogHis.C_GETtCHKDBLogHis();
                         cCNSP.SP_SQLnExecute(tCHKDBLogHis, tConnDB);
 
                         // Get Max FTBathNo Condition To Json
@@ -250,7 +252,7 @@ namespace MDll2API.Class.POSLog
                             tPosLnkDB = tPosCntDB + "." + tPosLnkDB + ".";
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         tPosLnkDB = "";
                     }
@@ -332,7 +334,7 @@ namespace MDll2API.Class.POSLog
                 rtResult = oSQL.ToString();
                 return rtResult;
             }
-            catch (Exception oEx)
+            catch (Exception )
             {
                 return null;
             }

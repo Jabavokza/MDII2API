@@ -1,4 +1,5 @@
 ﻿using MDll2API.Class.ST_Class;
+using MDll2API.Class.X_Class;
 using System;
 using System.Data;
 using System.Net;
@@ -26,6 +27,7 @@ namespace MDll2API.Class.POSLog
             DataRow[] oRow;
             DateTime dStart;
             DateTime dEnd;
+            cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             try
             {
                 dStart = DateTime.Now;
@@ -68,7 +70,7 @@ namespace MDll2API.Class.POSLog
                     tConnDB += "; User ID = " + oRow[nRow]["User"].ToString() + "; Password = " + oRow[nRow]["Password"].ToString();
 
                     // Check TPOSLogHis  Existing
-                    tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                    tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                     // Get Max FTBathNo Condition To Json

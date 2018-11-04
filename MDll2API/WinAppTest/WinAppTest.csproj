@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ST-Class\cCNSP.cs" />
-    <Compile Include="ST-Class\cCNVB.cs" />
     <Compile Include="Form\wEditConnection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +81,9 @@
     <EmbeddedResource Include="Form\wTestCallDll.resx">
       <DependentUpon>wTestCallDll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\POSLog.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Debug\WinAppTest.wEditConnection.resources" />
+    <EmbeddedResource Include="obj\Debug\WinAppTest.wTestCallDll.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -93,6 +95,13 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="bin\Debug\POSLog.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\WinAppTest.csproj.CopyComplete" />
+    <None Include="obj\Debug\WinAppTest.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\WinAppTest.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\WinAppTest.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -106,6 +115,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ontMain.Icon.ico" />
+    <Content Include="bin\Debug\POSLog.exe" />
+    <Content Include="bin\Debug\POSLog.pdb" />
+    <Content Include="bin\Release\dbconfig.xml" />
+    <Content Include="Config\dbconfig.xml" />
+    <Content Include="obj\Debug\POSLog.exe" />
+    <Content Include="obj\Debug\POSLog.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\Debug\WinAppTest.csproj.FileListAbsolute.txt" />
     <Content Include="Senddata.ico" />
   </ItemGroup>
   <ItemGroup>

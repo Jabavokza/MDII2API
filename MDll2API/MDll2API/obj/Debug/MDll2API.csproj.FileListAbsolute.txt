@@ -1,6 +1,5 @@
 H:\GitHub\MDII2API\MDll2API\MDll2API\bin\Debug\MDll2API.dll
 H:\GitHub\MDII2API\MDll2API\MDll2API\bin\Debug\MDll2API.pdb
-H:\GitHub\MDII2API\MDll2API\MDll2API\bin\Debug\Newtonsoft.Json.dll
 H:\GitHub\MDII2API\MDll2API\MDll2API\bin\Debug\Newtonsoft.Json.xml
 H:\GitHub\MDII2API\MDll2API\MDll2API\obj\Debug\MDll2API.csproj.CoreCompileInputs.cache
 H:\GitHub\MDII2API\MDll2API\MDll2API\obj\Debug\MDll2API.csproj.CopyComplete

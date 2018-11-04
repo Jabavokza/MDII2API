@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using System.Net;
 using MDll2API.Class.ST_Class;
+using MDll2API.Class.X_Class;
 
 namespace MDll2API.Class.POSLog
 {
@@ -52,7 +53,7 @@ namespace MDll2API.Class.POSLog
             string tUriApi = "";
             string tUsrApi = "";
             string tPwdApi = "";
-            string tResp = "";
+         //   string tResp = "";
             string tFileName = "";
             StringBuilder oSql;
             string tConnDB = "";
@@ -64,6 +65,7 @@ namespace MDll2API.Class.POSLog
             string tStatusCode = "";
             string tWorkStationID = ""; //*Em 61-08-04
             string tWorkStation = ""; //*Em 61-08-04
+            cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             try
             {
                 dStart = DateTime.Now;
@@ -106,7 +108,7 @@ namespace MDll2API.Class.POSLog
                     tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
 
                     // Check TPOSLogHis  Existing
-                    tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                    tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                     // Get Max FTBathNo Condition To Json
@@ -258,7 +260,7 @@ namespace MDll2API.Class.POSLog
                 tUriApi = null;
                 tUsrApi = null;
                 tPwdApi = null;
-                tResp = null;
+              //  tResp = null;
                 oSql = null;
               //  oSP = null;
                 tConnDB = null;
@@ -294,7 +296,7 @@ namespace MDll2API.Class.POSLog
                             tPosLnkDB = tPosCntDB + "." + tPosLnkDB + ".";
                         }
                     }
-                    catch (Exception oEx)
+                    catch (Exception )
                     {
                         tPosLnkDB = "";
                     }
@@ -403,7 +405,7 @@ namespace MDll2API.Class.POSLog
                 rtResult = oSQL.ToString();
                 return rtResult;
             }
-            catch (Exception oEx)
+            catch (Exception )
             {
                 return "";
             }

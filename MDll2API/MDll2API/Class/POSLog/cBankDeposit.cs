@@ -1,7 +1,8 @@
 ﻿
-using MDll2API.Class.ReceivApp;
+using MDll2API.Modale.ReceivApp;
 using MDll2API.Class.ST_Class;
-using MDll2API.Modale;
+using MDll2API.Class.X_Class;
+using MDll2API.Modale.POSLog;
 using Newtonsoft.Json;
 using System;
 using System.Data;
@@ -50,7 +51,7 @@ namespace MDll2API.Class.POSLog
             tC_DateTrn = ptDTrn;
             oC_RcvBank = poRcvBank;
             tC_Auto = ptAuto;
-
+            cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis(); 
             try
             {
                 dStart = DateTime.Now;
@@ -89,7 +90,7 @@ namespace MDll2API.Class.POSLog
                     tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
 
                     // Check TPOSLogHis  Existing
-                    tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                    tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                     // Get Max FTBathNo Condition To Json

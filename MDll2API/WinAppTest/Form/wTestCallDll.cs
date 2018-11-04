@@ -13,7 +13,7 @@ using WinAppTest.ST_Class;
 using WinAppTest.X_Class;
 using System.Linq;
 using MDll2API.Class.POSLog;
-using MDll2API.Class.ReceivApp;
+using MDll2API.Modale.ReceivApp;
 using MDll2API.Class.ST_Class;
 using log4net;
 using cCNSP = MDll2API.Class.ST_Class.cCNSP;
@@ -112,16 +112,13 @@ namespace WinAppTest
 
         private void SETxConfigDB()
         {
-            string tPath1 = "";
-            string tPath2 = "";
             XmlSerializer oXmlSrl = new XmlSerializer(typeof(cDbConfig));
             StreamReader oSr = null;
             try
             {
-                tPath1 = Application.StartupPath;
-                tPath2 = tPath1 + "\\dbconfig.xml";
+               var tPath = "dbconfig.xml";
 
-                oSr = new StreamReader(tPath2);
+                oSr = new StreamReader(tPath);
                 oW_DbConfig = (cDbConfig)oXmlSrl.Deserialize(oSr);
                 oSr.Close();
                 try
@@ -140,19 +137,15 @@ namespace WinAppTest
                     tW_VenDes = oDbConfigSale[0].VendorDes;
                     tW_DepositCode = oDbConfigSale[0].DepositCode;
                     tW_DepositDes = oDbConfigSale[0].DepositDes;
-
-                    //string tCon = null;
-                    //tCon = "Data Source = " + oDbConfig[0].Server;
-                    //tCon = tCon + Environment.NewLine + ";Initial Catalog = " + oDbConfig[0].DBName;
-                    //tCon = tCon + Environment.NewLine + ";Persist Security Info=True;User ID = " + oDbConfig[0].User;
-                    //tCon = tCon + Environment.NewLine + ";Password =" + oDbConfig[0].Password;
-                    //cCNVB.tConStr = tCon;
                 }
-                catch (Exception oEx) { }
+                catch (Exception)
+                {
+
+                }
             }
-            catch (Exception ex)
+            catch (Exception oEx)
             {
-                MessageBox.Show("wTestCallDll:SETxConfigDB = " + ex.Message, "Config Inbound", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("wTestCallDll:SETxConfigDB = " + oEx.Message, "Config Inbound", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -170,8 +163,7 @@ namespace WinAppTest
             cSale oSale = new cSale();
             int nAPIManual = 0;  // 0: Auto,1: Manual
             try
-            {
-                nAPIManual = 0;
+            { 
                 // tResult = oSale.C_POSTtSale(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
                 if (ockAPI.Checked == true)
                 {
@@ -185,7 +177,7 @@ namespace WinAppTest
                 tResult2 = atResult[1];
                 oC_Log.Debug("[RES Sale Status]=" + tResult2 + "[Message]=" + tResult1);
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
             finally
             {
                 tResult1 = null;
@@ -323,7 +315,7 @@ namespace WinAppTest
                     MessageBox.Show("ShortOver4 = " + tResult1, "ShortOver4", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
             finally
             {
                 tResult1 = null;
@@ -452,7 +444,7 @@ namespace WinAppTest
                 }
                 //}
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
             finally
             {
                 tResult1 = null;
@@ -825,7 +817,7 @@ namespace WinAppTest
                 //  rtResult += atResult[1] + Environment.NewLine;
 
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
             finally
             {
                 rtResult = null;
@@ -1355,7 +1347,7 @@ namespace WinAppTest
                     //}
                 }
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
 
             oC_Log.Debug("[RES Manual Sale Status]=" + tResult2 + "[Message]=" + tResult1);
             MessageBox.Show("[RES Manual Sale Status]=" + tResult2 + "[Message]=" + tResult1, "Manual Sale", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2077,7 +2069,7 @@ namespace WinAppTest
                             bCheck = false;
                         }
                     }
-                    catch (Exception oEx)
+                    catch (Exception )
                     {
                         continue;
                     }
@@ -2180,7 +2172,7 @@ namespace WinAppTest
                 oC_Log.Debug("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1);
                 MessageBox.Show("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1, "Manual Redeem", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
             //if (tResult2 == "200")
             //{
             //    //check staclode and update flag
@@ -2309,7 +2301,7 @@ namespace WinAppTest
 
                 W_GETxEDC("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
         }
 
         private void ocmSendBnk_Click_1(object sender, EventArgs e)
@@ -2365,7 +2357,7 @@ namespace WinAppTest
 
                 W_GETxBankIn("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
         }
 
         private void ocmSendDaySumManual_Click(object sender, EventArgs e)
@@ -2420,7 +2412,7 @@ namespace WinAppTest
                 W_SETtEOD("MANUAL", tValueSaleDate, atPlantCodeList.ToArray());
                 //}
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
         }
 
         private void ocmDaySumSearch_Click(object sender, EventArgs e)
@@ -2953,7 +2945,7 @@ namespace WinAppTest
                     }
                 }
             }
-            catch (Exception oEx) { }
+            catch (Exception ) { }
         }
 
         private void ocmEDCSearch_Click(object sender, EventArgs e)
@@ -3115,7 +3107,7 @@ namespace WinAppTest
                 W_GETxCash("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
                 //}
             }
-            catch (Exception oEx) { }
+            catch (Exception) { }
         }
     }
 }

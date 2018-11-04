@@ -74,6 +74,7 @@
             this.ocmShtOvr = new System.Windows.Forms.TabPage();
             this.ogdShortOver = new System.Windows.Forms.DataGridView();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.ocmShortOver = new System.Windows.Forms.Button();
             this.ocmShortAll = new System.Windows.Forms.Button();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
@@ -153,7 +154,6 @@
             this.ossSta = new System.Windows.Forms.StatusStrip();
             this.olaSta = new System.Windows.Forms.ToolStripStatusLabel();
             this.otmAutoFuc = new System.Windows.Forms.Timer(this.components);
-            this.ocmShortOver = new System.Windows.Forms.Button();
             this.otaMain1.SuspendLayout();
             this.otaMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -231,7 +231,7 @@
             // ockSaleAuto
             // 
             this.ockSaleAuto.AutoSize = true;
-            this.ockSaleAuto.Location = new System.Drawing.Point(30, 19);
+            this.ockSaleAuto.Location = new System.Drawing.Point(30, 26);
             this.ockSaleAuto.Name = "ockSaleAuto";
             this.ockSaleAuto.Size = new System.Drawing.Size(52, 20);
             this.ockSaleAuto.TabIndex = 30;
@@ -241,7 +241,7 @@
             // ockBankInAuto
             // 
             this.ockBankInAuto.AutoSize = true;
-            this.ockBankInAuto.Location = new System.Drawing.Point(214, 48);
+            this.ockBankInAuto.Location = new System.Drawing.Point(214, 55);
             this.ockBankInAuto.Name = "ockBankInAuto";
             this.ockBankInAuto.Size = new System.Drawing.Size(65, 20);
             this.ockBankInAuto.TabIndex = 29;
@@ -251,7 +251,7 @@
             // ockRmdAuto
             // 
             this.ockRmdAuto.AutoSize = true;
-            this.ockRmdAuto.Location = new System.Drawing.Point(30, 48);
+            this.ockRmdAuto.Location = new System.Drawing.Point(30, 55);
             this.ockRmdAuto.Name = "ockRmdAuto";
             this.ockRmdAuto.Size = new System.Drawing.Size(75, 20);
             this.ockRmdAuto.TabIndex = 25;
@@ -261,7 +261,7 @@
             // ockEDCAuto
             // 
             this.ockEDCAuto.AutoSize = true;
-            this.ockEDCAuto.Location = new System.Drawing.Point(214, 20);
+            this.ockEDCAuto.Location = new System.Drawing.Point(214, 27);
             this.ockEDCAuto.Name = "ockEDCAuto";
             this.ockEDCAuto.Size = new System.Drawing.Size(50, 20);
             this.ockEDCAuto.TabIndex = 28;
@@ -271,7 +271,7 @@
             // ockDaySumAuto
             // 
             this.ockDaySumAuto.AutoSize = true;
-            this.ockDaySumAuto.Location = new System.Drawing.Point(106, 18);
+            this.ockDaySumAuto.Location = new System.Drawing.Point(106, 25);
             this.ockDaySumAuto.Name = "ockDaySumAuto";
             this.ockDaySumAuto.Size = new System.Drawing.Size(103, 20);
             this.ockDaySumAuto.TabIndex = 26;
@@ -281,7 +281,7 @@
             // ockShortOverAuto
             // 
             this.ockShortOverAuto.AutoSize = true;
-            this.ockShortOverAuto.Location = new System.Drawing.Point(106, 49);
+            this.ockShortOverAuto.Location = new System.Drawing.Point(106, 56);
             this.ockShortOverAuto.Name = "ockShortOverAuto";
             this.ockShortOverAuto.Size = new System.Drawing.Size(85, 20);
             this.ockShortOverAuto.TabIndex = 27;
@@ -336,7 +336,7 @@
             // 
             // ocmSchSale
             // 
-            this.ocmSchSale.Location = new System.Drawing.Point(640, 12);
+            this.ocmSchSale.Location = new System.Drawing.Point(640, 13);
             this.ocmSchSale.Name = "ocmSchSale";
             this.ocmSchSale.Size = new System.Drawing.Size(80, 23);
             this.ocmSchSale.TabIndex = 18;
@@ -675,6 +675,16 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Send status";
             // 
+            // ocmShortOver
+            // 
+            this.ocmShortOver.Location = new System.Drawing.Point(619, 13);
+            this.ocmShortOver.Name = "ocmShortOver";
+            this.ocmShortOver.Size = new System.Drawing.Size(101, 35);
+            this.ocmShortOver.TabIndex = 27;
+            this.ocmShortOver.Text = "Manual Send";
+            this.ocmShortOver.UseVisualStyleBackColor = true;
+            this.ocmShortOver.Click += new System.EventHandler(this.ocmShortOver_Click);
+            // 
             // ocmShortAll
             // 
             this.ocmShortAll.Location = new System.Drawing.Point(9, 21);
@@ -889,7 +899,7 @@
             // 
             // otbSchPlant
             // 
-            this.otbSchPlant.Location = new System.Drawing.Point(322, 12);
+            this.otbSchPlant.Location = new System.Drawing.Point(322, 13);
             this.otbSchPlant.Name = "otbSchPlant";
             this.otbSchPlant.Size = new System.Drawing.Size(100, 23);
             this.otbSchPlant.TabIndex = 20;
@@ -897,7 +907,7 @@
             // olaPlantEDC
             // 
             this.olaPlantEDC.AutoSize = true;
-            this.olaPlantEDC.Location = new System.Drawing.Point(235, 15);
+            this.olaPlantEDC.Location = new System.Drawing.Point(235, 16);
             this.olaPlantEDC.Name = "olaPlantEDC";
             this.olaPlantEDC.Size = new System.Drawing.Size(85, 16);
             this.olaPlantEDC.TabIndex = 19;
@@ -916,7 +926,7 @@
             // olaTranDateEDC
             // 
             this.olaTranDateEDC.AutoSize = true;
-            this.olaTranDateEDC.Location = new System.Drawing.Point(9, 14);
+            this.olaTranDateEDC.Location = new System.Drawing.Point(9, 15);
             this.olaTranDateEDC.Name = "olaTranDateEDC";
             this.olaTranDateEDC.Size = new System.Drawing.Size(114, 16);
             this.olaTranDateEDC.TabIndex = 14;
@@ -924,7 +934,7 @@
             // 
             // otbEDCDate
             // 
-            this.otbEDCDate.Location = new System.Drawing.Point(129, 12);
+            this.otbEDCDate.Location = new System.Drawing.Point(129, 13);
             this.otbEDCDate.Name = "otbEDCDate";
             this.otbEDCDate.Size = new System.Drawing.Size(100, 23);
             this.otbEDCDate.TabIndex = 15;
@@ -1293,6 +1303,7 @@
             // olaSchSta1
             // 
             this.olaSchSta1.AutoSize = true;
+            this.olaSchSta1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.olaSchSta1.Location = new System.Drawing.Point(8, 14);
             this.olaSchSta1.Name = "olaSchSta1";
             this.olaSchSta1.Size = new System.Drawing.Size(53, 16);
@@ -1302,9 +1313,10 @@
             // olaSchSta2
             // 
             this.olaSchSta2.AutoSize = true;
+            this.olaSchSta2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.olaSchSta2.Location = new System.Drawing.Point(64, 14);
             this.olaSchSta2.Name = "olaSchSta2";
-            this.olaSchSta2.Size = new System.Drawing.Size(49, 16);
+            this.olaSchSta2.Size = new System.Drawing.Size(54, 16);
             this.olaSchSta2.TabIndex = 2;
             this.olaSchSta2.Text = "Disable";
             // 
@@ -1324,9 +1336,9 @@
             // 
             this.otbShcSS.Location = new System.Drawing.Point(8, 39);
             this.otbShcSS.Name = "otbShcSS";
-            this.otbShcSS.Size = new System.Drawing.Size(62, 23);
+            this.otbShcSS.Size = new System.Drawing.Size(38, 23);
             this.otbShcSS.TabIndex = 12;
-            this.otbShcSS.Text = "10";
+            this.otbShcSS.Text = "5";
             // 
             // label1
             // 
@@ -1340,7 +1352,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 41);
+            this.label2.Location = new System.Drawing.Point(53, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 13;
@@ -1350,16 +1362,16 @@
             // 
             this.olaCountDown.AutoSize = true;
             this.olaCountDown.ForeColor = System.Drawing.Color.DarkOrange;
-            this.olaCountDown.Location = new System.Drawing.Point(97, 41);
+            this.olaCountDown.Location = new System.Drawing.Point(95, 41);
             this.olaCountDown.Name = "olaCountDown";
-            this.olaCountDown.Size = new System.Drawing.Size(42, 16);
+            this.olaCountDown.Size = new System.Drawing.Size(34, 16);
             this.olaCountDown.TabIndex = 14;
-            this.olaCountDown.Text = "label3";
+            this.olaCountDown.Text = "Wait";
             // 
             // ockAPI
             // 
             this.ockAPI.AutoSize = true;
-            this.ockAPI.Location = new System.Drawing.Point(329, 53);
+            this.ockAPI.Location = new System.Drawing.Point(336, 53);
             this.ockAPI.Name = "ockAPI";
             this.ockAPI.Size = new System.Drawing.Size(88, 20);
             this.ockAPI.TabIndex = 13;
@@ -1382,6 +1394,7 @@
             this.otbDTrn.Name = "otbDTrn";
             this.otbDTrn.Size = new System.Drawing.Size(100, 23);
             this.otbDTrn.TabIndex = 22;
+            this.otbDTrn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // otaDBTest
             // 
@@ -1393,7 +1406,7 @@
             this.otaDBTest.Location = new System.Drawing.Point(4, 25);
             this.otaDBTest.Name = "otaDBTest";
             this.otaDBTest.Padding = new System.Windows.Forms.Padding(3);
-            this.otaDBTest.Size = new System.Drawing.Size(797, 558);
+            this.otaDBTest.Size = new System.Drawing.Size(776, 558);
             this.otaDBTest.TabIndex = 1;
             this.otaDBTest.Text = "Connection";
             this.otaDBTest.UseVisualStyleBackColor = true;
@@ -1487,16 +1500,6 @@
             // 
             this.otmAutoFuc.Interval = 1000;
             this.otmAutoFuc.Tick += new System.EventHandler(this.otmAutoFuc_Tick);
-            // 
-            // ocmShortOver
-            // 
-            this.ocmShortOver.Location = new System.Drawing.Point(619, 13);
-            this.ocmShortOver.Name = "ocmShortOver";
-            this.ocmShortOver.Size = new System.Drawing.Size(101, 35);
-            this.ocmShortOver.TabIndex = 27;
-            this.ocmShortOver.Text = "Manual Send";
-            this.ocmShortOver.UseVisualStyleBackColor = true;
-            this.ocmShortOver.Click += new System.EventHandler(this.ocmShortOver_Click);
             // 
             // wTestCallDll
             // 

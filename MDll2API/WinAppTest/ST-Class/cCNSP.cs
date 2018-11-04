@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Reflection;
-using System.Xml;
+﻿using System.Windows.Forms;
 
 namespace WinAppTest.ST_Class
 {
@@ -14,7 +8,7 @@ namespace WinAppTest.ST_Class
         public static void SHWxMessage(string ptLanguage, string ptMSgCode, string ptCaption
             , MessageBoxButtons poMSBtn, MessageBoxIcon poMSIcon)
         {
-
+            DialogResult oDialogResult;
             if (ptLanguage == "") { ptLanguage = "TH"; }
 
             string[] aMsgArr;
@@ -25,7 +19,7 @@ namespace WinAppTest.ST_Class
             if (aMsgArr.Length == 1)
             {
                 tMsg = ptLanguage == "TH" ? aMsgArr[0].ToString() : aMsgArr[1].ToString();
-                cCNVB.oDialogResult = MessageBox.Show(tMsg + tNewLine, ptCaption, poMSBtn, poMSIcon);
+                oDialogResult = MessageBox.Show(tMsg + tNewLine, ptCaption, poMSBtn, poMSIcon);
                 return;
             }
 
@@ -38,9 +32,9 @@ namespace WinAppTest.ST_Class
                 tNewLine = aMsgArr[1].ToString().Substring(n);
             }
 
-            cCNVB.oDialogResult = MessageBox.Show(tMsg + tNewLine, ptCaption, poMSBtn, poMSIcon);
+            oDialogResult = MessageBox.Show(tMsg + tNewLine, ptCaption, poMSBtn, poMSIcon);
         }
 
-       
+
     }
 }

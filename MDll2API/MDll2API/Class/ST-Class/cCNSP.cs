@@ -1,17 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MDll2API.Class.ST_Class
 {
-   public static class cCNSP
+    public static class cCNSP
     {
         public static string GETtVertionDll()
         {
@@ -37,7 +34,8 @@ namespace MDll2API.Class.ST_Class
                 oDbRed = oCmdSql.ExecuteReader();
                 if (oDbRed.HasRows)
                 {
-                    while (oDbRed.Read()) {
+                    while (oDbRed.Read())
+                    {
                         rtResult = rtResult + oDbRed[0].ToString();
                     }
                 }
@@ -45,7 +43,7 @@ namespace MDll2API.Class.ST_Class
                 oDbCon.Dispose();
                 return rtResult;
             }
-            catch (Exception oEx)
+            catch (Exception)
             {
                 return rtResult;
             }
@@ -73,7 +71,7 @@ namespace MDll2API.Class.ST_Class
                 rnResult = oCmdSql.ExecuteNonQuery();
                 return rnResult;
             }
-            catch (Exception oEx)
+            catch (Exception)
             {
                 return rnResult;
             }
@@ -82,7 +80,7 @@ namespace MDll2API.Class.ST_Class
             }
         }
 
-        public static string SP_WRItJSON(string ptJson,string ptType)
+        public static string SP_WRItJSON(string ptJson, string ptType)
         {
             string tName1 = "";
             try
@@ -90,7 +88,7 @@ namespace MDll2API.Class.ST_Class
                 // SALE_YYYY - MM - DD:HH: mm: ss
 
                 string tName = "";
-          
+
                 if (ptType == "SALE")
                 {
                     tName = "SALE_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
@@ -115,16 +113,16 @@ namespace MDll2API.Class.ST_Class
                 {
                     tName = "SHORTOVER_" + SP_DTEtByFormat(DateTime.Now.ToString(), "YYYYMMDDHHMMSS");
                 }
-                string tPathLocal = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\JsonFile\\"+ tName +".json";
-                if (ptJson!="")
+                string tPathLocal = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\JsonFile\\" + tName + ".json";
+                if (ptJson != "")
                 {
                     File.WriteAllText(tPathLocal, ptJson);
                     tName1 = tName + ".json";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-               // MessageBox.Show("wAckConfig3:WRIxJSON = " + ex.Message, "Config Inbound", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // MessageBox.Show("wAckConfig3:WRIxJSON = " + ex.Message, "Config Inbound", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return tName1;
         }
@@ -145,7 +143,7 @@ namespace MDll2API.Class.ST_Class
                 oTbl = oDs.Tables[0];
                 return oTbl;
             }
-            catch (Exception oEx)
+            catch (Exception)
             {
                 return null;
             }
@@ -174,7 +172,7 @@ namespace MDll2API.Class.ST_Class
                 oTbl = oDs.Tables[1]; //POSCENTER
                 return oTbl;
             }
-            catch (Exception oEx)
+            catch (Exception)
             {
                 return null;
             }
@@ -187,77 +185,34 @@ namespace MDll2API.Class.ST_Class
         }
 
         /// <summary>
-        /// สร้าง Query check LogHis ให้สร้าง Table กรณียังไม่สร้าง
-        /// </summary>
-        /// <returns>string Query สร้างตรวจสอบ Table</returns>
-        public static string SP_GETtCHKDBLogHis()
-        {
-            string rtResult = "";
-            StringBuilder oSQL = new StringBuilder();
-            try
-            {
-                oSQL.AppendLine("IF OBJECT_ID(N'dbo.TPOSLogHis', N'U') IS NOT NULL");
-                oSQL.AppendLine("BEGIN ");
-                oSQL.AppendLine(" CREATE TABLE TPOSLogHis(");
-                oSQL.AppendLine(" FDDateUpd datetime,");
-                oSQL.AppendLine(" FTTimeUpd varchar(8),");
-                oSQL.AppendLine(" FTWhoUpd varchar(50),");
-                oSQL.AppendLine(" FDDateIns datetime,");
-                oSQL.AppendLine(" FTTimeIns varchar(8),");
-                oSQL.AppendLine(" FTWhoIns varchar(50),");
-                oSQL.AppendLine(" FTRemark varchar(100),");
-                oSQL.AppendLine(" FTPlantCode varchar(10),");
-                oSQL.AppendLine(" FDSendStartDateTime datetime,");
-                oSQL.AppendLine(" FDSendEndDateTime datetime,");
-                oSQL.AppendLine(" FTBatchNo varchar(20),");
-                oSQL.AppendLine(" FTTransTypeGrp varchar(20),");
-                oSQL.AppendLine(" FTRespCode varchar(20),");
-                oSQL.AppendLine(" FTRespMsg varchar(100),");
-                oSQL.AppendLine(" FTTransCount int ");
-                oSQL.AppendLine(" PRIMARY KEY (FTBatchNo,FTTransTypeGrp)) ");
-                oSQL.AppendLine("END");
-                rtResult = oSQL.ToString();
-                return rtResult;
-            }
-            catch (Exception oEx)
-            {
-                return null;
-            }
-            finally
-            {
-                rtResult = null;
-                oSQL = null;
-            }
-        }
-
-        /// <summary>
         /// Get Max date Loghis
         /// </summary>
         /// <param name="ptType">Type Value ที่ต้องการ Return ตาม Function</param>
         /// <param name="ptConnDB">String Connect</param>
         /// <returns>string ค่า Max Date</returns>
-        public static string SP_GETtMaxDateLogHis(string ptType,string ptConnDB)
+        public static string SP_GETtMaxDateLogHis(string ptType, string ptConnDB)
         {
-            string rtResult = "";
+            string tResult = "";
             StringBuilder oSQL = new StringBuilder();
             string[] atResult;
             try
             {
                 oSQL.AppendLine("SELECT MAX(FTBatchNo) FROM TPOSLogHis ");
                 oSQL.AppendLine("WHERE FTTransTypeGrp='" + ptType + "' AND FTRespCode='200'");
-                atResult = SP_GETtExecuteScalarSQL(oSQL.ToString(), ptConnDB,"T").Split('|');
-                if (atResult[1] == "1") {
-                    rtResult = atResult[0];
+                atResult = SP_GETtExecuteScalarSQL(oSQL.ToString(), ptConnDB, "T").Split('|');
+                if (atResult[1] == "1")
+                {
+                    tResult = atResult[0];
                 }
-                return rtResult;
+                return tResult;
             }
-            catch (Exception oEx)
+            catch (Exception)
             {
                 return null;
             }
             finally
             {
-                rtResult = null;
+                tResult = null;
                 oSQL = null;
             }
         }
@@ -269,9 +224,9 @@ namespace MDll2API.Class.ST_Class
         /// <param name="ptConnDB">Connection String</param>
         /// <param name="ptTypeVal">Type Value ที่ต้องการ Return T:string,N;Int,C:Double</param>
         /// <returns>สถานะ|value|Description</returns>
-        public static string SP_GETtExecuteScalarSQL(string ptSql, string ptConnDB,string ptTypeVal)
+        public static string SP_GETtExecuteScalarSQL(string ptSql, string ptConnDB, string ptTypeVal)
         {
-            SqlConnection oConn = new SqlConnection();
+            SqlConnection oDbCon = new SqlConnection();
             SqlCommand oCmd = new SqlCommand();
             string tResult = "";
             string tValue = "";
@@ -281,23 +236,23 @@ namespace MDll2API.Class.ST_Class
             {
                 try
                 {
-                    if (oConn.State == ConnectionState.Open)
+                    if (oDbCon.State == ConnectionState.Open)
                     {
-                        oConn.Close();
-                        oConn.ConnectionString = ptConnDB;
-                        oConn.Open();
+                        oDbCon.Close();
+                        oDbCon.ConnectionString = ptConnDB;
+                        oDbCon.Open();
                     }
                     else
                     {
-                        oConn.ConnectionString = ptConnDB;
-                        oConn.Open();
+                        oDbCon.ConnectionString = ptConnDB;
+                        oDbCon.Open();
                     }
                 }
                 catch (Exception tErr)
                 {
                     tResult = "|3|" + tErr.Message;
                 }
-                oCmd = new SqlCommand(ptSql, oConn);
+                oCmd = new SqlCommand(ptSql, oDbCon);
                 switch (ptTypeVal.ToUpper())
                 {
                     case "T":
@@ -320,10 +275,10 @@ namespace MDll2API.Class.ST_Class
             }
             finally
             {
-                if (oConn.State == ConnectionState.Open)
+                if (oDbCon.State == ConnectionState.Open)
                 {
-                    oConn.Close();
-                    oConn = null;
+                    oDbCon.Close();
+                    oDbCon = null;
                     oCmd = null;
                 }
             }
@@ -402,13 +357,13 @@ namespace MDll2API.Class.ST_Class
                 }
                 using (StreamWriter oSw = File.AppendText(tPath))
                 {
-                    var _with1 = oSw;
+                    StreamWriter _with1 = oSw;
                     _with1.WriteLine(ptLog);
                     _with1.Flush();
                     _with1.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 // SP_ADDxLog("mCNSP:SP_WRITExLog:" + ex.Message);
@@ -423,15 +378,15 @@ namespace MDll2API.Class.ST_Class
             //  SP_SETxConClient();
             try
             {
-                SqlConnection ocnForm = new SqlConnection(tConStr);
+                SqlConnection oDbCon = new SqlConnection(tConStr);
                 {
-                    ocnForm.Open();
-                    oDbAdt = new SqlDataAdapter(ptQeury, ocnForm);
+                    oDbCon.Open();
+                    oDbAdt = new SqlDataAdapter(ptQeury, oDbCon);
                     oDbDtsSet = new DataSet();
                     oDbAdt.Fill(oDbDtsSet, "TEMP");
                     oDbTblDt = oDbDtsSet.Tables["TEMP"];
 
-                    ocnForm.Dispose();
+                    oDbCon.Dispose();
                     oDbAdt.Dispose();
                     oDbDtsSet.Dispose();
 
@@ -455,13 +410,12 @@ namespace MDll2API.Class.ST_Class
             //  SP_SETxConClient();
             try
             {
-                SqlConnection ocnForm = new SqlConnection(cCNVB.tConStr);
+                SqlConnection oDbcon = new SqlConnection(SETtConDBMain());
                 {
-                    ocnForm.Open();
-                    oDbAdt = new SqlDataAdapter(ptQeury, ocnForm);
+                    oDbcon.Open();
+                    oDbAdt = new SqlDataAdapter(ptQeury, oDbcon);
                     oDbAdt.Fill(poDt);
-
-                    ocnForm.Dispose();
+                    oDbcon.Dispose();
                     oDbAdt.Dispose();
 
                     return poDt;
@@ -470,11 +424,7 @@ namespace MDll2API.Class.ST_Class
             catch (Exception oEx)
             {
                 throw oEx;
-            }
-            finally
-            {
-                if (oDbAdt != null) { oDbAdt.Dispose(); }
-            }
+            } 
         }
 
         public static string GETtLang(string ptLang, string ptText)
@@ -495,16 +445,15 @@ namespace MDll2API.Class.ST_Class
             // cCNVB.tVB_ConStr = tCon;
         }
 
-        public static void SETxConDBMain()
+        public static string SETtConDBMain()
         {
-            // string tCon = "";
-
-            string tPath = "\\Config\\DBCli.xml";
+            string tPath = "DBCli.xml";
             string tSever = "";
             string tUsr = "";
             string tPsw = "";
             string tDB = "";
             string tTime = "";
+            StringBuilder oSql = new StringBuilder();
             try
             {
                 if (File.Exists(tPath))
@@ -525,23 +474,22 @@ namespace MDll2API.Class.ST_Class
                         tPsw = oElement.GetElementsByTagName("Password")[0].InnerText;
                         tDB = oElement.GetElementsByTagName("DBName")[0].InnerText;
                         tTime = oElement.GetElementsByTagName("Time")[0].InnerText;
-                        cCNVB.tTDuration = oElement.GetElementsByTagName("TimeDuration")[0].InnerText;
+                        //   cCNVB.tTDuration = oElement.GetElementsByTagName("TimeDuration")[0].InnerText;
                     }
 
                     oFs.Flush();
                     oFs.Close();
                 }
-
-                cCNVB.tConStr = "Data Source = " + tSever;
-                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Initial Catalog =" + tDB;
-                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Persist Security Info=True;User ID =" + tUsr;
-                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Password =" + tPsw;
-                cCNVB.tConStr = cCNVB.tConStr + Environment.NewLine + ";Connection Timeout =" + tTime;
-
+                oSql.AppendFormat("Data Source = " + tSever);
+                oSql.AppendFormat(";Initial Catalog =" + tDB);
+                oSql.AppendFormat(";Persist Security Info=True;User ID =" + tUsr);
+                oSql.AppendFormat(";Password =" + tPsw);
+                oSql.AppendFormat(";Connection Timeout =" + tTime);
+                return oSql.ToString();
             }
-            catch (Exception ex)
+            catch (Exception oEx)
             {
-                throw ex;
+                throw oEx;
             }
         }
 

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
 using System.Net;
 using System.Text;
 using System.Data;
-using System.Web;
 using Newtonsoft.Json;
-using MDll2API.Class;
-using MDll2API.Class.ReceivApp;
-using MDll2API.Modale;
+using MDll2API.Modale.ReceivApp;
+using MDll2API.Modale.POSLog;
 using MDll2API.Class.ST_Class;
+using MDll2API.Class.X_Class;
 
 namespace MDll2API.Class.POSLog
 {
@@ -39,6 +35,7 @@ namespace MDll2API.Class.POSLog
             DataRow[] aoRow;
             Double cPointValue = 1;  //*Em 61-08-04
             mlPOSSale oPOSSale;
+            cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             try
             {
                 oPOSSale = new mlPOSSale();
@@ -75,7 +72,7 @@ namespace MDll2API.Class.POSLog
                     tConnDB += "; User ID=" + aoRow[nRow]["User"].ToString() + "; Password=" + aoRow[nRow]["Password"].ToString();
 
                     // Check TPOSLogHis  Existing
-                    tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                    tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                     // Get Max FTBathNo Condition To Json
@@ -287,7 +284,7 @@ namespace MDll2API.Class.POSLog
                             tPosLnkDB = tPosCntDB + "." + tPosLnkDB + ".";
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         tPosLnkDB = "";
                     }

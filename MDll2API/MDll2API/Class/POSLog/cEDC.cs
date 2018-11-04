@@ -1,4 +1,5 @@
 ﻿using MDll2API.Class.ST_Class;
+using MDll2API.Class.X_Class;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,7 +31,7 @@ namespace MDll2API.Class.POSLog
             string tUriApi = "";
             string tUsrApi = "";
             string tPwdApi = "";
-            string tResp = "";
+          //  string tResp = "";
             StringBuilder oSql;
             string tConnDB = "";
             string tFunction = "9";  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order ,8:Bank Deposit ,9:EDC
@@ -42,6 +43,7 @@ namespace MDll2API.Class.POSLog
             string tWorkStationID = ""; //*Em 61-08-04
             string tWorkStation = ""; //*Em 61-08-04
             string tFileName = "";
+            cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             try
             {
                 //tC_Plant = ptPlant;
@@ -84,7 +86,7 @@ namespace MDll2API.Class.POSLog
                         tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
 
                         // Check TPOSLogHis  Existing
-                        tSQL = cCNSP.SP_GETtCHKDBLogHis();
+                        tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                         cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                         // Get Max FTBathNo Condition To Json
@@ -285,7 +287,7 @@ namespace MDll2API.Class.POSLog
                 tUriApi = null;
                 tUsrApi = null;
                 tPwdApi = null;
-                tResp = null;
+             //   tResp = null;
                 oSql = null;
              //   oSP = null;
                 tConnDB = null;
@@ -321,7 +323,7 @@ namespace MDll2API.Class.POSLog
                             tPosLnkDB = tPosCntDB + "." + tPosLnkDB + ".";
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception )
                     {
                         tPosLnkDB = "";
                     }
@@ -429,7 +431,7 @@ namespace MDll2API.Class.POSLog
             }
             catch (Exception oEx)
             {
-                return "";
+                return oEx.Message;
             }
             finally
             {
