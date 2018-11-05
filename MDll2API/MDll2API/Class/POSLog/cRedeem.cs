@@ -110,49 +110,21 @@ namespace MDll2API.Class.POSLog
                     tJson = tJson + "}" + Environment.NewLine;
                     tJson = tJson + "}" + Environment.NewLine;
 
+               //   var aJson =  Json(new { tcml_CpnMSg = "" });
+
+
+
+
+
                     //WRITE JSON Gen SALE_YYYY-MM-DD:HH:mm:ss
                     tFileName = cCNSP.SP_WRItJSON(tJson, "REDEEM");
 
                     //Call API
-                    if (tC_APIEnable == "true")
-                    {
-                        #region "Call API"
-                        HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(tUriApi);
-                        oWebReq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(tUsrApi + ":" + tPwdApi)));
-                        oWebReq.Method = "POST";
-                        byte[] aData = Encoding.UTF8.GetBytes(tJson.ToString());
 
-                        oWebReq.ContentLength = aData.Length;
-                        oWebReq.ContentType = "application/json;charset=utf8";
-                        using (var oStream = oWebReq.GetRequestStream())
+                        if (tC_APIEnable == "true")
                         {
-                            oStream.Write(aData, 0, aData.Length);
+                            cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
                         }
-                        using (HttpWebResponse oResp = (HttpWebResponse)oWebReq.GetResponse())
-                        {
-                            HttpStatusCode oHttp = oResp.StatusCode;
-                            switch (oHttp)
-                            {
-                                case HttpStatusCode.OK:
-                                    {
-                                        tStatusCode = "200";
-                                    }
-                                    break;
-                                case HttpStatusCode.Accepted:
-                                    {
-                                        tStatusCode = "202";
-                                    }
-                                    break;
-                                case HttpStatusCode.NotAcceptable:
-                                    {
-                                        tStatusCode = "406";
-                                    }
-                                    break;
-                            }
-                            tResCode = oResp.StatusCode.ToString();
-                        }
-                        #endregion
-                    }
 
                     dEnd = DateTime.Now;
                     for (int nRow = 0; nRow < oRow.Length; nRow++)

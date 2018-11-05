@@ -339,7 +339,6 @@ namespace WinAppTest
                 oDbChk = new DataTable();
                 oSQL = new StringBuilder();
                 oEDC = new cEDC();
-                //tResult = oEDC.C_POSTtEDC(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
 
                 if (ptMode == "AUTO")
                 {
@@ -365,16 +364,6 @@ namespace WinAppTest
                 //tDateToDay = DateTime.Now.ToString("yyyy-MM-dd");
                 tDateToDay = ptValueSaleDate;
 
-                //if (tResult2 == "200")
-                //{
-                //    //check staclode and update flag
-                //    tChk = "SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WHERE FDSaleDate ='2018-09-07' AND  FTPlantCode='17KA' AND FTStaSentOnOff='3' ";
-                //    oDtChk = cCNSP.SP_SQLvExecute(tChk, tW_ConSale);
-                //    if (oDtChk.Rows.Count == 1)
-                //    {
-                //        //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-                //        //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-                //    }
                 if (ptMode != "MANUAL")
                 {
                     oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
@@ -799,32 +788,18 @@ namespace WinAppTest
 
         private void W_GETxRedeem()
         {
-            string rtResult;
-            cRedeem oRedeem = new cRedeem();
-            string[] atResult;
-            string tResult;
-            int nAPIManual = 0;  // 0: Auto,1: Manual
+           
             try
             {
-                nAPIManual = 0;
-
-
-                //  tResult = oRedeem.C_POSTtRedeem(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
-                //   tResult = oRedeem.C_POSTtRedeem(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual, otbDTrn.Text);
-
-                //atResult = tResult.Split('|');
-                //rtResult = atResult[0] + Environment.NewLine;
-                //  rtResult += atResult[1] + Environment.NewLine;
-
+              var oRedeem = new cRedeem();
+                if (ockAPI.Checked == true)
+                {
+                    oRedeem.CHKxAPIEnable("true");
+                }
+                oRedeem.C_POSTtRedeem(otbDTrn.Text, null, "AUTO");
             }
             catch (Exception ) { }
-            finally
-            {
-                rtResult = null;
-                oRedeem = null;
-                atResult = null;
-                tResult = null;
-            }
+           
         }
 
         private void SETxNotify(string ptTitle, string ptMsg, int pnTime, string ptOnOff, int pnNotiIC)
@@ -1757,7 +1732,6 @@ namespace WinAppTest
         private void otmStart_Tick(object sender, EventArgs e)
         {
             string tSale = "", tSaleDate = "", tDaySum = "";
-            cRedeem oRedeem;
             try
             {
                 tSaleDate = DateTime.Now.ToString("yyyy-MM-dd");
@@ -1770,12 +1744,7 @@ namespace WinAppTest
 
                 if (ockRmdAuto.Checked == true)
                 {
-                    oRedeem = new cRedeem();
-                    if (ockAPI.Checked == true)
-                    {
-                        oRedeem.CHKxAPIEnable("true");
-                    }
-                    oRedeem.C_POSTtRedeem(otbDTrn.Text, null, "AUTO");
+                    W_GETxRedeem();
                 }
                 if (ockDaySumAuto.Checked == true)
                 {

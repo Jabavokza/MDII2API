@@ -31,7 +31,7 @@ namespace MDll2API.Class.POSLog
             string tUriApi = "";
             string tUsrApi = "";
             string tPwdApi = "";
-          //  string tResp = "";
+            //  string tResp = "";
             StringBuilder oSql;
             string tConnDB = "";
             string tFunction = "9";  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order ,8:Bank Deposit ,9:EDC
@@ -135,44 +135,10 @@ namespace MDll2API.Class.POSLog
                         tFileName = cCNSP.SP_WRItJSON(tJson, "EDC");
 
                         //Call API
+
                         if (tC_APIEnable == "true")
                         {
-                            #region "Call API"
-                            HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(tUriApi);
-                            oWebReq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(tUsrApi + ":" + tPwdApi)));
-                            oWebReq.Method = "POST";
-                            byte[] aData = Encoding.UTF8.GetBytes(tJson.ToString());
-
-                            oWebReq.ContentLength = aData.Length;
-                            oWebReq.ContentType = "application/json;charset=utf8";
-                            using (var oStream = oWebReq.GetRequestStream())
-                            {
-                                oStream.Write(aData, 0, aData.Length);
-                            }
-                            using (HttpWebResponse oResp = (HttpWebResponse)oWebReq.GetResponse())
-                            {
-                                HttpStatusCode oHttp = oResp.StatusCode;
-                                switch (oHttp)
-                                {
-                                    case HttpStatusCode.OK:
-                                        {
-                                            tStatusCode = "200";
-                                        }
-                                        break;
-                                    case HttpStatusCode.Accepted:
-                                        {
-                                            tStatusCode = "202";
-                                        }
-                                        break;
-                                    case HttpStatusCode.NotAcceptable:
-                                        {
-                                            tStatusCode = "406";
-                                        }
-                                        break;
-                                }
-                                tResCode = oResp.StatusCode.ToString();
-                            }
-                            #endregion "Call API"
+                            cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
                         }
 
                         dEnd = DateTime.Now;
@@ -218,43 +184,6 @@ namespace MDll2API.Class.POSLog
                     tUsrApi = ptAPIUsr;
                     tPwdApi = ptAPIPwd;
 
-                    //Call API
-                    //HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(tUriApi);
-                    //oWebReq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(tUsrApi + ":" + tPwdApi)));
-                    //oWebReq.Method = "POST";
-                    //tJson = ptJson;
-                    //byte[] aData = Encoding.UTF8.GetBytes(tJson.ToString());
-
-                    //oWebReq.ContentLength = aData.Length;
-                    //oWebReq.ContentType = "application/json;charset=utf8";
-                    //using (var oStream = oWebReq.GetRequestStream())
-                    //{
-                    //    oStream.Write(aData, 0, aData.Length);
-                    //}
-                    //using (HttpWebResponse oResp = (HttpWebResponse)oWebReq.GetResponse())
-                    //{
-                    //    HttpStatusCode oHttp = oResp.StatusCode;
-                    //    switch (oHttp)
-                    //    {
-                    //        case HttpStatusCode.OK:
-                    //            {
-                    //                tStatusCode = "200";
-                    //            }
-                    //            break;
-                    //        case HttpStatusCode.Accepted:
-                    //            {
-                    //                tStatusCode = "202";
-                    //            }
-                    //            break;
-                    //        case HttpStatusCode.NotAcceptable:
-                    //            {
-                    //                tStatusCode = "406";
-                    //            }
-                    //            break;
-                    //    }
-                    //    tResCode = oResp.StatusCode.ToString();
-                    //}
-                    tJsonTrn = "ทดสอบ API แบบ Manaul";
                 }
 
                 string tResultGetdata = "";
@@ -287,9 +216,9 @@ namespace MDll2API.Class.POSLog
                 tUriApi = null;
                 tUsrApi = null;
                 tPwdApi = null;
-             //   tResp = null;
+                //   tResp = null;
                 oSql = null;
-             //   oSP = null;
+                //   oSP = null;
                 tConnDB = null;
                 tFunction = null;
                 oTblConfig = null;
@@ -323,7 +252,7 @@ namespace MDll2API.Class.POSLog
                             tPosLnkDB = tPosCntDB + "." + tPosLnkDB + ".";
                         }
                     }
-                    catch (Exception )
+                    catch (Exception)
                     {
                         tPosLnkDB = "";
                     }
