@@ -42,15 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\POSLog\cAutomatic.cs" />
+    <Compile Include="Class\ST-Class\cConWebAPI.cs" />
+    <Compile Include="Class\X-Class\cAutomatic.cs" />
     <Compile Include="Class\POSLog\cBankDeposit.cs" />
     <Compile Include="Class\POSLog\cCash.cs" />
     <Compile Include="Class\POSLog\cEDC.cs" />
     <Compile Include="Class\POSLog\cEOD.cs" />
-    <Compile Include="Class\POSLog\cPoint.cs" />
+    <Compile Include="Class\X-Class\cPoint.cs" />
     <Compile Include="Class\POSLog\cRedeem.cs" />
     <Compile Include="Class\POSLog\cSale.cs" />
-    <Compile Include="Class\POSLog\cSaleOrder.cs" />
+    <Compile Include="Class\X-Class\cSaleOrder.cs" />
     <Compile Include="Class\ST-Class\cCNSP.cs" />
     <Compile Include="Class\ST-Class\cCNVB.cs" />
     <Compile Include="Class\X-Class\cCHKDBLogHis.cs" />
