@@ -14,16 +14,15 @@ namespace MDll2API.Class.POSLog
 {
     public class cBankDeposit
     {
-        private cRcvBank oC_RcvBank = new cRcvBank();
         private string tC_DateTrn = "";
-        private string tC_Auto = "";
+        private string tC_Auto;
         private string tC_PlantCode = "";
         private string tC_APIEnable;
         public void CHKxAPIEnable(string ptAPIEnable)
         {
             tC_APIEnable = ptAPIEnable;
         }
-        public string C_POSTtBankDeposit(string ptDTrn, cRcvBank poRcvBank, string ptAuto, string[] patPlantBnk = null)
+        public string C_POSTtBankDeposit(string ptMode, string ptDTrn , string[] patPlantBnk = null)
         {
             string rtResult;
             string tJson = "";
@@ -49,8 +48,7 @@ namespace MDll2API.Class.POSLog
             string tWorkStation = ""; //*Em 61-08-04
             mlPOSBankDeposit oPOSBankDeposit = null;
             tC_DateTrn = ptDTrn;
-            oC_RcvBank = poRcvBank;
-            tC_Auto = ptAuto;
+            tC_Auto = ptMode;
             cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis(); 
             try
             {
@@ -119,7 +117,6 @@ namespace MDll2API.Class.POSLog
                     {
                         tJsonTrn = "";
                     }
-
                 }
 
                 if (tJsonTrn != "")
@@ -184,21 +181,7 @@ namespace MDll2API.Class.POSLog
                         cCNSP.SP_SQLnExecute(oSql.ToString(), tConnDB);
 
                     }
-
-                    //for (int i = 0; i < oPOSBankDeposit1.POSLog.Transaction.Length; i++)
-                    //{
-                    //    for (int j=0;j< oPOSBankDeposit1.POSLog.Transaction[i].Length;j++)
-                    //    {
-                    //        string tDate = oPOSBankDeposit1.POSLog.Transaction[i][j].BusinessDayDate;
-                    //    }
-                    //    //string tUPD = "";
-                    //    //string tDate = oPOSBankDeposit1.POSLog.Transaction[0][i].BusinessDayDate;
-                    //    //string tOper = oPOSBankDeposit1.POSLog.Transaction[0][i].OperatorID;
-                    //    //string tPlant = oPOSBankDeposit1.POSLog.Transaction[0][i].BusinessUnit.UnitID;
-                    //    //tUPD = "UPDATE TPSTBankDeposit SET FTStaSentOnOff='1' WHERE FTBdpPlantCode='" + tPlant + "' AND FTBdpDepositBy='" + tOper + "' AND FDBdpDepositDate='" + tDate + "' ";
-                    //}
-
-
+                    
                     //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
                     oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(tJson);
 
@@ -311,25 +294,11 @@ namespace MDll2API.Class.POSLog
 
                 if (tC_Auto == "AUTO")
                 {
-                    //if (ptLastUpd != "")
-                    //{
-                    //    oSQL.AppendLine("AND CONVERT(varchar(8),HD.FDDateUpd,112) + REPLACE(HD.FTTimeUpd,':','') > '" + ptLastUpd + "' AND FDBdpSaleDate='" + tC_DateTrn + "' ");//*Em 61-08-04
-                    //}
-                    //else
-                    //{
                     oSQL.AppendLine("AND FDBdpSaleDate = '" + tC_DateTrn + "'  ");
-                    //}
+
                 }
                 else if (tC_Auto == "MANUAL")
                 {
-                    //if (ptLastUpd != "")
-                    //{
-                    //    oSQL.AppendLine("AND CONVERT(varchar(8),HD.FDDateUpd,112) + REPLACE(HD.FTTimeUpd,':','') > '" + ptLastUpd + "' AND FDBdpSaleDate='" + tC_DateTrn + "'AND " + oC_RcvBank.Field + oC_RcvBank.Value + " ");//*Em 61-08-04
-                    //}
-                    //else
-                    //{
-                    //oSQL.AppendLine("AND FDBdpSaleDate='" + tC_DateTrn + "' AND " + oC_RcvBank.Field + oC_RcvBank.Value + " AND FTBdpPlantCode IN (" + tC_PlantCode +")");
-                    //}
                     oSQL.AppendLine("AND FDBdpSaleDate = '" + tC_DateTrn + "' AND FTBdpPlantCode IN (" + tC_PlantCode + ")");
                 }
 

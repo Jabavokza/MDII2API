@@ -153,7 +153,6 @@
             this.otmWait = new System.Windows.Forms.Timer(this.components);
             this.ossSta = new System.Windows.Forms.StatusStrip();
             this.olaSta = new System.Windows.Forms.ToolStripStatusLabel();
-            this.otmAutoFuc = new System.Windows.Forms.Timer(this.components);
             this.otaMain1.SuspendLayout();
             this.otaMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -199,7 +198,6 @@
             this.otaMain1.SelectedIndex = 0;
             this.otaMain1.Size = new System.Drawing.Size(784, 587);
             this.otaMain1.TabIndex = 8;
-            this.otaMain1.Selected += new System.Windows.Forms.TabControlEventHandler(this.otaMain1_Selected);
             // 
             // otaMenu
             // 
@@ -576,7 +574,7 @@
             this.ocmSendDaySumManual.TabIndex = 18;
             this.ocmSendDaySumManual.Text = "Manual Send";
             this.ocmSendDaySumManual.UseVisualStyleBackColor = true;
-            this.ocmSendDaySumManual.Click += new System.EventHandler(this.ocmSendDaySumManual_Click);
+            this.ocmSendDaySumManual.Click += new System.EventHandler(this.ocmSendEOD_Click);
             // 
             // groupBox6
             // 
@@ -601,7 +599,7 @@
             this.ocmDaySumSearch.TabIndex = 19;
             this.ocmDaySumSearch.Text = "Search";
             this.ocmDaySumSearch.UseVisualStyleBackColor = true;
-            this.ocmDaySumSearch.Click += new System.EventHandler(this.ocmDaySumSearch_Click);
+            this.ocmDaySumSearch.Click += new System.EventHandler(this.ocmSchEOD_Click);
             // 
             // olaSaleDate
             // 
@@ -683,7 +681,7 @@
             this.ocmShortOver.TabIndex = 27;
             this.ocmShortOver.Text = "Manual Send";
             this.ocmShortOver.UseVisualStyleBackColor = true;
-            this.ocmShortOver.Click += new System.EventHandler(this.ocmShortOver_Click);
+            this.ocmShortOver.Click += new System.EventHandler(this.ocmSendCash_Click);
             // 
             // ocmShortAll
             // 
@@ -753,7 +751,7 @@
             this.ocmShortManual.TabIndex = 18;
             this.ocmShortManual.Text = "Search";
             this.ocmShortManual.UseVisualStyleBackColor = true;
-            this.ocmShortManual.Click += new System.EventHandler(this.ocmShortManual_Click);
+            this.ocmShortManual.Click += new System.EventHandler(this.ocmSchCash_Click);
             // 
             // olaPlantShort
             // 
@@ -880,7 +878,7 @@
             this.ocmSchEDC.TabIndex = 18;
             this.ocmSchEDC.Text = "Manual Send";
             this.ocmSchEDC.UseVisualStyleBackColor = true;
-            this.ocmSchEDC.Click += new System.EventHandler(this.ocmSchEDC_Click);
+            this.ocmSchEDC.Click += new System.EventHandler(this.ocmSendEDC_Click);
             // 
             // groupBox11
             // 
@@ -921,7 +919,7 @@
             this.ocmEDCSearch.TabIndex = 18;
             this.ocmEDCSearch.Text = "Search";
             this.ocmEDCSearch.UseVisualStyleBackColor = true;
-            this.ocmEDCSearch.Click += new System.EventHandler(this.ocmEDCSearch_Click);
+            this.ocmEDCSearch.Click += new System.EventHandler(this.ocmSchEDC_Click);
             // 
             // olaTranDateEDC
             // 
@@ -1089,7 +1087,7 @@
             this.ocmSendBnk.TabIndex = 18;
             this.ocmSendBnk.Text = "Manual Send";
             this.ocmSendBnk.UseVisualStyleBackColor = true;
-            this.ocmSendBnk.Click += new System.EventHandler(this.ocmSendBnk_Click_1);
+            this.ocmSendBnk.Click += new System.EventHandler(this.ocmSendBnk_Click);
             // 
             // ocmRdm
             // 
@@ -1173,7 +1171,7 @@
             this.ocmSendRdm.TabIndex = 18;
             this.ocmSendRdm.Text = "Manual Send";
             this.ocmSendRdm.UseVisualStyleBackColor = true;
-            this.ocmSendRdm.Click += new System.EventHandler(this.ocmSendRdm_Click_1);
+            this.ocmSendRdm.Click += new System.EventHandler(this.ocmSendRdm_Click);
             // 
             // ogdRdm
             // 
@@ -1338,7 +1336,7 @@
             this.otbShcSS.Name = "otbShcSS";
             this.otbShcSS.Size = new System.Drawing.Size(38, 23);
             this.otbShcSS.TabIndex = 12;
-            this.otbShcSS.Text = "5";
+            this.otbShcSS.Text = "3";
             // 
             // label1
             // 
@@ -1496,11 +1494,6 @@
             this.olaSta.Size = new System.Drawing.Size(102, 17);
             this.olaSta.Text = "Schedule : Disable";
             // 
-            // otmAutoFuc
-            // 
-            this.otmAutoFuc.Interval = 1000;
-            this.otmAutoFuc.Tick += new System.EventHandler(this.otmAutoFuc_Tick);
-            // 
             // wTestCallDll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1517,7 +1510,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POSLOG";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.wTestCallDll_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.wTestCallDll_Load);
             this.Resize += new System.EventHandler(this.wTestCallDll_Resize);
             this.otaMain1.ResumeLayout(false);
             this.otaMenu.ResumeLayout(false);
@@ -1599,7 +1592,6 @@
         private System.Windows.Forms.ToolStripStatusLabel olaSta;
         private System.Windows.Forms.TextBox otbDTrn;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Timer otmAutoFuc;
         private System.Windows.Forms.TabControl otcManin2;
         private System.Windows.Forms.TabPage otbSale;
         private System.Windows.Forms.GroupBox ogbSendSale;

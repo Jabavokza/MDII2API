@@ -8,7 +8,7 @@ namespace MDll2API.Modale.POSLog
     public class mlPOSSale
     {
         [JsonProperty("POSLog")]
-        public POSLog_Sale POSLog { get; set; }
+        public mlPOSLog_Sale POSLog { get; set; }
     }
     public class BusinessUnit_Sale
     {
@@ -266,23 +266,23 @@ namespace MDll2API.Modale.POSLog
         public string EndDateTime { get; set; }
     }
 
-    public class POSLog_Sale
+    public class mlPOSLog_Sale
     {
 
         [JsonProperty("@xmlns")]
-        public string @xmlns { get; set; }
+        public string tML_Xmlns { get; set; }
 
         [JsonProperty("@MajorVersion")]
-        public string @MajorVersion { get; set; }
+        public string tML_MajorVersion { get; set; }
 
         [JsonProperty("@xmlns:xsi")]
-        public string @XmlnsXsi { get; set; }
+        public string tML_XmlnsXsi { get; set; }
 
         [JsonProperty("@xsi:schemaLocation")]
-        public string @XsiSchemaLocation { get; set; }
+        public string tML_XsiSchemaLocation { get; set; }
 
         [JsonProperty("Transaction")]
-        public IList<Transaction_Sale> Transaction { get; set; }
+        public IList<Transaction_Sale> aML_Transaction { get; set; }
     }
 
    

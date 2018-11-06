@@ -17,15 +17,16 @@ using MDll2API.Modale.ReceivApp;
 using MDll2API.Class.ST_Class;
 using log4net;
 using cCNSP = MDll2API.Class.ST_Class.cCNSP;
+using MDll2API.Modale.POSLog;
 
 namespace WinAppTest
 {
     public partial class wTestCallDll : Form
     {
         private readonly ILog oC_Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         private int nW_CDStr = 10;
         private int nW_CDWait = 10;
+        private mlRESMsg oRESMsg;
 
         private DataTable oW_DtSale = new DataTable();
         private DataTable oW_DtRdm = new DataTable();
@@ -34,7 +35,7 @@ namespace WinAppTest
         private DataGridViewCheckBoxColumn oW_ocbColSale = new DataGridViewCheckBoxColumn();
         private DataGridViewCheckBoxColumn oW_ocbColRdm = new DataGridViewCheckBoxColumn();
         private DataGridViewCheckBoxColumn oW_ocbColBnk = new DataGridViewCheckBoxColumn();
-        
+
         private DataGridViewLinkColumn oW_olcCol2 = new DataGridViewLinkColumn();
 
         private DataGridView oW_AnotherGrid = new DataGridView();
@@ -61,7 +62,7 @@ namespace WinAppTest
 
         #region "FORM"
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void wTestCallDll_Load(object sender, EventArgs e)
         {
             try
             {
@@ -108,6 +109,15 @@ namespace WinAppTest
             //            ontMain.Visible = false;
         }
 
+        private void wTestCallDll_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!Program.bPcClose)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+        }
+
         #endregion "FORM"
 
         private void SETxConfigDB()
@@ -116,7 +126,7 @@ namespace WinAppTest
             StreamReader oSr = null;
             try
             {
-               var tPath = "dbconfig.xml";
+                var tPath = "dbconfig.xml";
 
                 oSr = new StreamReader(tPath);
                 oW_DbConfig = (cDbConfig)oXmlSrl.Deserialize(oSr);
@@ -155,37 +165,31 @@ namespace WinAppTest
 
         #region"METHOD"
 
-        private string W_GETtSale()
+        private mlRESMsg W_GETtSale(string ptMode, string ptShdTransNo)
         {
-            string tResult1;
-            string tResult2;
-            string[] atResult;
             cSale oSale = new cSale();
-            int nAPIManual = 0;  // 0: Auto,1: Manual
+            oRESMsg = new mlRESMsg();
             try
-            { 
-                // tResult = oSale.C_POSTtSale(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
+            {
                 if (ockAPI.Checked == true)
                 {
                     oSale.CHKxAPIEnable("true");
+
                 }
-                
-                tResult1 = oSale.C_POSTtSale(otbDTrn.Text, null, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, "AUTO");
-
-                atResult = tResult1.Split('|');
-                tResult1 = atResult[0];
-                tResult2 = atResult[1];
-                oC_Log.Debug("[RES Sale Status]=" + tResult2 + "[Message]=" + tResult1);
+                if (ptMode.Equals("AUTO"))
+                {
+                    oSale.C_POSTxSale(ptMode, otbDTrn.Text, null, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, null);
+                }
+                else if (ptMode.Equals("MANUAL"))
+                {
+                    oRESMsg = oSale.C_POSTxSale(ptMode, otbDTrn.Text, null, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, ptShdTransNo);
+                }
+                return oRESMsg;
             }
-            catch (Exception ) { }
-            finally
+            catch (Exception oEx)
             {
-                tResult1 = null;
-                tResult2 = null;
-                oSale = null;
-
+                throw oEx;
             }
-            return tResult1;
         }
 
         private void W_GETxCash(string ptMode = "", string ptSaleDate = "", string[] patPlantCode = null)
@@ -229,22 +233,6 @@ namespace WinAppTest
 
                 oC_Log.Debug("[RES ShortOver4 Status] = " + tResult2 + "[Message]=" + tResult1);
 
-                //if (tResult2 == "200")
-                //{
-                //check staclode and update flag
-                //oSQL.AppendLine("SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WITH (ROWLOCK)");
-                //oSQL.AppendLine("WHERE FDSaleDate = '2018-09-07'");
-                //oSQL.AppendLine("AND FTPlantCode = '17KA'");
-                //oSQL.AppendLine("AND FTStaSentOnOff = '2'");
-
-                //oDtChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
-
-                //if (oDtChk.Rows.Count == 1)
-                //{
-                //    //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-                //    //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-                //}
-
                 if (ptMode == "AUTO")
                 {
                     oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
@@ -273,10 +261,6 @@ namespace WinAppTest
 
                     oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
                 }
-                //oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                //oSQL.AppendLine("WHERE FDSaleDate = '" + tDateToDay + "'");
-                //oSQL.AppendLine("AND FTStaShortOver = '0'");
-                //oSQL.AppendLine("AND FTPlantCode = '17KA'");
 
                 oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
 
@@ -315,7 +299,7 @@ namespace WinAppTest
                     MessageBox.Show("ShortOver4 = " + tResult1, "ShortOver4", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception ) { }
+            catch (Exception) { }
             finally
             {
                 tResult1 = null;
@@ -433,7 +417,7 @@ namespace WinAppTest
                 }
                 //}
             }
-            catch (Exception ) { }
+            catch (Exception) { }
             finally
             {
                 tResult1 = null;
@@ -463,12 +447,11 @@ namespace WinAppTest
             catch { }
         }
 
-        private void W_GETxBankIn(string ptMode = "", string ptSaleDate = "", string[] patPlantCodeBnk = null)
+        private void W_GETxBankIn(string ptMode, string ptSaleDate, string[] patPlantCodeBnk)
         {
             string tResult1 = "", tResult3 = "", tResult2, tDateToDay;
             cBankDeposit oBankIn;
             string[] atResult;
-            string tChk = "";
             int nRowEff = 0;
             DataTable oDtChk, oDbChk;
             StringBuilder oSQL;
@@ -480,17 +463,14 @@ namespace WinAppTest
                 oSQL = new StringBuilder();
                 oBankIn = new cBankDeposit();
 
-                if (ptMode == "AUTO")
+                if (ockAPI.Checked == true)
                 {
-                    if (ockAPI.Checked == true)
-                    {
-                        oBankIn.CHKxAPIEnable("true");
-                    }
-                    tResult1 = oBankIn.C_POSTtBankDeposit(otbDTrn.Text, null, ptMode, patPlantCodeBnk);
+                    oBankIn.CHKxAPIEnable("true");
+                    tResult1 = oBankIn.C_POSTtBankDeposit(ptMode, ptSaleDate, patPlantCodeBnk);
                 }
-                else if (ptMode == "MANUAL")
+                else
                 {
-                    tResult1 = oBankIn.C_POSTtBankDeposit(ptSaleDate, null, ptMode, patPlantCodeBnk);
+                    tResult1 = oBankIn.C_POSTtBankDeposit(ptMode, ptSaleDate, patPlantCodeBnk);
                 }
 
                 atResult = tResult1.Split('|');
@@ -499,17 +479,7 @@ namespace WinAppTest
                 tResult3 = atResult[2];
 
                 oC_Log.Debug("[RES BankIn Status]=" + tResult2 + "[Message] = " + tResult1);
-                //if (tResult2 == "200")
-                //{
-                //    //check staclode and update flag
-                //    tChk = "SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WHERE FDSaleDate ='2018-09-07' AND  FTPlantCode='17KA' AND FTStaSentOnOff='3' ";
-                //    oDtChk = cCNSP.SP_SQLvExecute(tChk, tW_ConSale);
-                //    if (oDtChk.Rows.Count == 1)
-                //    {
-                //        //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-                //        //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-                //    }
-                //}
+
                 tDateToDay = ptSaleDate;
 
                 if (ptMode != "MANUAL")
@@ -570,91 +540,62 @@ namespace WinAppTest
             }
         }
 
-        private void W_GETxAuto()
-        {
-            string rtResult, tResult;
-            cAutomatic oAutomatic = new cAutomatic();
-            string[] atResult;
-            int nAPIManual = 0;  // 0: Auto,1: Manual
-            try
-            {
-                nAPIManual = 0;
+        //private void W_GETxSaleOrder()
+        //{
+        //    string rtResult;
+        //    cSaleOrder oSaleOrder = new cSaleOrder();
+        //    string[] atResult;
+        //    string tResult;
+        //    int nAPIManual = 0;  // 0: Auto,1: Manual
+        //    try
+        //    {
+        //        nAPIManual = 0;
+
+        //        // tResult = oSaleOrder.C_POSTtSaleOrder(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
+        //        tResult = oSaleOrder.C_POSTtSaleOrder(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual, otbDTrn.Text);
+        //        atResult = tResult.Split('|');
+        //        rtResult = atResult[0] + Environment.NewLine;
+        //        //rtResult += atResult[1] + Environment.NewLine;
+
+        //    }
+        //    catch { }
+        //    finally
+        //    {
+        //        rtResult = null;
+        //        oSaleOrder = null;
+        //        atResult = null;
+        //        tResult = null;
+        //    }
+        //}
+
+        //private void W_GETxPoint()
+        //{
+        //    string rtResult;
+        //    cPoint oPoint = new cPoint();
+        //    string[] atResult;
+        //    string tResult;
+        //    int nAPIManual = 0;  // 0: Auto,1: Manual
+        //    try
+        //    {
+        //        nAPIManual = 0;
 
 
-                //tResult = oAutomatic.C_POSTtAutomatic(otbJson.Text, otbCheck.Text.Trim()
-                //                        , otbMove.Text.Trim(), otbTmnNum.Text.Trim(), Convert.ToInt32(otbSeqNo.Text.Trim())
-                //                        , ocbAPIUrl.Text.Trim(), otbAPIUsr.Text.Trim(), otbAPIPwd.Text.Trim(), nAPIManual);
-                //atResult = tResult.Split('|');
-                //  rtResult = atResult[0] + Environment.NewLine;
-                // rtResult += atResult[1] + Environment.NewLine;
+        //        // tResult = oPoint.C_POSTtPoint(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
+        //        tResult = oPoint.C_POSTtPoint(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual, otbDTrn.Text);
+        //        atResult = tResult.Split('|');
+        //        rtResult = atResult[0] + Environment.NewLine;
+        //        // rtResult += atResult[1] + Environment.NewLine;
 
-            }
-            catch { }
-            finally
-            {
-                rtResult = null;
-                oAutomatic = null;
-                atResult = null;
-                tResult = null;
-            }
-        }
-
-        private void W_GETxSaleOrder()
-        {
-            string rtResult;
-            cSaleOrder oSaleOrder = new cSaleOrder();
-            string[] atResult;
-            string tResult;
-            int nAPIManual = 0;  // 0: Auto,1: Manual
-            try
-            {
-                nAPIManual = 0;
-
-                // tResult = oSaleOrder.C_POSTtSaleOrder(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
-                tResult = oSaleOrder.C_POSTtSaleOrder(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual, otbDTrn.Text);
-                atResult = tResult.Split('|');
-                rtResult = atResult[0] + Environment.NewLine;
-                //rtResult += atResult[1] + Environment.NewLine;
-
-            }
-            catch { }
-            finally
-            {
-                rtResult = null;
-                oSaleOrder = null;
-                atResult = null;
-                tResult = null;
-            }
-        }
-
-        private void W_GETxPoint()
-        {
-            string rtResult;
-            cPoint oPoint = new cPoint();
-            string[] atResult;
-            string tResult;
-            int nAPIManual = 0;  // 0: Auto,1: Manual
-            try
-            {
-                nAPIManual = 0;
-
-
-                // tResult = oPoint.C_POSTtPoint(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual);
-                tResult = oPoint.C_POSTtPoint(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual, otbDTrn.Text);
-                atResult = tResult.Split('|');
-                rtResult = atResult[0] + Environment.NewLine;
-                // rtResult += atResult[1] + Environment.NewLine;
-
-            }
-            catch { }
-            finally
-            {
-                rtResult = null;
-                oPoint = null;
-                atResult = null;
-                tResult = null;
-            }
-        }
+        //    }
+        //    catch { }
+        //    finally
+        //    {
+        //        rtResult = null;
+        //        oPoint = null;
+        //        atResult = null;
+        //        tResult = null;
+        //    }
+        //}
 
         private string W_SETtEOD(string ptMode = "", string ptSaleDate = "", string[] patPlantCode = null)
         {
@@ -786,20 +727,27 @@ namespace WinAppTest
             return tResultUseEOD;
         }
 
-        private void W_GETxRedeem()
+        private void W_GETxRedeem(string ptMode, cRcvRedeem poRcvRedeem,mlRedeem poRedeem)
         {
-           
             try
             {
-              var oRedeem = new cRedeem();
+                var oRedeem = new cRedeem();
                 if (ockAPI.Checked == true)
                 {
                     oRedeem.CHKxAPIEnable("true");
                 }
-                oRedeem.C_POSTtRedeem(otbDTrn.Text, null, "AUTO");
+                if (ptMode.Equals("AUTO"))
+                {
+                    oRedeem.C_POSTtRedeem(ptMode,otbDTrn.Text, null,null);
+                }
+                else if (ptMode.Equals("MANUAL"))
+                {
+                    oRedeem.C_POSTtRedeem(ptMode, otbDTrn.Text, poRcvRedeem, poRedeem);
+                }
+                return oRESMsg;
             }
-            catch (Exception ) { }
-           
+            catch (Exception) { }
+
         }
 
         private void SETxNotify(string ptTitle, string ptMsg, int pnTime, string ptOnOff, int pnNotiIC)
@@ -1184,57 +1132,15 @@ namespace WinAppTest
 
         private void ocmSendSale_Click(object sender, EventArgs e)
         {
-            int nLoop = 0, nRowEff;
-            bool bCheck = false, bIsSelected;
-            string tValueTransDate = "", tValuePlantCode = "", tFirstDate = "", tResult = "", tResult1 = "", tResult2 = "", tChk = "", tShdPlantCode = "", tTmnNum = "", tShdTransNo = "" , tShdTransDate = "", tResult3 = "";
+            int nLoop = 0;
+            bool bCheck = false;
+            string tValueTransDate = "", tShdTransNo = "";
             cSale oSale = new cSale();
             string tVal = "";
-            string[] atResult;
             DataTable oDtChk = new DataTable();
-            StringBuilder oSQL;
-
-            //tVal = "(";
-
-            //foreach (DataGridViewRow row in ogdSale.Rows)
-            //{
-            //    bool bIsSelected = Convert.ToBoolean(row.Cells["ocbSelect"].Value);
-            //    if (bIsSelected)
-            //    {
-            //        tVal = tVal + "'" + row.Cells["FTShdPlantCode"].Value.ToString()
-            //                         + row.Cells["FTTmnNum"].Value.ToString()
-            //                         + row.Cells["FTShdTransNo"].Value.ToString()
-            //                         + '_' + cCNSP.SP_DTEtByFormat(row.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")
-            //                  + "',";
-            //    }
-            //}
-            //tVal = tVal.Substring(0, tVal.Length - 1);
-            //tVal = tVal + ")";
-
-            //cRcvSale oRcvSale = new cRcvSale()
-            //{
-            //    TypeName = "Sale",
-            //    TableName = "TPSTSalHD",
-            //    Field = "(HD.FTShdPlantCode+HD.FTTmnNum+HD.FTShdTransNo+'_'+CONVERT(varchar(8),HD.FDShdTransDate,112)) IN",
-            //    Value = tVal
-            //};
-
-            //tResult = oSale.C_POSTtSale(otbDTrn.Text, oRcvSale, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, "MANUAL");
-
-            //atResult = tResult.Split('|');
-
-            //tResult1 = atResult[0] + Environment.NewLine;
-            //tResult2 = atResult[1] + Environment.NewLine;
-
+            oRESMsg = new mlRESMsg();
             try
             {
-                //if (otbTrnDSale.Text == "")
-                //{
-                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual Sale", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else
-                //{
-                oSQL = new StringBuilder();
-
                 foreach (DataGridViewRow oRow in ogdSale.Rows)
                 {
                     try
@@ -1255,17 +1161,6 @@ namespace WinAppTest
 
                     if (bCheck)
                     {
-                        //if (nLoop == 0)
-                        //{
-                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
-                        //}
-
-                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
-                        //{
-                        //    otbTrnDSale.Focus();
-                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
-                        //    return;
-                        //}
 
                         tVal += "'" + oRow.Cells["FTShdPlantCode"].Value.ToString()
                                             + oRow.Cells["FTTmnNum"].Value.ToString()
@@ -1287,7 +1182,7 @@ namespace WinAppTest
                 tVal = tVal.Substring(0, tVal.Length - 1);
                 tVal += ")";
 
-                tShdTransNo =  tShdTransNo.Substring(0, tShdTransNo.Length - 1);
+                tShdTransNo = tShdTransNo.Substring(0, tShdTransNo.Length - 1);
 
                 cRcvSale oRcvSale = new cRcvSale()
                 {
@@ -1299,44 +1194,13 @@ namespace WinAppTest
 
                 if (tVal.Length > 10)
                 {
-
-                    tResult = oSale.C_POSTtSale(tValueTransDate, oRcvSale, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, "MANUAL");
-
-                    atResult = tResult.Split('|');
-                    tResult1 = atResult[0];
-                    tResult2 = atResult[1];
-                    tResult3 = atResult[2];
-
-                    if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์" && tResult2 == "200")
-                    {
-                        oSQL.Clear();
-                        oSQL.AppendLine("UPDATE TPSTSalHD WITH (ROWLOCK)");
-                        oSQL.AppendLine("SET FTStaSentOnOff = '1'");
-                        //oSQL.AppendLine("   ,FTStaEOD = '1'");
-                        oSQL.AppendLine("   ,FTJsonFileName = '" + tResult3 + "'");
-                        oSQL.AppendLine("WHERE FTShdTransNo IN (" + tShdTransNo + ")");
-
-                        nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tW_ConSale);
-
-                    }
-                    //}
+                    oRESMsg = W_GETtSale("MANUAL", tShdTransNo);
                 }
             }
-            catch (Exception ) { }
+            catch (Exception) { }
 
-            oC_Log.Debug("[RES Manual Sale Status]=" + tResult2 + "[Message]=" + tResult1);
-            MessageBox.Show("[RES Manual Sale Status]=" + tResult2 + "[Message]=" + tResult1, "Manual Sale", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //if (tResult2 == "200")
-            //{
-            //    //check staclode and update flag
-            //    tChk = "SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WHERE FDSaleDate ='2018-09-07' AND  FTPlantCode='17KA' AND FTStaSentOnOff='4' ";
-            //    oDtChk = cCNSP.SP_SQLvExecute(tChk, tW_ConSale);
-            //    if (oDtChk.Rows.Count == 1)
-            //    {
-            //        //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-            //        //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-            //    }
-            //}
+            oC_Log.Debug("[RES Manual Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
+            MessageBox.Show("[RES Manual Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg, "Manual Sale", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion "BUTTON_Sale"
@@ -1397,64 +1261,84 @@ namespace WinAppTest
         private void ocmSendRdm_Click(object sender, EventArgs e)
         {
             cRedeem oRedeem = new cRedeem();
-            string tResult1 = "";
-            string tResult2 = "";
-            string tVal = "";
-            string tChk = "";
             DataTable oDtChk = new DataTable();
+            StringBuilder oSQL;
+            string tResult1 = "", tResult2 = "", tResult3 = "", tVal = "", tChk = "", tValueTransDate = "", tPremiumNo = "", tPreMiumID = "", tFDRPDocDate = "", tPrmCondition = "", tOption = "", tSeqNo = "", tRPDocNo = "";
             string[] atResult;
-            tVal = "(";
-
-            foreach (DataGridViewRow row in ogdRdm.Rows)
+            int nLoop = 0, nRowEff = 0;
+            bool bCheck;
+            mlRedeem mlRedeem = new mlRedeem();
+            try
             {
-                bool bIsSelected = Convert.ToBoolean(row.Cells["ocbSelect"].Value);
-                if (bIsSelected)
+                oSQL = new StringBuilder();
+                tVal = "(";
+
+                foreach (DataGridViewRow oRow in ogdRdm.Rows)
                 {
-                    // FTPremiumNo,FTPreMiumID
-                    tVal = tVal + "'" + row.Cells["FTPremiumNo"].Value.ToString()
-                                     + row.Cells["FTPreMiumID"].Value.ToString()
-                                     + '_' + cCNSP.SP_DTEtByFormat(row.Cells["FDRPDocDate"].Value.ToString(), "YYYYMMDD")
-                              + "',";
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(ogdRdm.Rows[nLoop].Cells[0].Value.ToString()))
+                        {
+                            bCheck = Convert.ToBoolean(ogdRdm.Rows[nLoop].Cells[0].Value.ToString());
+                        }
+                        else
+                        {
+                            bCheck = false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
 
+                    if (bCheck)
+                    {
+                        tVal = tVal + "'" + oRow.Cells["FTRPDocNo"].Value.ToString()
+                                           + oRow.Cells["FTPremiumNo"].Value.ToString()
+                                           //+ oRow.Cells["FCPrmCondition"].Value.ToString()
+                                           + oRow.Cells["FTOption"].Value.ToString()
+                                           + oRow.Cells["FTPremiumID"].Value.ToString()
+                                           //+ oRow.Cells["FNSeqNo"].Value.ToString()
+                                           + '_' + cCNSP.SP_DTEtByFormat(oRow.Cells["FDRPDocDate"].Value.ToString(), "YYYYMMDD")
+                                           + "',";
+
+                        tVal = tVal.Substring(0, tVal.Length - 1);
+
+                        tVal = tVal + ",";
+
+                        mlRedeem.tML_PremiumNo = oRow.Cells["FTPremiumNo"].Value.ToString();
+                        mlRedeem.tML_PremiumID = oRow.Cells["FTPreMiumID"].Value.ToString();
+                        mlRedeem.tML_RPDocDate = oRow.Cells["FDRPDocDate"].Value.ToString();
+
+                        mlRedeem.tML_RPDocNo += "'" + oRow.Cells["FTRPDocNo"].Value.ToString() + "',";
+                    }
+
+                    tValueTransDate = Convert.ToDateTime(ogdRdm.Rows[nLoop].Cells["FDRPDocDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                    nLoop++;
                 }
+
+                tVal = tVal.Substring(0, tVal.Length - 1);
+                tVal = tVal + ")";
+
+                mlRedeem.tML_RPDocNo = tRPDocNo.Substring(0, mlRedeem.tML_RPDocNo.Length - 1);
+                cRcvRedeem oRcvRedeem = new cRcvRedeem()
+                {
+                    TypeName = "Redeem",
+                    TableName = "TPSTRpremium",
+                    Field = "(Trn.FTRPDocNo+Trn.FTPremiumNo+Trn.FTOption+Trn.FTPremiumID+'_'+CONVERT(varchar(8),Trn.FDRPDocDate,112)) IN",
+                    Value = tVal
+                };
+                W_GETxRedeem("MANUAL",oRcvRedeem, mlRedeem);
+
+                oC_Log.Debug("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1);
+                MessageBox.Show("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1, "Manual Redeem", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            tVal = tVal.Substring(0, tVal.Length - 1);
-            tVal = tVal + ")";
-
-            cRcvRedeem oRcvRedeem = new cRcvRedeem()
-            {
-                TypeName = "Redeem",
-                TableName = "TPSTRpremium",
-                Field = "(Trn.FTPremiumNo+Trn.FTPreMiumID+'_'+CONVERT(varchar(8),Trn.FDRPDocDate,112)) IN",
-                Value = tVal
-            };
-
-            tResult1 = oRedeem.C_POSTtRedeem(otbDTrn.Text, oRcvRedeem, "MANUAL");
-            atResult = tResult1.Split('|');
-
-            tResult1 = atResult[0] + Environment.NewLine;
-            tResult2 = atResult[1] + Environment.NewLine;
-
-            oC_Log.Debug("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1);
-            MessageBox.Show("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1, "Manual Redeem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //if (tResult2 == "200")
-            //{
-            //    //check staclode and update flag
-            //    tChk = "SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WHERE FDSaleDate ='2018-09-07' AND  FTPlantCode='17KA' AND FTStaSentOnOff='4' ";
-            //    oDtChk = cCNSP.SP_SQLvExecute(tChk, tW_ConSale);
-            //    if (oDtChk.Rows.Count == 1)
-            //    {
-            //        //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-            //        //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-            //    }
-            //}
+            catch (Exception) { }
         }
 
         #endregion "BUTTON_Redeem"
 
         #region "BUTTON_Bank"
-
         private void ocmSchBnk_Click(object sender, EventArgs e)
         {
             string tSql1 = "", tSql2 = "", tNewLine = "\r\n";
@@ -1524,114 +1408,377 @@ namespace WinAppTest
             }
             catch { }
         }
-
         private void ocmSendBnk_Click(object sender, EventArgs e)
         {
-            cBankDeposit oBank = new cBankDeposit();
-            string tResult1 = "";
-            string tResult2 = "";
-            string tVal = "";
-            string tChk = "";
-            string[] atResult;
-            DataTable oDtChk = new DataTable();
-
-            tVal = "(";
-
-            foreach (DataGridViewRow oRow in ogdBnk.Rows)
+            bool bCheck;
+            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
+            List<string> atValuePlantCodeList;
+            int nLoop = 0;
+            try
             {
-                bool bIsSelected = Convert.ToBoolean(oRow.Cells["ocbSelect"].Value);
 
-                if (bIsSelected)
+                atValuePlantCodeList = new List<string>();
+
+                foreach (DataGridViewRow oRow in ogdBnk.Rows)
                 {
-                    // FTPremiumNo,FTPreMiumID
-                    tVal = tVal + "'" + oRow.Cells["FTBdpPlantCode"].Value.ToString()
-                                     + '_' + cCNSP.SP_DTEtByFormat(oRow.Cells["FDBdpDepositDate"].Value.ToString(), "YYYYMMDD")
-                              + "',";
+                    if (!string.IsNullOrEmpty(ogdBnk.Rows[nLoop].Cells[0].Value.ToString()))
+                    {
+                        bCheck = Convert.ToBoolean(ogdBnk.Rows[nLoop].Cells[0].Value.ToString());
+                    }
+                    else
+                    {
+                        bCheck = false;
+                    }
+                    if (bCheck)
+                    {
+
+                        tValueSaleDate = Convert.ToDateTime(ogdBnk.Rows[nLoop].Cells["FDBdpSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                        tValuePlantCode = ogdBnk.Rows[nLoop].Cells["FTBdpPlantCode"].Value.ToString();
+                        atValuePlantCodeList.Add(tValuePlantCode);
+                    }
+
+                    nLoop++;
                 }
+
+                W_GETxBankIn("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
             }
-
-            tVal = tVal.Substring(0, tVal.Length - 1);
-            tVal = tVal + ")";
-
-            cRcvBank oRcvBank = new cRcvBank()
-            {
-                TypeName = "Bank",
-                TableName = "TPSTBankDeposit",
-                Field = "(FTBdpPlantCode+'_'+CONVERT(varchar(8),FDBdpDepositDate,112)) IN",
-                Value = tVal
-            };
-
-            tResult1 = oBank.C_POSTtBankDeposit(otbDTrn.Text, oRcvBank, "MANUAL");
-
-            atResult = tResult1.Split('|');
-            tResult1 = atResult[0] + Environment.NewLine;
-            tResult2 = atResult[1] + Environment.NewLine;
-
-            oC_Log.Debug("[RES Manual BankIn Status]=" + tResult2 + "[Message]=" + tResult1);
-            MessageBox.Show("[RES Manual BankIn Status]=" + tResult2 + "[Message]=" + tResult1, "Manual BankIn", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //if (tResult2 == "200")
-            //{
-            //    //check staclode and update flag
-            //    tChk = "SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WHERE FDSaleDate ='2018-09-07' AND  FTPlantCode='17KA' AND FTStaSentOnOff='4' ";
-            //    oDtChk = cCNSP.SP_SQLvExecute(tChk, tW_ConSale);
-            //    if (oDtChk.Rows.Count == 1)
-            //    {
-            //        //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-            //        //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-            //    }
-            //}
+            catch (Exception) { }
         }
-
         #endregion "BUTTON_Bank"
 
         #region "BUTTON_EOD"
-
-        private void ocmSendEOD_Click(object sender, EventArgs e)
+        private void ocmSchEOD_Click(object sender, EventArgs e)
         {
+            StringBuilder oSQL;
+            DataTable oDbTCNMPlnCloseSta;
             try
             {
-                if (otbEOD.Text == "" || otbPlantEOD.Text == "")
+                if (otbEOD.Text.Trim() == "")
                 {
-                    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual DaySummary", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("กรุณากรอกวันที่", "EOD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                oSQL = new StringBuilder();
+                oDbTCNMPlnCloseSta = new DataTable();
+
+                if (otbEOD.Text.Trim() == "" && otbPlantEOD.Text.Trim() == "")
+                {
+                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,FTStaEOD");
+                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaSentOnOff, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
+                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
+                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
+                    //MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual DaySummary", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    W_SETtEOD("MANUAL");
+                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,FTStaEOD");
+                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaSentOnOff, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
+                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
+                    oSQL.AppendLine("WHERE FDSaleDate = '" + otbEOD.Text + "'");
+
+                    if (otbPlantEOD.Text.Trim() != "")
+                    {
+                        oSQL.AppendLine("AND FTPlantCode = '" + otbPlantEOD.Text + "'");
+                    }
+
+                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
+                }
+
+                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+
+                if (!Object.Equals(oDbTCNMPlnCloseSta, null))
+                {
+                    oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+
+                    ogdDaySum.DataSource = oDbTCNMPlnCloseSta;
+                }
+
+            }
+            catch { }
+        }
+        private void ocmSendEOD_Click(object sender, EventArgs e)
+        {
+            bool bCheck;
+            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
+            List<string> atPlantCodeList;
+            int nLoop = 0;
+            try
+            {
+                //if (otbEOD.Text == "")
+                //{
+                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual DaySummary", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+                //else
+                //{
+                atPlantCodeList = new List<string>();
+
+                foreach (DataGridViewRow oRow in ogdDaySum.Rows)
+                {
+                    if (!string.IsNullOrEmpty(ogdDaySum.Rows[nLoop].Cells[0].Value.ToString()))
+                    {
+                        bCheck = Convert.ToBoolean(ogdDaySum.Rows[nLoop].Cells[0].Value.ToString());
+                    }
+                    else
+                    {
+                        bCheck = false;
+                    }
+
+                    if (bCheck)
+                    {
+                        //if (nLoop == 0)
+                        //{
+                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
+                        //}
+
+                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
+                        //{
+                        //    otbTrnDSale.Focus();
+                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
+                        //    return;
+                        //}
+
+                        tValueSaleDate = Convert.ToDateTime(ogdDaySum.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                        tValuePlantCode = ogdDaySum.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
+                        atPlantCodeList.Add(tValuePlantCode);
+                    }
+
+                    nLoop++;
+                }
+
+                W_SETtEOD("MANUAL", tValueSaleDate, atPlantCodeList.ToArray());
+                //}
+            }
+            catch (Exception) { }
+        }
+        #endregion "BUTTON_EOD"
+
+        #region"BUTTON_Cash"
+        private void ocmSchCash_Click(object sender, EventArgs e)
+        {
+            StringBuilder oSQL;
+            DataTable oDbTCNMPlnCloseSta;
+            try
+            {
+                if (otbDateShortManual.Text.Trim() == "")
+                {
+                    MessageBox.Show("กรุณากรอกวันที่", "Short/Over", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                oDbTCNMPlnCloseSta = new DataTable();
+                oSQL = new StringBuilder();
+
+                if (otbDateShortManual.Text.Trim() == "" && otbShortPlant.Text.Trim() == "")
+                {
+                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaShortOver, '0') AS FTStaShortOver");
+                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaShortOver, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
+                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
+                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
+                    //oSQL.AppendLine("WHERE FDSaleDate = '" + otbDateShortManual.Text + "'");
+                    //MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual ShortOver", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaShortOver, '0') AS FTStaShortOver");
+                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaShortOver, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
+                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
+                    oSQL.AppendLine("WHERE FDSaleDate = '" + otbDateShortManual.Text + "'");
+                    oSQL.AppendLine("AND FTStaEOD = '1'");
+                    //oSQL.AppendLine("AND FTStaShortOver = '0'");
+
+                    if (!(otbShortPlant.Text == ""))
+                    {
+                        oSQL.AppendLine("AND FTPlantCode = '" + otbShortPlant.Text + "'");
+                    }
+
+                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
+                }
+
+                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+
+                oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+
+                ogdShortOver.DataSource = oDbTCNMPlnCloseSta;
+            }
+            catch { }
+        }
+        private void ocmSendCash_Click(object sender, EventArgs e)
+        {
+            bool bCheck;
+            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
+            List<string> atValuePlantCodeList;
+            int nLoop = 0;
+            try
+            {
+                //if (otbDateShortManual.Text == "")
+                //{
+                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual ShortOver", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+                //else
+                //{
+                atValuePlantCodeList = new List<string>();
+
+                foreach (DataGridViewRow oRow in ogdShortOver.Rows)
+                {
+                    if (!string.IsNullOrEmpty(ogdShortOver.Rows[nLoop].Cells[0].Value.ToString()))
+                    {
+                        bCheck = Convert.ToBoolean(ogdShortOver.Rows[nLoop].Cells[0].Value.ToString());
+                    }
+                    else
+                    {
+                        bCheck = false;
+                    }
+
+                    if (bCheck)
+                    {
+                        //if (nLoop == 0)
+                        //{
+                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
+                        //}
+
+                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
+                        //{
+                        //    otbTrnDSale.Focus();
+                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
+                        //    return;
+                        //}
+
+                        tValueSaleDate = Convert.ToDateTime(ogdShortOver.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                        tValuePlantCode = ogdShortOver.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
+                        atValuePlantCodeList.Add(tValuePlantCode);
+                    }
+
+                    nLoop++;
+                }
+
+                W_GETxCash("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
+                //}
+            }
+            catch (Exception) { }
+        }
+        #endregion"BUTTON_Cash"
+
+        #region"BUTTON_EDC"
+        private void ocmSchEDC_Click(object sender, EventArgs e)
+        {
+            StringBuilder oSQL;
+            DataTable oDbTCNMPlnCloseSta;
+            try
+            {
+                if (otbEDCDate.Text.Trim() == "")
+                {
+                    MessageBox.Show("กรุณากรอกวันที่", "EDC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                oDbTCNMPlnCloseSta = new DataTable();
+                oSQL = new StringBuilder();
+
+                if (otbEDCDate.Text.Trim() == "" && otbSchPlant.Text.Trim() == "")
+                {
+                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaEDC, '0') AS FTStaEDC");
+                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaEDC, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
+                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
+                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
+                    //MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual EDC", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaEDC, '0') AS FTStaEDC");
+                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaEDC, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
+                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
+                    oSQL.AppendLine("WHERE FDSaleDate = '" + otbEDCDate.Text + "'");
+                    oSQL.AppendLine("AND FTStaEOD = '1'");
+
+                    if (otbSchPlant.Text.Trim() != "")
+                    {
+                        oSQL.AppendLine("AND FTPlantCode = '" + otbSchPlant.Text + "'");
+                    }
+
+                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
+                }
+
+                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+
+                oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+
+                if (!Object.Equals(oDbTCNMPlnCloseSta, null))
+                {
+                    ogdEDC.DataSource = oDbTCNMPlnCloseSta;
                 }
             }
             catch { }
-            //string tResult1 = "";
-            //string tResult2 = "";
-            //string tChk = "";
-            //string[] atResult;
-            //DataTable oDtChk = new DataTable();
-            //cEOD oEOD = new cEOD();
-            //// tResult = oEOD.C_POSTtEOD(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), 0, otbDTrn.Text);
-            //tResult1 = oEOD.C_POSTtEOD(otbDEOD.Text, otbPlantEOD.Text,"MANUAL");
-
-            //atResult = tResult1.Split('|');
-            //tResult1 = atResult[0] + Environment.NewLine;
-            //tResult2 = atResult[1] + Environment.NewLine;
-
-            //oC_Log.Debug("[RES Manual DaySummary Status]=" + tResult2 + "[Message]=" + tResult1);
-            //MessageBox.Show("[RES Manual DaySummary Status]=" + tResult2 + "[Message]=" + tResult1, "Manual DaySummary", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //if (tResult2 == "200")
-            //{
-            //    //check staclode and update flag
-            //    tChk = "SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WHERE FDSaleDate ='"+ otbDEOD.Text + "' AND  FTPlantCode='"+ otbPlantEOD.Text + "' AND FTStaSentOnOff='4' ";
-            //    oDtChk = cCNSP.SP_SQLvExecute(tChk, tW_ConSale);
-            //    if (oDtChk.Rows.Count == 1)
-            //    {
-            //        //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-            //        //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-            //    }
-            //}
-
         }
+        private void ocmSendEDC_Click(object sender, EventArgs e)
+        {
+            bool bCheck;
+            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
+            List<string> atValuePlantCodeList;
+            int nLoop = 0;
+            try
+            {
+                atValuePlantCodeList = new List<string>();
 
+                foreach (DataGridViewRow oRow in ogdEDC.Rows)
+                {
+                    if (!string.IsNullOrEmpty(ogdEDC.Rows[nLoop].Cells[0].Value.ToString()))
+                    {
+                        bCheck = Convert.ToBoolean(ogdEDC.Rows[nLoop].Cells[0].Value.ToString());
+                    }
+                    else
+                    {
+                        bCheck = false;
+                    }
 
-        #endregion "BUTTON_EOD"
+                    if (bCheck)
+                    {
+                        if (nLoop == 0)
+                        {
+                            tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
+                        }
 
+                        if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
+                        {
+                            otbTrnDSale.Focus();
+                            MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
+                            return;
+                        }
+
+                        tValueSaleDate = Convert.ToDateTime(ogdEDC.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                        tValuePlantCode = ogdEDC.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
+                        atValuePlantCodeList.Add(tValuePlantCode);
+                        //W_GETxCash("MANUAL", tValueSaleDate, tValuePlantCode);
+                    }
+
+                    nLoop++;
+                    //}
+                }
+
+                W_GETxEDC("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
+            }
+            catch (Exception) { }
+        }
+        #endregion"BUTTON_EDC"
+
+        #region"BUTTON_ALL"
+        private void ocmCheckAll_Click(object sender, EventArgs e)
+        {
+            //DataGridViewCheckBoxCell oChk;
+            try
+            {
+                foreach (DataGridViewRow oRow in oW_AnotherGrid.Rows)
+                {
+                    oW_AnotherGrid.Rows[oRow.Index].SetValues(true);
+                }
+
+                oW_AnotherGrid.EndEdit();
+            }
+            catch { }
+        }
+        #endregion"BUTTON_ALL"
+
+        #region"BUTTON_TAB_Connection"
         private void ocmRefresh_Click(object sender, EventArgs e)
         {
             try
@@ -1712,7 +1859,7 @@ namespace WinAppTest
                 otmStart.Enabled = true;
                 otbShcSS.Enabled = false;
             }
-            else if(olaSchSta2.Text.Equals("Enable"))
+            else if (olaSchSta2.Text.Equals("Enable"))
             {
                 olaSchSta2.Text = "Disable";
                 olaSchSta2.ForeColor = System.Drawing.Color.Red;
@@ -1723,7 +1870,7 @@ namespace WinAppTest
                 otbShcSS.Enabled = true;
             }
         }
-
+        #endregion"BUTTON_TAB_Connection"
 
         #endregion "BUTTON"
 
@@ -1731,28 +1878,27 @@ namespace WinAppTest
 
         private void otmStart_Tick(object sender, EventArgs e)
         {
-            string tSale = "", tSaleDate = "", tDaySum = "";
             try
             {
-                tSaleDate = DateTime.Now.ToString("yyyy-MM-dd");
+                var tSaleDate = DateTime.Now.ToString("yyyy-MM-dd");
                 olaCountDown.Text = olaCountDown.Text = "On";
 
                 if (ockSaleAuto.Checked == true)
                 {
-                    W_GETtSale();
+                    W_GETtSale("AUTO", null);
                 }
 
                 if (ockRmdAuto.Checked == true)
                 {
-                    W_GETxRedeem();
+                    W_GETxRedeem("AUTO",null,null);
                 }
                 if (ockDaySumAuto.Checked == true)
                 {
                     ockShortOverAuto.Enabled = true;
                     ockEDCAuto.Enabled = true;
                     ockBankInAuto.Enabled = true;
-                    tSaleDate = DateTime.Now.ToString("yyyy-MM-dd");
-                    tDaySum = W_SETtEOD("AUTO", tSaleDate);
+
+                    var tDaySum = W_SETtEOD("AUTO", tSaleDate);
 
                     if (tDaySum == "OK")
                     {
@@ -1766,19 +1912,19 @@ namespace WinAppTest
                         }
                         if (ockBankInAuto.Checked == true)
                         {
-                            W_GETxBankIn("AUTO", tSaleDate);
+                            W_GETxBankIn("AUTO", tSaleDate, null);
                         }
-  
                     }
                 }
-
-                
 
                 otmWait.Enabled = true;
                 nW_CDWait = Convert.ToInt32(otbShcSS.Text);
                 olaCountDown.Text = olaCountDown.Text = "Off";
             }
-            catch { }
+            catch (Exception oEx)
+            {
+                throw oEx;
+            }
         }
 
         private void otmWait_Tick(object sender, EventArgs e)
@@ -1992,448 +2138,6 @@ namespace WinAppTest
 
         #endregion "TEXT"
 
-        private void otaMain1_Selected(object sender, TabControlEventArgs e)
-        {
-            //string tTabName = "";
-            //try
-            //{
-            //    tTabName = otaMain1.SelectedTab.Name;
-
-            //    if (tTabName == "otaMenu")
-            //    {
-            //        otcManin2.Visible = true;
-            //    }               
-            //    else if (tTabName == "otaDBTest")
-            //    {
-            //        otcManin2.Visible = false;
-            //    }
-            //}
-            //catch { }
-        }
-
-        private void ocmSendRdm_Click_1(object sender, EventArgs e)
-        {
-            cRedeem oRedeem = new cRedeem();
-            DataTable oDtChk = new DataTable();
-            StringBuilder oSQL;
-            string tResult1 = "", tResult2 = "", tResult3 = "", tVal = "", tChk = "", tValueTransDate = "", tPremiumNo = "", tPreMiumID = "", tFDRPDocDate ="", tPrmCondition = "", tOption = "", tSeqNo = "", tRPDocNo = "";
-            string[] atResult;
-            int nLoop = 0, nRowEff = 0;
-            bool bCheck;
-            try
-            {
-                oSQL = new StringBuilder();
-                tVal = "(";
-
-                foreach (DataGridViewRow oRow in ogdRdm.Rows)
-                {
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(ogdRdm.Rows[nLoop].Cells[0].Value.ToString()))
-                        {
-                            bCheck = Convert.ToBoolean(ogdRdm.Rows[nLoop].Cells[0].Value.ToString());
-                        }
-                        else
-                        {
-                            bCheck = false;
-                        }
-                    }
-                    catch (Exception )
-                    {
-                        continue;
-                    }
-
-                    if (bCheck)
-                    {
-                        //if (nLoop == 0)
-                        //{
-                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
-                        //}
-
-                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
-                        //{
-                        //    otbTrnDSale.Focus();
-                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
-                        //    return;
-                        //}
-
-                        tVal = tVal + "'" + oRow.Cells["FTRPDocNo"].Value.ToString()
-                                           + oRow.Cells["FTPremiumNo"].Value.ToString()
-                                           //+ oRow.Cells["FCPrmCondition"].Value.ToString()
-                                           + oRow.Cells["FTOption"].Value.ToString()
-                                           + oRow.Cells["FTPremiumID"].Value.ToString()
-                                           //+ oRow.Cells["FNSeqNo"].Value.ToString()
-                                           + '_' + cCNSP.SP_DTEtByFormat(oRow.Cells["FDRPDocDate"].Value.ToString(), "YYYYMMDD")
-                                           + "',";
-
-                        tVal = tVal.Substring(0, tVal.Length - 1);
-
-                        tVal = tVal + ",";
-
-                        tPremiumNo = oRow.Cells["FTPremiumNo"].Value.ToString();
-                        tPreMiumID = oRow.Cells["FTPreMiumID"].Value.ToString();
-                        tFDRPDocDate = oRow.Cells["FDRPDocDate"].Value.ToString();
-                        //tPrmCondition = oRow.Cells["FCPrmCondition"].Value.ToString();
-                        //tOption = oRow.Cells["FTOption"].Value.ToString();
-                        //tSeqNo = oRow.Cells["FNSeqNo"].Value.ToString();
-
-                        tRPDocNo += "'" + oRow.Cells["FTRPDocNo"].Value.ToString() + "',";
-                    }
-
-                    tValueTransDate = Convert.ToDateTime(ogdRdm.Rows[nLoop].Cells["FDRPDocDate"].Value.ToString()).ToString("yyyy-MM-dd");
-                    nLoop++;
-                }
-
-                //foreach (DataGridViewRow oRow in ogdRdm.Rows)
-                //{
-                //    bool bIsSelected = Convert.ToBoolean(ogdSale.Rows[nLoop].Cells[0].Value.ToString());
-
-                //    if (bIsSelected)
-                //    {
-                //        // FTPremiumNo,FTPreMiumID
-                //        tVal = tVal + "'" + oRow.Cells["FTPremiumNo"].Value.ToString()
-                //                         + oRow.Cells["FTPreMiumID"].Value.ToString()
-                //                         + '_' + cCNSP.SP_DTEtByFormat(oRow.Cells["FDRPDocDate"].Value.ToString(), "YYYYMMDD")
-                //                  + "',";
-
-                //    }
-
-                //    nLoop++;
-                //}
-
-                tVal = tVal.Substring(0, tVal.Length - 1);
-                tVal = tVal + ")";
-
-                tRPDocNo = tRPDocNo.Substring(0, tRPDocNo.Length - 1);
-                cRcvRedeem oRcvRedeem = new cRcvRedeem()
-                {
-                    TypeName = "Redeem",
-                    TableName = "TPSTRpremium",
-                    Field = "(Trn.FTRPDocNo+Trn.FTPremiumNo+Trn.FTOption+Trn.FTPremiumID+'_'+CONVERT(varchar(8),Trn.FDRPDocDate,112)) IN",
-                    Value = tVal
-                };
-
-                tResult1 = oRedeem.C_POSTtRedeem(otbDTrn.Text, oRcvRedeem, "MANUAL");
-                atResult = tResult1.Split('|');
-
-                tResult1 = atResult[0];
-                tResult2 = atResult[1];
-                tResult3 = atResult[2];
-
-                if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์" && tResult2 == "200")
-                {
-                    oSQL.Clear();
-                    oSQL.AppendLine("UPDATE TPSTRPremium WITH (ROWLOCK)");
-                    oSQL.AppendLine("SET FTStaSentOnOff = '1'");
-                    //oSQL.AppendLine("   ,FTStaEOD = '1'");
-                    oSQL.AppendLine("   ,FTJsonFileName = '" + tResult3 + "'");
-                    oSQL.AppendLine("WHERE FDRPDocDate = '" + Convert.ToDateTime(tFDRPDocDate).ToString("yyyy-MM-dd") + "'");
-                    oSQL.AppendLine("AND FTPremiumNo = '" + tPremiumNo + "'");
-                    oSQL.AppendLine("AND FTPreMiumID = '" + tPreMiumID + "'");
-                    //oSQL.AppendLine("AND FCPrmCondition = '" + tPrmCondition + "'");
-                    //oSQL.AppendLine("AND FTOption = '" + tOption + "'");
-                    //oSQL.AppendLine("AND FNSeqNo = '" + tSeqNo + "'");
-                    oSQL.AppendLine("AND FTRPDocNo IN (" + tRPDocNo + ")");
-
-                    nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tW_ConRdm);
-                }
-
-                oC_Log.Debug("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1);
-                MessageBox.Show("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1, "Manual Redeem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ) { }
-            //if (tResult2 == "200")
-            //{
-            //    //check staclode and update flag
-            //    tChk = "SELECT TOP 1 FTStaSentOnOff FROM TCNMPlnCloseSta WHERE FDSaleDate ='2018-09-07' AND  FTPlantCode='17KA' AND FTStaSentOnOff='4' ";
-            //    oDtChk = cCNSP.SP_SQLvExecute(tChk, tW_ConSale);
-            //    if (oDtChk.Rows.Count == 1)
-            //    {
-            //        //tUPD = "UPDATE TCNMPlnCloseSta SET FTStaSentOnOff='1' ";
-            //        //cCNSP.SP_SQLxExecute(tUPD, tW_ConSale);
-            //    }
-            //}
-        }
-
-        private void wTestCallDll_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!Program.bPcClose)
-            {
-                e.Cancel = true;
-                this.Hide();
-            }
-        }
-
-        private void otmAutoFuc_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                W_SETtEOD("MANUAL");
-            }
-            catch { }
-        }
-
-        private void ocmShortManual_Click(object sender, EventArgs e)
-        {
-            StringBuilder oSQL;
-            DataTable oDbTCNMPlnCloseSta;
-            try
-            {
-                if (otbDateShortManual.Text.Trim() == "")
-                {
-                    MessageBox.Show("กรุณากรอกวันที่", "Short/Over", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                oDbTCNMPlnCloseSta = new DataTable();
-                oSQL = new StringBuilder();
-
-                if (otbDateShortManual.Text.Trim() == "" && otbShortPlant.Text.Trim() == "")
-                {
-                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaShortOver, '0') AS FTStaShortOver");
-                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaShortOver, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
-                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
-                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
-                    //oSQL.AppendLine("WHERE FDSaleDate = '" + otbDateShortManual.Text + "'");
-                    //MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual ShortOver", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaShortOver, '0') AS FTStaShortOver");
-                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaShortOver, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
-                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + otbDateShortManual.Text + "'");
-                    oSQL.AppendLine("AND FTStaEOD = '1'");
-                    //oSQL.AppendLine("AND FTStaShortOver = '0'");
-
-                    if (!(otbShortPlant.Text == ""))
-                    {
-                        oSQL.AppendLine("AND FTPlantCode = '" + otbShortPlant.Text + "'");
-                    }
-
-                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
-                }
-
-                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
-
-                oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
-
-                ogdShortOver.DataSource = oDbTCNMPlnCloseSta;
-            }
-            catch { }
-        }
-
-        private void ocmSchEDC_Click(object sender, EventArgs e)
-        {
-            bool bCheck;
-            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
-            List<string> atValuePlantCodeList;
-            int nLoop = 0;
-            try
-            {
-                atValuePlantCodeList = new List<string>();
-
-                foreach (DataGridViewRow oRow in ogdEDC.Rows)
-                {
-                    if (!string.IsNullOrEmpty(ogdEDC.Rows[nLoop].Cells[0].Value.ToString()))
-                    {
-                        bCheck = Convert.ToBoolean(ogdEDC.Rows[nLoop].Cells[0].Value.ToString());
-                    }
-                    else
-                    {
-                        bCheck = false;
-                    }
-
-                    if (bCheck)
-                    {
-                        if (nLoop == 0)
-                        {
-                            tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
-                        }
-
-                        if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
-                        {
-                            otbTrnDSale.Focus();
-                            MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
-                            return;
-                        }
-
-                        tValueSaleDate = Convert.ToDateTime(ogdEDC.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
-                        tValuePlantCode = ogdEDC.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
-                        atValuePlantCodeList.Add(tValuePlantCode);
-                        //W_GETxCash("MANUAL", tValueSaleDate, tValuePlantCode);
-                    }
-
-                    nLoop++;
-                    //}
-                }
-
-                W_GETxEDC("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
-            }
-            catch (Exception ) { }
-        }
-
-        private void ocmSendBnk_Click_1(object sender, EventArgs e)
-        {
-            bool bCheck;
-            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
-            List<string> atValuePlantCodeList;
-            int nLoop = 0;
-            try
-            {
-                //if (otbDBnk.Text == "")
-                //{
-                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual BankIn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else
-                //{
-                atValuePlantCodeList = new List<string>();
-
-                foreach (DataGridViewRow oRow in ogdBnk.Rows)
-                {
-                    if (!string.IsNullOrEmpty(ogdBnk.Rows[nLoop].Cells[0].Value.ToString()))
-                    {
-                        bCheck = Convert.ToBoolean(ogdBnk.Rows[nLoop].Cells[0].Value.ToString());
-                    }
-                    else
-                    {
-                        bCheck = false;
-                    }
-
-                    if (bCheck)
-                    {
-                        //if (nLoop == 0)
-                        //{
-                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
-                        //}
-
-                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
-                        //{
-                        //    otbTrnDSale.Focus();
-                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
-                        //    return;
-                        //}
-
-                        tValueSaleDate = Convert.ToDateTime(ogdBnk.Rows[nLoop].Cells["FDBdpSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
-                        tValuePlantCode = ogdBnk.Rows[nLoop].Cells["FTBdpPlantCode"].Value.ToString();
-                        atValuePlantCodeList.Add(tValuePlantCode);
-                        //tValuePlantCode = ogdBnk.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
-                    }
-
-                    nLoop++;
-                    //}
-                }
-
-                W_GETxBankIn("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
-            }
-            catch (Exception ) { }
-        }
-
-        private void ocmSendDaySumManual_Click(object sender, EventArgs e)
-        {
-            bool bCheck;
-            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
-            List<string> atPlantCodeList;
-            int nLoop = 0;
-            try
-            {
-                //if (otbEOD.Text == "")
-                //{
-                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual DaySummary", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else
-                //{
-                atPlantCodeList = new List<string>();
-
-                foreach (DataGridViewRow oRow in ogdDaySum.Rows)
-                {
-                    if (!string.IsNullOrEmpty(ogdDaySum.Rows[nLoop].Cells[0].Value.ToString()))
-                    {
-                        bCheck = Convert.ToBoolean(ogdDaySum.Rows[nLoop].Cells[0].Value.ToString());
-                    }
-                    else
-                    {
-                        bCheck = false;
-                    }
-
-                    if (bCheck)
-                    {
-                        //if (nLoop == 0)
-                        //{
-                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
-                        //}
-
-                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
-                        //{
-                        //    otbTrnDSale.Focus();
-                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
-                        //    return;
-                        //}
-
-                        tValueSaleDate = Convert.ToDateTime(ogdDaySum.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
-                        tValuePlantCode = ogdDaySum.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
-                        atPlantCodeList.Add(tValuePlantCode);
-                    }
-
-                    nLoop++;
-                }
-
-                W_SETtEOD("MANUAL", tValueSaleDate, atPlantCodeList.ToArray());
-                //}
-            }
-            catch (Exception ) { }
-        }
-
-        private void ocmDaySumSearch_Click(object sender, EventArgs e)
-        {
-            StringBuilder oSQL;
-            DataTable oDbTCNMPlnCloseSta;
-            try
-            {
-                if (otbEOD.Text.Trim() == "")
-                {
-                    MessageBox.Show("กรุณากรอกวันที่", "EOD", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                oSQL = new StringBuilder();
-                oDbTCNMPlnCloseSta = new DataTable();
-
-                if (otbEOD.Text.Trim() == "" && otbPlantEOD.Text.Trim() == "")
-                {
-                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,FTStaEOD");
-                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaSentOnOff, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
-                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
-                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
-                    //MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual DaySummary", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,FTStaEOD");
-                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaSentOnOff, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
-                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + otbEOD.Text + "'");
-
-                    if (otbPlantEOD.Text.Trim() != "")
-                    {
-                        oSQL.AppendLine("AND FTPlantCode = '" + otbPlantEOD.Text + "'");
-                    }
-
-                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
-                }
-
-                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
-
-                if (!Object.Equals(oDbTCNMPlnCloseSta, null))
-                {
-                    oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
-
-                    ogdDaySum.DataSource = oDbTCNMPlnCloseSta;
-                }
-
-            }
-            catch { }
-        }
 
         private void AllCheckBoxes_CheckedChanged(Object sender, EventArgs e)
         {
@@ -2914,58 +2618,7 @@ namespace WinAppTest
                     }
                 }
             }
-            catch (Exception ) { }
-        }
-
-        private void ocmEDCSearch_Click(object sender, EventArgs e)
-        {
-            StringBuilder oSQL;
-            DataTable oDbTCNMPlnCloseSta;
-            try
-            {
-                if (otbEDCDate.Text.Trim() == "")
-                {
-                    MessageBox.Show("กรุณากรอกวันที่", "EDC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                oDbTCNMPlnCloseSta = new DataTable();
-                oSQL = new StringBuilder();
-
-                if (otbEDCDate.Text.Trim() == "" && otbSchPlant.Text.Trim() == "")
-                {
-                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaEDC, '0') AS FTStaEDC");
-                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaEDC, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
-                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
-                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
-                    //MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual EDC", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    oSQL.AppendLine("SELECT CONVERT(char(10), FDSaleDate,126) AS FDSaleDate,FTPlantCode,ISNULL(FTStaEDC, '0') AS FTStaEDC");
-                    oSQL.AppendLine(",CASE WHEN ISNULL(FTStaEDC, '0') <> '1'  THEN 'UnSent' ELSE 'Sent' END AS FTStaSend");
-                    oSQL.AppendLine("FROM TCNMPlnCloseSta");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + otbEDCDate.Text + "'");
-                    oSQL.AppendLine("AND FTStaEOD = '1'");
-
-                    if (otbSchPlant.Text.Trim() != "")
-                    {
-                        oSQL.AppendLine("AND FTPlantCode = '"+ otbSchPlant.Text + "'");
-                    }
-
-                    oSQL.AppendLine("ORDER BY FDSaleDate ASC");
-                }
-
-                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
-
-                oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
-
-                if (!Object.Equals(oDbTCNMPlnCloseSta, null))
-                {
-                    ogdEDC.DataSource = oDbTCNMPlnCloseSta;
-                }
-            }
-            catch { }
+            catch (Exception) { }
         }
 
         private void otcManin2_SelectedIndexChanged(object sender, EventArgs e)
@@ -3009,74 +2662,6 @@ namespace WinAppTest
             catch { }
         }
 
-        private void ocmCheckAll_Click(object sender, EventArgs e)
-        {
-            //DataGridViewCheckBoxCell oChk;
-            try
-            {
-                foreach (DataGridViewRow oRow in oW_AnotherGrid.Rows)
-                {
-                    oW_AnotherGrid.Rows[oRow.Index].SetValues(true);
-                }
 
-                oW_AnotherGrid.EndEdit();
-            }
-            catch { }
-        }
-
-        private void ocmShortOver_Click(object sender, EventArgs e)
-        {
-            bool bCheck;
-            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
-            List<string> atValuePlantCodeList;
-            int nLoop = 0;
-            try
-            {
-                //if (otbDateShortManual.Text == "")
-                //{
-                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual ShortOver", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else
-                //{
-                atValuePlantCodeList = new List<string>();
-
-                foreach (DataGridViewRow oRow in ogdShortOver.Rows)
-                {
-                    if (!string.IsNullOrEmpty(ogdShortOver.Rows[nLoop].Cells[0].Value.ToString()))
-                    {
-                        bCheck = Convert.ToBoolean(ogdShortOver.Rows[nLoop].Cells[0].Value.ToString());
-                    }
-                    else
-                    {
-                        bCheck = false;
-                    }
-
-                    if (bCheck)
-                    {
-                        //if (nLoop == 0)
-                        //{
-                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
-                        //}
-
-                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
-                        //{
-                        //    otbTrnDSale.Focus();
-                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
-                        //    return;
-                        //}
-
-                        tValueSaleDate = Convert.ToDateTime(ogdShortOver.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
-                        tValuePlantCode = ogdShortOver.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
-                        atValuePlantCodeList.Add(tValuePlantCode);
-                    }
-
-                    nLoop++;
-                }
-
-                W_GETxCash("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
-                //}
-            }
-            catch (Exception) { }
-        }
     }
 }
