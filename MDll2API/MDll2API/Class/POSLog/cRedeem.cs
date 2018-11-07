@@ -2,19 +2,14 @@
 using MDll2API.Class.ST_Class;
 using MDll2API.Class.X_Class;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Net;
 using System.Text;
 using MDll2API.Modale.POSLog;
-using log4net;
 
 namespace MDll2API.Class.POSLog
 {
     public class cRedeem
     {
-        private readonly ILog oC_Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         cRcvRedeem oC_RcvRedeem = new cRcvRedeem();
         private string tC_Mode = "";
         private string tC_APIEnable;
@@ -148,8 +143,6 @@ namespace MDll2API.Class.POSLog
                     cKeepLog.C_SETxKeepLogForReDeem(aoRow, oRESMsg);
                     #endregion
                 }
-
-                oC_Log.Debug("[RES Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
                 return oRESMsg;
             }
             catch (Exception oEx)

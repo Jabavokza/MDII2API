@@ -178,12 +178,13 @@ namespace WinAppTest
                 }
                 if (ptMode.Equals("AUTO"))
                 {
-                    oSale.C_POSTxSale(ptMode, otbDTrn.Text, null, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, null);
+                    oRESMsg = oSale.C_POSTxSale(ptMode, otbDTrn.Text, null, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, null);
                 }
                 else if (ptMode.Equals("MANUAL"))
                 {
                     oRESMsg = oSale.C_POSTxSale(ptMode, otbDTrn.Text, null, tW_VenDorCodeSale, tW_VenDes, tW_DepositCode, tW_DepositDes, ptShdTransNo);
                 }
+                oC_Log.Debug("[RES Manual Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
                 return oRESMsg;
             }
             catch (Exception oEx)
@@ -744,7 +745,7 @@ namespace WinAppTest
                 {
                     oRedeem.C_POSTtRedeem(ptMode, otbDTrn.Text, poRcvRedeem, poRedeem);
                 }
-                return oRESMsg;
+               // return oRESMsg;
             }
             catch (Exception) { }
 
@@ -1199,7 +1200,6 @@ namespace WinAppTest
             }
             catch (Exception) { }
 
-            oC_Log.Debug("[RES Manual Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
             MessageBox.Show("[RES Manual Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg, "Manual Sale", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

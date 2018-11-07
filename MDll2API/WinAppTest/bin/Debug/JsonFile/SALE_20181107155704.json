@@ -1,0 +1,83 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809110910113462",
+"OperatorID":"1111",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "03", 
+	"LineItem": [
+{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4046234794885"
+					},
+				"Description": "TCHIBO BLACK & WHITE",
+				"UnitListPrice": "400.00",
+				"RegularSalesUnitPrice": "400.00",
+				"ActualSalesUnitPrice": "360.00",
+				"ExtendedAmount": "360.00",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "40.00"
+						},
+					"PromotionID": "003000000046",
+					"Description": "P001 Promotion Supermarket",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P001"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "336.45"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "23.55",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"1"			},{
+			"Tender":{
+				"@TenderType": "T001",
+				"@SequenceNumber": "1",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "360.00"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"2"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-11",
+"BeginDateTime": "20180911155912",
+"EndDateTime": "20180911163551"
+}
+]
+}
+}

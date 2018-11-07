@@ -1,0 +1,298 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809110910113461",
+"OperatorID":"1111",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "03", 
+	"LineItem": [
+{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8850358371329"
+					},
+				"Description": "MC GARRETT QUICK OAT",
+				"UnitListPrice": "37.25",
+				"RegularSalesUnitPrice": "37.25",
+				"ActualSalesUnitPrice": "31.85",
+				"ExtendedAmount": "31.85",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "5.40"
+						},
+					"PromotionID": "003000000004",
+					"Description": "Deal Type 2 amount off 30 THB",
+					"PromotionArea": "P1",
+					"PromotionProfile": "D002"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "29.77"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "2.08",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"1"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8850358373101"
+					},
+				"Description": "MC GARRETT ROLLED OA",
+				"UnitListPrice": "37.25",
+				"RegularSalesUnitPrice": "37.25",
+				"ActualSalesUnitPrice": "31.85",
+				"ExtendedAmount": "31.85",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "5.40"
+						},
+					"PromotionID": "003000000004",
+					"Description": "Deal Type 2 amount off 30 THB",
+					"PromotionArea": "P1",
+					"PromotionProfile": "D002"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "29.77"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "2.08",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"2"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8850358373101"
+					},
+				"Description": "MC GARRETT ROLLED OA",
+				"UnitListPrice": "37.25",
+				"RegularSalesUnitPrice": "37.25",
+				"ActualSalesUnitPrice": "31.85",
+				"ExtendedAmount": "31.85",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "5.40"
+						},
+					"PromotionID": "003000000004",
+					"Description": "Deal Type 2 amount off 30 THB",
+					"PromotionArea": "P1",
+					"PromotionProfile": "D002"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "29.77"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "2.08",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"3"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8850358371343"
+					},
+				"Description": "MC GARRETT INSTANT",
+				"UnitListPrice": "37.25",
+				"RegularSalesUnitPrice": "37.25",
+				"ActualSalesUnitPrice": "31.85",
+				"ExtendedAmount": "31.85",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "5.40"
+						},
+					"PromotionID": "003000000004",
+					"Description": "Deal Type 2 amount off 30 THB",
+					"PromotionArea": "P1",
+					"PromotionProfile": "D002"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "29.77"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "2.08",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"4"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4901046962870"
+					},
+				"Description": "UJINOTSU OTEGARU MUG",
+				"UnitListPrice": "228.00",
+				"RegularSalesUnitPrice": "228.00",
+				"ActualSalesUnitPrice": "194.98",
+				"ExtendedAmount": "194.98",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "33.02"
+						},
+					"PromotionID": "003000000004",
+					"Description": "Deal Type 2 amount off 30 THB",
+					"PromotionArea": "P1",
+					"PromotionProfile": "D002"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "182.22"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "12.76",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"5"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8850358373101"
+					},
+				"Description": "MC GARRETT ROLLED OA",
+				"UnitListPrice": "37.25",
+				"RegularSalesUnitPrice": "37.25",
+				"ActualSalesUnitPrice": "31.87",
+				"ExtendedAmount": "31.87",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "5.38"
+						},
+					"PromotionID": "003000000004",
+					"Description": "Deal Type 2 amount off 30 THB",
+					"PromotionArea": "P1",
+					"PromotionProfile": "D002"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "29.79"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "2.08",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"6"			},{
+			"Tender":{
+				"@TenderType": "T001",
+				"@SequenceNumber": "1",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "354.25"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"7"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-11",
+"BeginDateTime": "20180911153240",
+"EndDateTime": "20180911155907"
+}
+]
+}
+}

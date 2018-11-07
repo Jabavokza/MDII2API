@@ -7,13 +7,12 @@ using MDll2API.Modale.ReceivApp;
 using MDll2API.Modale.POSLog;
 using MDll2API.Class.ST_Class;
 using MDll2API.Class.X_Class;
-using log4net;
 
 namespace MDll2API.Class.POSLog
 {
     public class cSale
     {
-        private readonly ILog oC_Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         cRcvSale oC_RcvSale = new cRcvSale();
         private string tC_Mode = "";
         private string tC_VenDor = "";
@@ -28,7 +27,7 @@ namespace MDll2API.Class.POSLog
         }
         public mlRESMsg C_POSTxSale(string ptMode, string ptDTrn, cRcvSale poRcvSale, string ptVenDorCodeSale, string ptVenDes, string ptDepositCode, string ptDepositDes, string ptShdTransNo)
         {
-            string tJson = "", tJsonTrn = "", tSQL = "", tExecute = "", tLastUpd = "", tUriApi = "", tUsrApi = "", tPwdApi = "", tFileName = "";
+            string  tJsonTrn = "", tSQL = "", tExecute = "", tLastUpd = "", tUriApi = "", tUsrApi = "", tPwdApi = "";
             string tFunction = "3", tConnDB = "", tStaSentOnOff;  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order
             DataTable oTblConfig;
             DateTime dStart, dEnd;
@@ -114,6 +113,7 @@ namespace MDll2API.Class.POSLog
                     oJson.AppendLine("}");
                     oJson.AppendLine("}");
                     #endregion
+                    oJson = oJson.Replace("amp;", ""); //คือ & เอาออก
                     oRESMsg.tML_FileName = cCNSP.SP_WRItJSON(oJson.ToString(), "SALE");
 
                     if (tC_APIEnable == "true")
@@ -140,7 +140,7 @@ namespace MDll2API.Class.POSLog
                         else if (ptMode.Equals("AUTO"))
                         {
                             oPOSSale = new mlPOSSale();
-                            oPOSSale = JsonConvert.DeserializeObject<mlPOSSale>(tJson);
+                            oPOSSale = JsonConvert.DeserializeObject<mlPOSSale>(oJson.ToString());
                             if (oRESMsg.tML_StatusCode == "500" || oRESMsg.tML_StatusCode == "400")
                             {
                                 tStaSentOnOff = "2";
@@ -150,15 +150,16 @@ namespace MDll2API.Class.POSLog
                             {
                                 tStaSentOnOff = "1";
                                 oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+
                             };
 
                             for (int i = 0; i < oPOSSale.POSLog.aML_Transaction.Count; i++)
                             {
                                 var tTrnNo = oPOSSale.POSLog.aML_Transaction[i].SequenceNumber.Substring(oPOSSale.POSLog.aML_Transaction[i].SequenceNumber.Length - 10, 10);
-                                oSQL = new StringBuilder();
+                                var oSQL = new StringBuilder();
                                 oSQL.AppendLine("UPDATE TPSTSalHD");
                                 oSQL.AppendLine("SET FTStaSentOnOff = '" + tStaSentOnOff + "'");
-                                oSQL.AppendLine(",FTJsonFileName ='" + tFileName + "'");
+                                oSQL.AppendLine(",FTJsonFileName ='" + oRESMsg.tML_FileName + "'");
                                 oSQL.AppendLine("WHERE  FTTmnNum+FTShdTransNo ='" + tTrnNo + "'");
                                 oSQL.AppendLine("AND FTShdPlantCode ='" + oPOSSale.POSLog.aML_Transaction[i].BusinessUnit.UnitID + "'");
                                 var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
@@ -172,7 +173,6 @@ namespace MDll2API.Class.POSLog
                         #endregion
                     }
                 }
-                oC_Log.Debug("[RES Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
                 return oRESMsg;
             }
             catch (Exception oEx)

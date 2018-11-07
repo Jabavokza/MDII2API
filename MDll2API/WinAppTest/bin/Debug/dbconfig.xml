@@ -5,8 +5,8 @@
     <DBName>SOL_SP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>20</TopRow>
-    <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
+    <TopRow>1</TopRow>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>3</GroupIndex>
@@ -25,7 +25,7 @@
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>20</TopRow>
-    <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLog</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>9</GroupIndex>
@@ -44,7 +44,7 @@
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>20</TopRow>
-    <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>2</GroupIndex>
@@ -63,7 +63,7 @@
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>30</TopRow>
-    <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLog</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>4</GroupIndex>
@@ -82,7 +82,7 @@
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>140</TopRow>
-    <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>5</GroupIndex>
@@ -101,7 +101,7 @@
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>150</TopRow>
-    <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>6</GroupIndex>
@@ -120,7 +120,7 @@
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>160</TopRow>
-    <UrlApi>https://wdepid.themall.co.th/RESTAdapter/TMGPOS/v1/ReceiveReservation</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>7</GroupIndex>
@@ -139,7 +139,7 @@
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>160</TopRow>
-    <UrlApi>https://wdepid.themall.co.th/RESTAdapter/TMGPOS/v1/ReceiveReservation</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>8</GroupIndex>
@@ -178,7 +178,7 @@
     <Password>P@ssw0rd</Password>
     <DbOwner>dbo</DbOwner>
     <TopRow>20</TopRow>
-    <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
     <GroupIndex>99</GroupIndex>

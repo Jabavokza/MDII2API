@@ -12,7 +12,12 @@ namespace MDll2API.Class.ST_Class
             #region "Call API"
             string tStatusCode = "" ;
             try
-            { 
+            {
+               
+                ptJson = " '"+ ptJson + "'  "; //ทดสอบตัว MOCK-API *เวลาใช้งานจริงจะลบออก 
+
+
+
                 byte[] aData = Encoding.UTF8.GetBytes(ptJson.ToString());
                 HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(ptUriApi);
                 oWebReq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(ptUsrApi + ":" + ptPwdApi)));
