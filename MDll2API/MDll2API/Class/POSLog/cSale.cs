@@ -25,12 +25,11 @@ namespace MDll2API.Class.POSLog
         {
             tC_APIEnable = ptAPIEnable;
         }
-        public mlRESMsg C_POSTxSale(string ptMode, string ptDTrn, cRcvSale poRcvSale, string ptVenDorCodeSale, string ptVenDes, string ptDepositCode, string ptDepositDes, string ptShdTransNo)
+        public mlRESMsg C_POSTxSale(string ptMode, string ptTransDate, cRcvSale poRcvSale, string ptVenDorCodeSale, string ptVenDes, string ptDepositCode, string ptDepositDes, string ptShdTransNo)
         {
             string  tJsonTrn = "", tSQL = "", tExecute = "", tLastUpd = "", tUriApi = "", tUsrApi = "", tPwdApi = "";
-            string tFunction = "3", tConnDB = "", tStaSentOnOff;  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order
+            string tFunction = "3", tConnDB = "", tStaSentOnOff; 
             DataTable oTblConfig;
-            DateTime dStart, dEnd;
             DataRow[] aoRow;
             Double cPointValue = 1;  //*Em 61-08-04
 
@@ -41,15 +40,13 @@ namespace MDll2API.Class.POSLog
             {
                 oC_RcvSale = poRcvSale;
                 tC_Mode = ptMode;
-                tC_DateTrn = ptDTrn;
+                tC_DateTrn = ptTransDate;
                 tC_VenDor = ptVenDorCodeSale;
                 tC_VenDes = ptVenDes;
                 tC_DepositCode = ptDepositCode;
                 tC_DepositDes = ptDepositDes;
 
-                dStart = DateTime.Now;
                 // load Config
-
                 oTblConfig = cCNSP.SP_GEToConnDB();
                 // Sort  Group Function
                 aoRow = oTblConfig.Select("GroupIndex='" + tFunction + "'");
@@ -674,23 +671,13 @@ namespace MDll2API.Class.POSLog
                 oSQL.AppendLine("   AND FCShdGrand > 0 ");
                 oSQL.AppendLine("	GROUP BY FTShdPlantCode,FDShdTransDate ");
                 oSQL.AppendLine("	) TmpHD ON ISNULL(HD.FTShdPlantCode,'') = ISNULL(TmpHD.FTShdPlantCode,'') AND HD.FDShdTransDate = TmpHD.FDShdTransDate");
-                //oSQL.AppendLine("WHERE HD.FTShdTransType IN('03','04','05','10','11','14','15','21','22','23','26','27')");
 
                 if (tC_Mode == "AUTO")
                 {
-                    //if (ptLastUpd != "")
-                    //{
-                    //    oSQL.AppendLine("WHERE CONVERT(varchar(8),HD.FDDateUpd,112) + REPLACE(HD.FTTimeUpd,':','') > '" + ptLastUpd + "' AND HD.FCShdGrand > 0");     //*Em 61-08-06
-                    //}
-                    oSQL.AppendLine("WHERE ISNULL(HD.FTStaSentOnOff, '0') <> '1' AND HD.FCShdGrand > 0");
-                    //oSQL.AppendLine("WHERE ISNULL(HD.FTStaSentOnOff, '') = '' AND HD.FCShdGrand > 0 AND HD.FDShdTransDate = '" + tC_DateTrn + "'");
+                    oSQL.AppendLine("WHERE ISNULL(HD.FTStaSentOnOff, '0') <> '1' AND HD.FCShdGrand > 0");                  
                 }
                 else if (tC_Mode == "MANUAL")
-                {
-                    //if (ptLastUpd != "")
-                    //{
-                    //    oSQL.AppendLine("WHERE CONVERT(varchar(8),HD.FDDateUpd,112) + REPLACE(HD.FTTimeUpd,':','') > '" + ptLastUpd + "' AND HD.FCShdGrand > 0");     //*Em 61-08-06
-                    //}
+                { 
                     oSQL.AppendLine("WHERE HD.FCShdGrand > 0 AND " + oC_RcvSale.Field + oC_RcvSale.Value + " ");
                 }
 

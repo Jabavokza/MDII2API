@@ -17,35 +17,28 @@ namespace MDll2API.Class.POSLog
         {
             tC_APIEnable = ptAPIEnable;
         }
-        public mlRESMsg C_POSTtRedeem(string ptMode,string ptDTrn, cRcvRedeem oRcvRedeem, mlRedeem poRedeem)
+        public mlRESMsg C_POSTtRedeem(string ptMode,string ptTransDate, cRcvRedeem oRcvRedeem, mlRedeem poRedeem)
         {
-            string rtResult;
-            string tJson = "";
             string tJsonTrn = "";
             string tSQL = "";
             string tExecute = "";
             string tLastUpd = "";
-            string tResCode = "";
-            string tResMsg = "";
             string tUriApi = "";
             string tUsrApi = "";
             string tPwdApi = "";
-            StringBuilder oSql;
             string tConnDB = "";
             string tFunction = "2";  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order
             DataTable oTblConfig;
             DataRow[] aoRow;
-            DateTime dStart;
-            DateTime dEnd;
             string tWorkStationID = ""; //*Em 61-08-09 Com.Sheet ML-POSC-0032
             string tWorkStation = ""; //*Em 61-08-09 Com.Sheet ML-POSC-0032
             oC_RcvRedeem = oRcvRedeem;
             tC_Mode = ptMode;
             cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             mlRESMsg oRESMsg = new mlRESMsg();
+            string tStaSentOnOff;
             try
             {
-                dStart = DateTime.Now;
                 // load Config
                 oTblConfig = cCNSP.SP_GEToConnDB();
 
@@ -134,7 +127,25 @@ namespace MDll2API.Class.POSLog
                     }
                     else if (ptMode.Equals("AUTO"))
                     {
-                       
+                        //if (oRESMsg.tML_StatusCode == "500" || oRESMsg.tML_StatusCode == "400")
+                        //{
+                        //    tStaSentOnOff = "2";
+                        //    oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                        //}
+                        //else
+                        //{
+                        //    tStaSentOnOff = "1";
+                        //    oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                        //};
+
+                        //var oSQL = new StringBuilder();
+                        //oSQL.AppendLine("UPDATE TPSTRPremium WITH (ROWLOCK)");
+                        //oSQL.AppendLine("SET FTStaSentOnOff = '"+ tStaSentOnOff + "'");
+                        ////oSQL.AppendLine("   ,FTStaEOD = '1'");
+                        //oSQL.AppendLine("   ,FTJsonFileName = '" + oRESMsg.tML_FileName + "'");
+                        //oSQL.AppendLine("WHERE FDRPDocDate = '" + Convert.ToDateTime(poRedeem.tML_RPDocDate).ToString("yyyy-MM-dd") + "'");
+               
+                        //var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
                     }
                     //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff --------------------------------- 
                     #endregion
@@ -148,26 +159,6 @@ namespace MDll2API.Class.POSLog
             catch (Exception oEx)
             {
                 throw oEx;
-            }
-            finally
-            {
-                rtResult = null;
-                tJson = null;
-                tJsonTrn = null;
-                tSQL = null;
-                tExecute = null;
-                tLastUpd = null;
-                tResCode = null;
-                tResMsg = null;
-                tUriApi = null;
-                tUsrApi = null;
-                tPwdApi = null;
-                oSql = null;
-             //   oSP = null;
-                tConnDB = null;
-                tFunction = null;
-                oTblConfig = null;
-                aoRow = null;
             }
         }
 
