@@ -9,7 +9,7 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809110910113463",
+"SequenceNumber":"201809120910113480",
 "OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
@@ -22,41 +22,27 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "4902201418805"
+					"POSItemID": "4901005510746"
 					},
-				"Description": "NESCAFE KOMIBISAN DA",
-				"UnitListPrice": "399.00",
-				"RegularSalesUnitPrice": "399.00",
-				"ActualSalesUnitPrice": "319.20",
-				"ExtendedAmount": "319.20",
+				"Description": "GLICO ZEITAKU BLOND",
+				"UnitListPrice": "129.00",
+				"RegularSalesUnitPrice": "129.00",
+				"ActualSalesUnitPrice": "129.00",
+				"ExtendedAmount": "5160.00",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
-					"$": "1"
+					"$": "40"
 						},
 				"Associate": { "AssociateID": "" },
-				"RetailPriceModifier": [
-	{
-					"SequenceNumber": "1",
-					"Amount": {
-						"@Action": "Subtract",
-						"$": "79.80"
-						},
-					"PromotionID": "003000000046",
-					"Description": "P001 Promotion Supermarket",
-					"PromotionArea": "P1",
-					"PromotionProfile": "P001"
-					}
-
-					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "298.32"
+						"$": "4822.43"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "20.88",
+					"Amount": "337.57",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -67,26 +53,26 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "319.25"
+					"$": "5000.00"
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"2"			},{
-			"Tender": {
-				"@TenderType": "T032",
+			"Tender":{
+				"@TenderType": "T001",
 				"@SequenceNumber": "2",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "-0.05"
-					}
+					"$": "160.00"
+					},
+					"Reference": ""
 				},
-
 			"SequenceNumber":"3"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-11",
-"BeginDateTime": "20180911163556",
-"EndDateTime": "20180911163622"
+	},"BusinessDayDate": "2018-09-12",
+"BeginDateTime": "20180912150021",
+"EndDateTime": "20180912150204"
 }
 ]
 }

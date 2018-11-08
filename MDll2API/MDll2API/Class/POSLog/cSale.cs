@@ -133,23 +133,27 @@ namespace MDll2API.Class.POSLog
                                 var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
                                 oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
                             }
+                            else
+                            {
+                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                            }
                         }
                         else if (ptMode.Equals("AUTO"))
                         {
-                            oPOSSale = new mlPOSSale();
-                            oPOSSale = JsonConvert.DeserializeObject<mlPOSSale>(oJson.ToString());
-                            if (oRESMsg.tML_StatusCode == "500" || oRESMsg.tML_StatusCode == "400")
+                           
+                            if (oRESMsg.tML_StatusCode == "200")
                             {
-                                tStaSentOnOff = "2";
-                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                                tStaSentOnOff = "1";
+                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";    
                             }
                             else
                             {
-                                tStaSentOnOff = "1";
-                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
-
+                                tStaSentOnOff = "2";
+                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
                             };
 
+                            oPOSSale = new mlPOSSale();
+                            oPOSSale = JsonConvert.DeserializeObject<mlPOSSale>(oJson.ToString());
                             for (int i = 0; i < oPOSSale.POSLog.aML_Transaction.Count; i++)
                             {
                                 var tTrnNo = oPOSSale.POSLog.aML_Transaction[i].SequenceNumber.Substring(oPOSSale.POSLog.aML_Transaction[i].SequenceNumber.Length - 10, 10);
@@ -169,6 +173,11 @@ namespace MDll2API.Class.POSLog
                         cKeepLog.C_SETxKeepLogForSale(aoRow, oRESMsg);
                         #endregion
                     }
+                }
+                else
+                {
+                    oRESMsg.tML_StatusCode = "000";
+                    oRESMsg.tML_StatusMsg = "ไม่พบข้อมูลที่จะส่ง";
                 }
                 return oRESMsg;
             }

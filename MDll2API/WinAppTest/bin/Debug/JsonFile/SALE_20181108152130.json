@@ -9,8 +9,8 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809120910113475",
-"OperatorID":"1111",
+"SequenceNumber":"201809130910113577",
+"OperatorID":"9999",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
@@ -24,7 +24,7 @@
 					"@POSIDType": "EAN",
 					"POSItemID": "2901325127824"
 					},
-				"Description": "GM-T กระเช้า1 2018",
+				"Description": "GT-1 BASKET GT 2018",
 				"UnitListPrice": "1820.00",
 				"RegularSalesUnitPrice": "1820.00",
 				"ActualSalesUnitPrice": "1820.00",
@@ -33,7 +33,7 @@
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "6666" },
+				"Associate": { "AssociateID": "" },
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
@@ -49,20 +49,26 @@
 				"SerialNumber": ""				},
 			"SequenceNumber":"1"			},{
 			"Tender":{
-				"@TenderType": "T001",
+				"@TenderType": "T003",
 				"@SequenceNumber": "1",
-				"Amount": {
-					"@Currency": "THB",
-					"$": "1820.00"
+				"Amount": "1820.00",
+				"CreditDebit":{
+					"CardClassification": "",
+					"CreditCardCompany": "SCB VISA Platinum",
+					"PrimaryAccountNumber": "47737600XXXX0000",
+					"CardName": "",
+					"CardBrand": "",
+					"Platinum": "N",
+					"BonusBuyID": ""
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"2"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-12",
-"BeginDateTime": "20180912132012",
-"EndDateTime": "20180912133941"
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913171137",
+"EndDateTime": "20180913182107"
 }
 ]
 }

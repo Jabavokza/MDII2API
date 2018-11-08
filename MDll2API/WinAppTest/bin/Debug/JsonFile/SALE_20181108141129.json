@@ -9,7 +9,7 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809120910113472",
+"SequenceNumber":"201809120910113482",
 "OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
@@ -22,27 +22,27 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "2901324769476"
+					"POSItemID": "80525424"
 					},
-				"Description": "Chicken Soup&wonton#S",
-				"UnitListPrice": "110.00",
-				"RegularSalesUnitPrice": "110.00",
-				"ActualSalesUnitPrice": "110.00",
-				"ExtendedAmount": "110.00",
+				"Description": "AGNESI ARRABBIATA400",
+				"UnitListPrice": "124.00",
+				"RegularSalesUnitPrice": "124.00",
+				"ActualSalesUnitPrice": "124.00",
+				"ExtendedAmount": "124.00",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "200" },
+				"Associate": { "AssociateID": "" },
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "102.80"
+						"$": "115.89"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "7.20",
+					"Amount": "8.11",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -53,7 +53,7 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "110.00"
+					"$": "124.00"
 					},
 					"Reference": ""
 				},
@@ -61,8 +61,8 @@
 		],
 	"Customer": { "CustomerID": "" }
 	},"BusinessDayDate": "2018-09-12",
-"BeginDateTime": "20180912104840",
-"EndDateTime": "20180912104924"
+"BeginDateTime": "20180912150250",
+"EndDateTime": "20180912150321"
 }
 ]
 }

@@ -1,0 +1,2041 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809120910113478",
+"OperatorID":"1111",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "03", 
+	"LineItem": [
+{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4901005510746"
+					},
+				"Description": "GLICO ZEITAKU BLOND",
+				"UnitListPrice": "129.00",
+				"RegularSalesUnitPrice": "129.00",
+				"ActualSalesUnitPrice": "122.55",
+				"ExtendedAmount": "122.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "114.53"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "8.02",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"1"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4901005510746"
+					},
+				"Description": "GLICO ZEITAKU BLOND",
+				"UnitListPrice": "129.00",
+				"RegularSalesUnitPrice": "129.00",
+				"ActualSalesUnitPrice": "122.55",
+				"ExtendedAmount": "122.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "114.53"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "8.02",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"2"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100214219"
+					},
+				"Description": "BAHLSEN WAFFLE MINIS",
+				"UnitListPrice": "59.00",
+				"RegularSalesUnitPrice": "59.00",
+				"ActualSalesUnitPrice": "56.05",
+				"ExtendedAmount": "56.05",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "2.95"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "52.38"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "3.67",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"3"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100214219"
+					},
+				"Description": "BAHLSEN WAFFLE MINIS",
+				"UnitListPrice": "59.00",
+				"RegularSalesUnitPrice": "59.00",
+				"ActualSalesUnitPrice": "56.05",
+				"ExtendedAmount": "56.05",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "2.95"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "52.38"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "3.67",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"4"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "39047015708"
+					},
+				"Description": "WALKERS SHORTBREAD",
+				"UnitListPrice": "185.00",
+				"RegularSalesUnitPrice": "185.00",
+				"ActualSalesUnitPrice": "175.75",
+				"ExtendedAmount": "175.75",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "9.25"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "164.25"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "11.50",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"5"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "39047015708"
+					},
+				"Description": "WALKERS SHORTBREAD",
+				"UnitListPrice": "185.00",
+				"RegularSalesUnitPrice": "185.00",
+				"ActualSalesUnitPrice": "175.75",
+				"ExtendedAmount": "175.75",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "9.25"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "164.25"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "11.50",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"6"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800141004"
+					},
+				"Description": "KAMBLY MONT CHOCO100",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"7"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800141004"
+					},
+				"Description": "KAMBLY MONT CHOCO100",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"8"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800323004"
+					},
+				"Description": "KAMBLY CARRE AUX AMA",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"9"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800323004"
+					},
+				"Description": "KAMBLY CARRE AUX AMA",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"10"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800245009"
+					},
+				"Description": "KAMBLY FLOREN TIN100",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"11"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800245009"
+					},
+				"Description": "KAMBLY FLOREN TIN100",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"12"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800490003"
+					},
+				"Description": "KAMBLY CHOCOLAT 100G",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"13"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800490003"
+					},
+				"Description": "KAMBLY CHOCOLAT 100G",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"14"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "14100082033"
+					},
+				"Description": "PEPPERIDGE FARM SOFT",
+				"UnitListPrice": "149.00",
+				"RegularSalesUnitPrice": "149.00",
+				"ActualSalesUnitPrice": "141.55",
+				"ExtendedAmount": "141.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "7.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "132.29"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "9.26",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"15"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "14100082033"
+					},
+				"Description": "PEPPERIDGE FARM SOFT",
+				"UnitListPrice": "149.00",
+				"RegularSalesUnitPrice": "149.00",
+				"ActualSalesUnitPrice": "141.55",
+				"ExtendedAmount": "141.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "7.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "132.29"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "9.26",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"16"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "14100078609"
+					},
+				"Description": "PEPPERIDGE FARM SOFT",
+				"UnitListPrice": "149.00",
+				"RegularSalesUnitPrice": "149.00",
+				"ActualSalesUnitPrice": "141.55",
+				"ExtendedAmount": "141.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "7.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "132.29"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "9.26",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"17"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "14100078609"
+					},
+				"Description": "PEPPERIDGE FARM SOFT",
+				"UnitListPrice": "149.00",
+				"RegularSalesUnitPrice": "149.00",
+				"ActualSalesUnitPrice": "141.55",
+				"ExtendedAmount": "141.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "7.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "132.29"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "9.26",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"18"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800340001"
+					},
+				"Description": "KAMBLY CAPRICE 100G.",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"19"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800340001"
+					},
+				"Description": "KAMBLY CAPRICE 100G.",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"20"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800170004"
+					},
+				"Description": "KAMBLY BUTTERFLY 100",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"21"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "7614800170004"
+					},
+				"Description": "KAMBLY BUTTERFLY 100",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"22"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8886015430139"
+					},
+				"Description": "TIM TAM MILK CHOCOLA",
+				"UnitListPrice": "36.00",
+				"RegularSalesUnitPrice": "36.00",
+				"ActualSalesUnitPrice": "34.20",
+				"ExtendedAmount": "34.20",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "1.80"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "31.96"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "2.24",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"23"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8886015430139"
+					},
+				"Description": "TIM TAM MILK CHOCOLA",
+				"UnitListPrice": "36.00",
+				"RegularSalesUnitPrice": "36.00",
+				"ActualSalesUnitPrice": "34.20",
+				"ExtendedAmount": "34.20",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "1.80"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "31.96"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "2.24",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"24"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100210105"
+					},
+				"Description": "BAHLSEN WANFFELETTEN",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"25"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100210105"
+					},
+				"Description": "BAHLSEN WANFFELETTEN",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"26"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100219900"
+					},
+				"Description": "BAHLSEN WAFFELETTEN",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"27"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100219900"
+					},
+				"Description": "BAHLSEN WAFFELETTEN",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"28"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100290008"
+					},
+				"Description": "BAHLSEN CHOCO LEIBNI",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"29"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100290008"
+					},
+				"Description": "BAHLSEN CHOCO LEIBNI",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"30"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "39047050716"
+					},
+				"Description": "WALKERS WHITE CHO",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"31"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "39047050716"
+					},
+				"Description": "WALKERS WHITE CHO",
+				"UnitListPrice": "128.00",
+				"RegularSalesUnitPrice": "128.00",
+				"ActualSalesUnitPrice": "121.60",
+				"ExtendedAmount": "121.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "6.40"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "113.64"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "7.96",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"32"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100291005"
+					},
+				"Description": "BAHLSEN CHOCO LEIBIN",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"33"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100291005"
+					},
+				"Description": "BAHLSEN CHOCO LEIBIN",
+				"UnitListPrice": "92.00",
+				"RegularSalesUnitPrice": "92.00",
+				"ActualSalesUnitPrice": "87.40",
+				"ExtendedAmount": "87.40",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "4.60"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "81.68"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"34"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100672101"
+					},
+				"Description": "LORENZ SELTLETTS",
+				"UnitListPrice": "29.00",
+				"RegularSalesUnitPrice": "29.00",
+				"ActualSalesUnitPrice": "27.55",
+				"ExtendedAmount": "27.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "1.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "25.75"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "1.80",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"35"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100672101"
+					},
+				"Description": "LORENZ SELTLETTS",
+				"UnitListPrice": "29.00",
+				"RegularSalesUnitPrice": "29.00",
+				"ActualSalesUnitPrice": "27.55",
+				"ExtendedAmount": "27.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "1.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "25.75"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "1.80",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"36"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100737909"
+					},
+				"Description": "LORENZ SALTLETTS",
+				"UnitListPrice": "58.00",
+				"RegularSalesUnitPrice": "58.00",
+				"ActualSalesUnitPrice": "55.10",
+				"ExtendedAmount": "55.10",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "2.90"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "51.50"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "3.60",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"37"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4017100737909"
+					},
+				"Description": "LORENZ SALTLETTS",
+				"UnitListPrice": "58.00",
+				"RegularSalesUnitPrice": "58.00",
+				"ActualSalesUnitPrice": "55.10",
+				"ExtendedAmount": "55.10",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "2.90"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "51.50"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "3.60",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"38"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "5905187500129"
+					},
+				"Description": "LORENZ SALTLETTS",
+				"UnitListPrice": "71.50",
+				"RegularSalesUnitPrice": "71.50",
+				"ActualSalesUnitPrice": "67.92",
+				"ExtendedAmount": "67.92",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "3.58"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "63.48"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "4.44",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"39"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "5905187500129"
+					},
+				"Description": "LORENZ SALTLETTS",
+				"UnitListPrice": "71.50",
+				"RegularSalesUnitPrice": "71.50",
+				"ActualSalesUnitPrice": "67.92",
+				"ExtendedAmount": "67.92",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "3.58"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "63.48"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "4.44",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"40"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8033102690062"
+					},
+				"Description": "VICENZI GRISBI CLASS",
+				"UnitListPrice": "75.00",
+				"RegularSalesUnitPrice": "75.00",
+				"ActualSalesUnitPrice": "71.25",
+				"ExtendedAmount": "71.25",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "3.75"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "66.59"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "4.66",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"41"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8033102690062"
+					},
+				"Description": "VICENZI GRISBI CLASS",
+				"UnitListPrice": "75.00",
+				"RegularSalesUnitPrice": "75.00",
+				"ActualSalesUnitPrice": "71.25",
+				"ExtendedAmount": "71.25",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "3.75"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "66.59"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "4.66",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"42"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8850939903987"
+					},
+				"Description": "ARNOTT'S TIM TAM GIF",
+				"UnitListPrice": "218.00",
+				"RegularSalesUnitPrice": "218.00",
+				"ActualSalesUnitPrice": "207.10",
+				"ExtendedAmount": "207.10",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "10.90"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "193.55"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "13.55",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"43"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8850939903987"
+					},
+				"Description": "ARNOTT'S TIM TAM GIF",
+				"UnitListPrice": "218.00",
+				"RegularSalesUnitPrice": "218.00",
+				"ActualSalesUnitPrice": "207.11",
+				"ExtendedAmount": "207.11",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "10.89"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "193.56"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "13.55",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"44"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "39047012318"
+					},
+				"Description": "WALKERS ASSORTED160G",
+				"UnitListPrice": "189.00",
+				"RegularSalesUnitPrice": "189.00",
+				"ActualSalesUnitPrice": "179.55",
+				"ExtendedAmount": "179.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "9.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "167.80"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "11.75",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"45"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "39047012318"
+					},
+				"Description": "WALKERS ASSORTED160G",
+				"UnitListPrice": "189.00",
+				"RegularSalesUnitPrice": "189.00",
+				"ActualSalesUnitPrice": "179.55",
+				"ExtendedAmount": "179.55",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "9.45"
+						},
+					"PromotionID": "",
+					"Description": "",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "167.80"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "11.75",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"46"			},{
+			"Tender":{
+				"@TenderType": "T001",
+				"@SequenceNumber": "1",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "4961.75"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"47"			},{
+			"Tender": {
+				"@TenderType": "T032",
+				"@SequenceNumber": "2",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "0.10"
+					}
+				},
+
+			"SequenceNumber":"48"			},{
+			"LoyaltyReward": {
+				"SequenceNumber": "1",
+				"LoyaltyID": "7102351015362022",
+				"LoyaltyProgramID": "Basic",
+				"CustomerName": "เรวดี เพชรคง",
+				"ExpiryDate": "9999-12-31",
+				"PointsAwarded": {
+					"@Type": "PointsEarned",
+					"$": "198"
+					},
+				"Discount": {"Amount":"49.50"}
+				},
+			"SequenceNumber":"49"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-12",
+"BeginDateTime": "20180912145536",
+"EndDateTime": "20180912145842"
+}
+]
+}
+}

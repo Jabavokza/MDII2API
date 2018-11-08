@@ -9,8 +9,8 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809060910113431",
-"OperatorID":"2222",
+"SequenceNumber":"201809130910113575",
+"OperatorID":"9999",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
@@ -22,27 +22,41 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "22375"
+					"POSItemID": "205000000020"
 					},
-				"Description": "Salad Bar",
-				"UnitListPrice": "247.25",
-				"RegularSalesUnitPrice": "247.25",
-				"ActualSalesUnitPrice": "247.25",
-				"ExtendedAmount": "247.25",
+				"Description": "เนสกาแฟ โกลด์เบลนด์ก",
+				"UnitListPrice": "329.00",
+				"RegularSalesUnitPrice": "329.00",
+				"ActualSalesUnitPrice": "129.00",
+				"ExtendedAmount": "129.00",
 				"Quantity": {
-					"@UnitOfMeasureCode": "KGM",
+					"@UnitOfMeasureCode": "CS",
 					"$": "1"
 						},
 				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "200.00"
+						},
+					"PromotionID": "003000000061",
+					"Description": "M005 M Point Fully/Partial Burn",
+					"PromotionArea": "",
+					"PromotionProfile": "M005"
+					}
+
+					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "231.07"
+						"$": "120.56"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "16.18",
+					"Amount": "8.44",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -53,16 +67,16 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "247.25"
+					"$": "129.00"
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"2"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-06",
-"BeginDateTime": "20180906122831",
-"EndDateTime": "20180906144140"
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913170416",
+"EndDateTime": "20180913171050"
 }
 ]
 }

@@ -9,8 +9,8 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809060910113429",
-"OperatorID":"2222",
+"SequenceNumber":"201809130910113496",
+"OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
@@ -22,27 +22,41 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "2901325127824"
+					"POSItemID": "8854575007252"
 					},
-				"Description": "GM-T กระเช้า1 2018",
-				"UnitListPrice": "1820.00",
-				"RegularSalesUnitPrice": "1820.00",
-				"ActualSalesUnitPrice": "1820.00",
-				"ExtendedAmount": "1820.00",
+				"Description": "GINFRESH INSTANT GIN",
+				"UnitListPrice": "106.00",
+				"RegularSalesUnitPrice": "106.00",
+				"ActualSalesUnitPrice": "95.40",
+				"ExtendedAmount": "95.40",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "" },
+				"Associate": { "AssociateID": "66" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "10.60"
+						},
+					"PromotionID": "003000000060",
+					"Description": "M001 VVIP Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M001"
+					}
+
+					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "1700.93"
+						"$": "89.16"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "119.07",
+					"Amount": "6.24",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -53,16 +67,26 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "1820.00"
+					"$": "95.50"
 					},
 					"Reference": ""
 				},
-			"SequenceNumber":"2"			}
+			"SequenceNumber":"2"			},{
+			"Tender": {
+				"@TenderType": "T032",
+				"@SequenceNumber": "2",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "-0.10"
+					}
+				},
+
+			"SequenceNumber":"3"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-06",
-"BeginDateTime": "20180906121848",
-"EndDateTime": "20180906122146"
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913122138",
+"EndDateTime": "20180913122253"
 }
 ]
 }

@@ -1,5 +1,6 @@
 ﻿using MDll2API.Class.ST_Class;
 using MDll2API.Class.X_Class;
+using MDll2API.Modale.POSLog;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,222 +12,190 @@ namespace MDll2API.Class.POSLog
     public class cEDC
     {
         private string tC_DateTrn = "";
-        private string tC_Plant = "";
         private string tC_APIEnable;
         public void CHKxAPIEnable(string ptAPIEnable)
         {
             tC_APIEnable = ptAPIEnable;
         }
         // public string C_POSTtEDC(string ptJson, string ptAPIURL, string ptAPIUsr, string ptAPIPwd, int pnAPIManual)
-        public string C_POSTtEDC(string ptJson, string ptAPIURL, string ptAPIUsr, string ptAPIPwd, int pnAPIManual, string ptDTrn, string[] patPlantEDC, string ptMode)
+        public mlRESMsg C_POSTtEDC(string ptMode, string ptTransDate, string[] patPlantCode)
         {
-            string rtResult;
+            string tPlantCode ="";
             string tJson = "";
             string tJsonTrn = "";
             string tSQL = "";
             string tExecute = "";
             string tLastUpd = "";
-            string tResCode = "";
-            string tResMsg = "";
             string tUriApi = "";
             string tUsrApi = "";
             string tPwdApi = "";
             //  string tResp = "";
-            StringBuilder oSql;
+            StringBuilder oSQL;
             string tConnDB = "";
             string tFunction = "9";  //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order ,8:Bank Deposit ,9:EDC
             DataTable oTblConfig;
             DataRow[] oRow;
-            DateTime dStart;
-            DateTime dEnd;
-            string tStatusCode = "";
+
             string tWorkStationID = ""; //*Em 61-08-04
             string tWorkStation = ""; //*Em 61-08-04
-            string tFileName = "";
+
             cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
+            mlRESMsg oRESMsg = new mlRESMsg();
+            string tStaSentOnOff;
             try
             {
                 //tC_Plant = ptPlant;
-                tC_DateTrn = ptDTrn;
-                dStart = DateTime.Now;
+
                 // load Config
                 oTblConfig = cCNSP.SP_GEToConnDB();
 
                 // Sort  Group Function
                 oRow = oTblConfig.Select("GroupIndex='" + tFunction + "'");
 
-                if (!(patPlantEDC == null))
+                if (!(patPlantCode == null))
                 {
-                    for (int nLoop = 0; nLoop < patPlantEDC.Length; nLoop++)
+                    for (int nLoop = 0; nLoop < patPlantCode.Length; nLoop++)
                     {
                         if (int.Equals(nLoop, 0))
                         {
-                            tC_Plant += "'" + patPlantEDC[nLoop] + "'";
+                            tPlantCode += "'" + patPlantCode[nLoop] + "'";
                         }
                         else
                         {
-                            tC_Plant += ", '" + patPlantEDC[nLoop] + "'";
+                            tPlantCode += ", '" + patPlantCode[nLoop] + "'";
                         }
                     }
                 }
-
-                if (pnAPIManual == 0)
+                for (int nRow = 0; nRow < oRow.Length; nRow++)
                 {
-                    for (int nRow = 0; nRow < oRow.Length; nRow++)
+                    tUriApi = oRow[nRow]["UrlApi"].ToString();
+                    tUsrApi = oRow[nRow]["UsrApi"].ToString();
+                    tPwdApi = oRow[nRow]["PwdApi"].ToString();
+                    tWorkStationID = oRow[nRow]["WorkStationID"].ToString(); //*Em 61-08-04
+                    tWorkStation = oRow[nRow]["WorkStation"].ToString(); //*Em 61-08-04
+
+                    // Create Connection String Db
+                    tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
+                    tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
+                    tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
+
+                    // Check TPOSLogHis  Existing
+                    tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
+                    cCNSP.SP_SQLnExecute(tSQL, tConnDB);
+
+                    // Get Max FTBathNo Condition To Json
+                    tLastUpd = "";
+                    tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
+
+                    //  Condition ตาม FTBatchNo Get Json
+                    //tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]));
+                    tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]), tWorkStationID, tWorkStation, ptMode, tPlantCode, ptTransDate);  //*Em 61-07-24
+
+                    tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
+                    if (tExecute != "")
                     {
-                        tUriApi = oRow[nRow]["UrlApi"].ToString();
-                        tUsrApi = oRow[nRow]["UsrApi"].ToString();
-                        tPwdApi = oRow[nRow]["PwdApi"].ToString();
-                        tWorkStationID = oRow[nRow]["WorkStationID"].ToString(); //*Em 61-08-04
-                        tWorkStation = oRow[nRow]["WorkStation"].ToString(); //*Em 61-08-04
-
-                        // Create Connection String Db
-                        tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
-                        tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
-                        tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
-
-                        // Check TPOSLogHis  Existing
-                        tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
-                        cCNSP.SP_SQLnExecute(tSQL, tConnDB);
-
-                        // Get Max FTBathNo Condition To Json
-                        tLastUpd = "";
-                        tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
-
-                        //  Condition ตาม FTBatchNo Get Json
-                        //tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]));
-                        tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]), tWorkStationID, tWorkStation, ptMode);  //*Em 61-07-24
-
-                        tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
-                        if (tExecute != "")
+                        if (tJsonTrn == "")
                         {
-                            if (tJsonTrn == "")
-                            {
-                                tJsonTrn = tExecute;
-                            }
-                            else
-                            {
-                                tJsonTrn = tJsonTrn + ',' + tExecute;
-                            }
+                            tJsonTrn = tExecute;
                         }
-                        if (tJsonTrn == "[]") { tJsonTrn = ""; }
+                        else
+                        {
+                            tJsonTrn = tJsonTrn + ',' + tExecute;
+                        }
                     }
+                    if (tJsonTrn == "[]") { tJsonTrn = ""; }
                 }
 
-                if (pnAPIManual == 0)
+                if (tJsonTrn != "")
                 {
-                    if (tJsonTrn != "")
+                    #region ""ประกอบร่าง Json"
+                    var oJson = new StringBuilder();
+                    oJson.AppendLine("{");
+                    oJson.AppendLine("\"POSLog\": {");
+                    oJson.AppendLine("\"@xmlns\" : \"http://themall.co.th/retail/sales_transaction\",");
+                    oJson.AppendLine("\"@MajorVersion\" : \"6\",");
+                    oJson.AppendLine("\"@xmlns:xsi\" : \"http://www.w3.org/2001/XMLSchema-instance\",");
+                    oJson.AppendLine("\"@xsi:schemaLocation\" : \"http://themall.co.th/retail/sales_transaction\",");
+                    oJson.AppendLine("\"Transaction\": [");
+                    oJson.AppendLine(tJsonTrn);
+                    oJson.AppendLine("]");
+                    oJson.AppendLine("}");
+                    oJson.AppendLine("}");
+                    #endregion
+                    oRESMsg.tML_FileName = cCNSP.SP_WRItJSON(oJson.ToString(), "EDC");
+
+                    //Call API
+
+                    if (tC_APIEnable == "true")
                     {
-                        tJson = "{" + Environment.NewLine;
-                        tJson = tJson + "\"POSLog\": {" + Environment.NewLine;
-                        //*Em 61-07-12
-                        tJson = tJson + "\"@xmlns\" : \"http://themall.co.th/retail/sales_transaction\"," + Environment.NewLine;
-                        tJson = tJson + "\"@MajorVersion\" : \"6\"," + Environment.NewLine;
-                        tJson = tJson + "\"@xmlns:xsi\" : \"http://www.w3.org/2001/XMLSchema-instance\"," + Environment.NewLine;
-                        tJson = tJson + "\"@xsi:schemaLocation\" : \"http://themall.co.th/retail/sales_transaction\"," + Environment.NewLine;
-                        //+++++++++++++++++
-                        tJson = tJson + "\"Transaction\": [" + Environment.NewLine;
-                        tJson = tJson + tJsonTrn + Environment.NewLine;
-                        tJson = tJson + "]" + Environment.NewLine;
-                        tJson = tJson + "}" + Environment.NewLine;
-                        tJson = tJson + "}" + Environment.NewLine;
+                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
 
-                        //WRITE JSON Gen SALE_YYYY-MM-DD:HH:mm:ss
-                        tFileName = cCNSP.SP_WRItJSON(tJson, "EDC");
-
-                        //Call API
-
-                        if (tC_APIEnable == "true")
+                        oSQL = new StringBuilder();
+                        if (ptMode == "AUTO")
                         {
-                            cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
+                            oSQL = new StringBuilder();
+                            oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
+                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
+                            oSQL.AppendLine("AND FTStaEDC = '0'");
+                        }
+                        else
+                        {
+                            oSQL = new StringBuilder();
+                            oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
+                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
+                            oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
                         }
 
-                        dEnd = DateTime.Now;
+                        var oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tConnDB);
 
-                        for (int nRow = 0; nRow < oRow.Length; nRow++)
+                        if (oRESMsg.tML_StatusCode == "200")
                         {
-                            // Create Connection String Db
-                            tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
-                            tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
-                            tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
+                            tStaSentOnOff = "1";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                        }
+                        else
+                        {
+                            tStaSentOnOff = "2";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                        };
 
-                            // Get Max FTBathNo Condition To Json
-                            tLastUpd = "";
-                            tLastUpd = cCNSP.SP_GETtMaxDateLogHis(tFunction, tConnDB);
-                            // Keep Log
-                            oSql = new StringBuilder();
-                            oSql.AppendLine("INSERT INTO TPOSLogHis(");
-                            oSql.AppendLine("FDDateUpd, FTTimeUpd, FTWhoUpd, FDDateIns, FTTimeIns, FTWhoIns,");
-                            oSql.AppendLine("FTRemark, FTShdPlantCode, FDSendStartDateTime, FDSendEndDateTime,");
-                            oSql.AppendLine("FTBatchNo, FTTransTypeGrp, FTRespCode, FTRespMsg, FTTransCount)");
-                            oSql.AppendLine("SELECT ");
-                            oSql.AppendLine("CONVERT(VARCHAR(10), GETDATE(), 121) AS FDDateUpd, CONVERT(VARCHAR(10), GETDATE(), 108) AS FTTimeUpd,'System' AS FTWhoUpd,");
-                            oSql.AppendLine("     CONVERT(VARCHAR(10), GETDATE(), 121) AS FDDateIns, CONVERT(VARCHAR(10), GETDATE(), 108) AS FTTimeIns,'System' AS FTWhoIns,");
-                            oSql.AppendLine("'' AS FTRemark, ISNULL(MAX(FTShdPlantCode), '') AS FTShdPlantCode,'" + string.Format("{0:yyyy-MM-dd HH:mm:ss.fff}", dStart) + "' AS FDSendStartDateTime,");
-                            oSql.AppendLine("'" + string.Format("{0:yyyy-MM-dd HH:mm:ss.fff}", dEnd) + "' AS FDSendEndDateTime,");
-                            oSql.AppendLine("  MAX(CONVERT(varchar(8), FDDateUpd, 112) + REPLACE(FTTimeUpd, ':', '')) AS FTBatchNo,'" + tFunction + "' AS FTTransTypeGrp,");
-                            oSql.AppendLine("'" + tResCode + "' AS FTRespCode, '" + tResMsg + "' AS FTRespMsg, COUNT(FTShdTransNo) AS FTTransCount");
-                            oSql.AppendLine("FROM (SELECT TOP " + Convert.ToInt64(oRow[nRow]["TopRow"]) + " * FROM TPSTSalHD with(nolock)");
-                            oSql.AppendLine("    WHERE FTShdTransType IN ('03','04','05','10','11','14','15','21','22','23','26','27')");
-                            if (tLastUpd != "")
+                        if (oRESMsg.tML_StatusCode == "200")
+                        {
+                            if (oDbChk.Rows.Count > 0)
                             {
-                                oSql.AppendLine("    AND CONVERT(varchar(8), FDDateUpd, 112) + REPLACE(FTTimeUpd, ':', '') > '" + tLastUpd + "'");
-                            }
-                            oSql.AppendLine("    ORDER BY FDDateUpd, FTTimeUpd) TTmp");
-                            cCNSP.SP_SQLnExecute(oSql.ToString(), tConnDB);
+                                for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
+                                {
+                                    oSQL = new StringBuilder();
+                                    oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
+                                    oSQL.AppendLine("SET FTStaSentOnOff = '"+ tStaSentOnOff + "'");
+                                    oSQL.AppendLine(" ,FTStaEDC = '1'");
+                                    oSQL.AppendLine(" ,FTJsonFileEDC = '" + oRESMsg.tML_FileName + "'");
+                                    oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
+                                    oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
 
+                                  var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                                
+                                }
+                            }
                         }
+                        #region " Keep Log"
+                        //  cKeepLog.C_SETxKeepLogForEDC(aoRow, oRESMsg);
+                        #endregion
+                    }
+                    else
+                    {
+                        oRESMsg.tML_StatusCode = "000";
+                        oRESMsg.tML_StatusMsg = "ไม่พบข้อมูลที่จะส่ง";
                     }
                 }
-                else
-                {
-                    tUriApi = ptAPIURL;
-                    tUsrApi = ptAPIUsr;
-                    tPwdApi = ptAPIPwd;
-
-                }
-
-                string tResultGetdata = "";
-                if (tJsonTrn == "")
-                {
-                    tResultGetdata = "ไม่พบขัอมูล";
-                }
-                else
-                {
-                    tResultGetdata = "ส่งข้อมูลสมบูรณ์";
-                }
-                //rtResult = "ส่งข้อมูลสมบูรณ์|Description " + tResultGetdata + "  ผลลัพท์จาก API: " + tResCode + " Code: " + tStatusCode + "|" + tJson;
-                rtResult = "สถานะ:" + tResultGetdata + "|Code: " + tStatusCode + "|" + tFileName;
-                return rtResult;
+                return oRESMsg;
             }
             catch (Exception oEx)
             {
-                return "Error การทำงานเข้า catch|Description: " + oEx.Message.ToString() + "|" + tJson;
-            }
-            finally
-            {
-                rtResult = null;
-                tJson = null;
-                tJsonTrn = null;
-                tSQL = null;
-                tExecute = null;
-                tLastUpd = null;
-                tResCode = null;
-                tResMsg = null;
-                tUriApi = null;
-                tUsrApi = null;
-                tPwdApi = null;
-                //   tResp = null;
-                oSql = null;
-                //   oSP = null;
-                tConnDB = null;
-                tFunction = null;
-                oTblConfig = null;
-                oRow = null;
+                throw oEx;
             }
         }
-
-        private string C_GETtSQL(string ptLastUpd, Int64 pnRowTop = 100, string ptWorkStationID = "", string ptWorkStation = "", string ptMode = "")
+        private string C_GETtSQL(string ptLastUpd, Int64 pnRowTop , string ptWorkStationID , string ptWorkStation , string ptMode ,string ptPlantCode,string ptTransDate)
         {
             StringBuilder oSQL = new StringBuilder();
             string rtResult = "";
@@ -341,9 +310,9 @@ namespace MDll2API.Class.POSLog
                     //oSQL.AppendLine("WHERE CONVERT(varchar(8),HD.FDDateUpd,112) + REPLACE(HD.FTTimeUpd,':','') > '" + ptLastUpd + "' AND HD.FCShdGrand > 0");
                     oSQL.AppendLine("AND HD.FDShdTransDate = '" + tC_DateTrn + "' ");   //*Em 61-08-22//*Em 61-08-06
 
-                    if (tC_Plant.Trim() != "")
+                    if (ptPlantCode.Trim() != "")
                     {
-                        oSQL.AppendLine("AND HD.FTShdPlantCode IN (" + tC_Plant + ")");
+                        oSQL.AppendLine("AND HD.FTShdPlantCode IN (" + ptPlantCode + ")");
                     }
                     //}
                 }

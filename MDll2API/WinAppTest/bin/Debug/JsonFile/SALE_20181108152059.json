@@ -9,42 +9,42 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809110910113465",
-"OperatorID":"1111",
+"SequenceNumber":"201809130910113574",
+"OperatorID":"9999",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
 	"LocationDescription":"Bangkapi Super"},
 "RetailTransaction": {
-		"@ItemType": "03", 
+		"@ItemType": "11", 
 	"LineItem": [
 {
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "4006067060977"
+					"POSItemID": "2901325127824"
 					},
-				"Description": "DAVIDOFF INSTANT COF",
-				"UnitListPrice": "348.00",
-				"RegularSalesUnitPrice": "348.00",
-				"ActualSalesUnitPrice": "208.80",
-				"ExtendedAmount": "208.80",
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1700.93",
+				"ActualSalesUnitPrice": "700.93",
+				"ExtendedAmount": "700.93",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "666" },
+				"Associate": { "AssociateID": "33" },
 				"RetailPriceModifier": [
 	{
 					"SequenceNumber": "1",
 					"Amount": {
 						"@Action": "Subtract",
-						"$": "139.20"
+						"$": "1000.00"
 						},
-					"PromotionID": "003000000046",
-					"Description": "P001 Promotion Supermarket",
-					"PromotionArea": "P1",
-					"PromotionProfile": "P001"
+					"PromotionID": "003000000061",
+					"Description": "M005 M Point Fully/Partial Burn",
+					"PromotionArea": "",
+					"PromotionProfile": "M005"
 					}
 
 					],
@@ -53,10 +53,10 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "195.14"
+						"$": "700.93"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "13.66",
+					"Amount": "0.00",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -67,7 +67,7 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "208.75"
+					"$": "701.00"
 					},
 					"Reference": ""
 				},
@@ -77,16 +77,16 @@
 				"@SequenceNumber": "2",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "0.05"
+					"$": "-0.07"
 					}
 				},
 
 			"SequenceNumber":"3"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-11",
-"BeginDateTime": "20180911163703",
-"EndDateTime": "20180911163722"
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913170314",
+"EndDateTime": "20180913170412"
 }
 ]
 }

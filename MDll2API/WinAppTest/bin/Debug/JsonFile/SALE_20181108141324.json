@@ -9,8 +9,8 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809060910113430",
-"OperatorID":"2222",
+"SequenceNumber":"201809130910113568",
+"OperatorID":"9999",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
@@ -22,15 +22,15 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "22375"
+					"POSItemID": "2901325127824"
 					},
-				"Description": "Salad Bar",
-				"UnitListPrice": "300.00",
-				"RegularSalesUnitPrice": "300.00",
-				"ActualSalesUnitPrice": "300.00",
-				"ExtendedAmount": "300.00",
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1820.00",
+				"ExtendedAmount": "1820.00",
 				"Quantity": {
-					"@UnitOfMeasureCode": "KGM",
+					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
 				"Associate": { "AssociateID": "" },
@@ -39,10 +39,10 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "280.37"
+						"$": "1700.93"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "19.63",
+					"Amount": "119.07",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -51,15 +51,15 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "22375"
+					"POSItemID": "8850030005160"
 					},
-				"Description": "Salad Bar",
-				"UnitListPrice": "57.00",
-				"RegularSalesUnitPrice": "57.00",
-				"ActualSalesUnitPrice": "57.00",
-				"ExtendedAmount": "57.00",
+				"Description": "LOBO BANANA FRITTER",
+				"UnitListPrice": "22.00",
+				"RegularSalesUnitPrice": "22.00",
+				"ActualSalesUnitPrice": "22.00",
+				"ExtendedAmount": "22.00",
 				"Quantity": {
-					"@UnitOfMeasureCode": "KGM",
+					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
 				"Associate": { "AssociateID": "" },
@@ -68,10 +68,10 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "53.27"
+						"$": "20.56"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "3.73",
+					"Amount": "1.44",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -82,16 +82,16 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "357.00"
+					"$": "1842.00"
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"3"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-06",
-"BeginDateTime": "20180906122150",
-"EndDateTime": "20180906122827"
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913153519",
+"EndDateTime": "20180913153707"
 }
 ]
 }

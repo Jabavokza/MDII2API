@@ -9,7 +9,7 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809120910113474",
+"SequenceNumber":"201809130910113493",
 "OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
@@ -22,27 +22,41 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "63355"
+					"POSItemID": "2901325127824"
 					},
-				"Description": "YHWC KAFFIR LIME",
-				"UnitListPrice": "13.25",
-				"RegularSalesUnitPrice": "13.25",
-				"ActualSalesUnitPrice": "13.25",
-				"ExtendedAmount": "13.25",
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1729.00",
+				"ExtendedAmount": "1729.00",
 				"Quantity": {
-					"@UnitOfMeasureCode": "KGM",
+					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "555" },
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "91.00"
+						},
+					"PromotionID": "003000000022",
+					"Description": "M004 M Cash Coupon Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M004"
+					}
+
+					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "12.38"
+						"$": "1615.89"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "0.87",
+					"Amount": "113.11",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -53,16 +67,16 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "13.25"
+					"$": "1729.00"
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"2"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-12",
-"BeginDateTime": "20180912131259",
-"EndDateTime": "20180912132007"
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913113933",
+"EndDateTime": "20180913120906"
 }
 ]
 }

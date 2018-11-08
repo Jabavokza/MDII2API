@@ -1,0 +1,90 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809130910113497",
+"OperatorID":"1111",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "04", 
+	"LineItem": [
+{
+			"Return":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "2901325127824"
+					},
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1729.00",
+				"ExtendedAmount": "1729.00",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "-1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "91.00"
+						},
+					"PromotionID": "003000000022",
+					"Description": "M004 M Cash Coupon Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M004"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "1615.89"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "113.11",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": "",
+				"TransactionLink": {
+					"BusinessUnit": { "UnitID": "17KA" },
+					"WorkstationID": "09101",
+					"BusinessDayDate": { "Date": "2018-09-13" },
+					"SequenceNumber": "201809130910113493"
+					}
+				},
+			"SequenceNumber":"1"			},{
+			"Tender":{
+				"@TenderType": "T001",
+				"@SequenceNumber": "1",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "1729.00"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"2"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913122502",
+"EndDateTime": "20180913122737"
+}
+]
+}
+}

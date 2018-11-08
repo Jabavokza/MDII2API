@@ -9,7 +9,7 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809110910113462",
+"SequenceNumber":"201809120910113481",
 "OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
@@ -22,41 +22,27 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "4046234794885"
+					"POSItemID": "8858663188250"
 					},
-				"Description": "TCHIBO BLACK & WHITE",
-				"UnitListPrice": "400.00",
-				"RegularSalesUnitPrice": "400.00",
-				"ActualSalesUnitPrice": "360.00",
-				"ExtendedAmount": "360.00",
+				"Description": "DANESITA BUTTER COOK",
+				"UnitListPrice": "222.00",
+				"RegularSalesUnitPrice": "222.00",
+				"ActualSalesUnitPrice": "222.00",
+				"ExtendedAmount": "5328.00",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
-					"$": "1"
+					"$": "24"
 						},
 				"Associate": { "AssociateID": "" },
-				"RetailPriceModifier": [
-	{
-					"SequenceNumber": "1",
-					"Amount": {
-						"@Action": "Subtract",
-						"$": "40.00"
-						},
-					"PromotionID": "003000000046",
-					"Description": "P001 Promotion Supermarket",
-					"PromotionArea": "P1",
-					"PromotionProfile": "P001"
-					}
-
-					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "336.45"
+						"$": "4979.44"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "23.55",
+					"Amount": "348.56",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -67,16 +53,16 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "360.00"
+					"$": "5328.00"
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"2"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-11",
-"BeginDateTime": "20180911155912",
-"EndDateTime": "20180911163551"
+	},"BusinessDayDate": "2018-09-12",
+"BeginDateTime": "20180912150209",
+"EndDateTime": "20180912150246"
 }
 ]
 }

@@ -1,0 +1,212 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809130910113569",
+"OperatorID":"9999",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "03", 
+	"LineItem": [
+{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8806087359312"
+					},
+				"Description": "UP970 LG PLAYER",
+				"UnitListPrice": "200.00",
+				"RegularSalesUnitPrice": "200.00",
+				"ActualSalesUnitPrice": "179.10",
+				"ExtendedAmount": "179.10",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "20.90"
+						},
+					"PromotionID": "003000000059",
+					"Description": "M001 VVIP Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M001"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "167.38"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "11.72",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"1"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "8887549519406"
+					},
+				"Description": "DVDS500GJ-K PANSONIC",
+				"UnitListPrice": "350.00",
+				"RegularSalesUnitPrice": "350.00",
+				"ActualSalesUnitPrice": "313.43",
+				"ExtendedAmount": "313.43",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "36.57"
+						},
+					"PromotionID": "003000000059",
+					"Description": "M001 VVIP Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M001"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "292.93"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "20.50",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"2"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4948872610445"
+					},
+				"Description": "PLAS10044 HC SONY",
+				"UnitListPrice": "30.00",
+				"RegularSalesUnitPrice": "30.00",
+				"ActualSalesUnitPrice": "26.87",
+				"ExtendedAmount": "26.87",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "3.13"
+						},
+					"PromotionID": "003000000059",
+					"Description": "M001 VVIP Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M001"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "25.11"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "1.76",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"3"			},{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "4948872610766"
+					},
+				"Description": "ASIA00213  SONY",
+				"UnitListPrice": "90.00",
+				"RegularSalesUnitPrice": "90.00",
+				"ActualSalesUnitPrice": "80.60",
+				"ExtendedAmount": "80.60",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "9.40"
+						},
+					"PromotionID": "003000000059",
+					"Description": "M001 VVIP Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M001"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "75.33"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "5.27",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"4"			},{
+			"Tender":{
+				"@TenderType": "T001",
+				"@SequenceNumber": "1",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "600.00"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"5"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913153711",
+"EndDateTime": "20180913154407"
+}
+]
+}
+}

@@ -36,7 +36,6 @@ namespace MDll2API.Class.POSLog
             tC_Mode = ptMode;
             cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             mlRESMsg oRESMsg = new mlRESMsg();
-            string tStaSentOnOff;
             try
             {
                 // load Config
@@ -153,6 +152,11 @@ namespace MDll2API.Class.POSLog
                     #region " Keep Log"
                     cKeepLog.C_SETxKeepLogForReDeem(aoRow, oRESMsg);
                     #endregion
+                }
+                else
+                {
+                    oRESMsg.tML_StatusCode = "000";
+                    oRESMsg.tML_StatusMsg = "ไม่พบข้อมูลที่จะส่ง";
                 }
                 return oRESMsg;
             }

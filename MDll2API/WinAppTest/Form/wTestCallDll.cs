@@ -50,11 +50,7 @@ namespace WinAppTest
         private string tW_DepositCode = "";
         private string tW_DepositDes = "";
         private string tW_TableCase = "";
-        private string tW_Json = "";
-        private string tW_URL = "";
-        private string tW_USER = "";
-        private string tW_PSS = "";
-
+ 
         public wTestCallDll()
         {
             InitializeComponent();
@@ -67,9 +63,7 @@ namespace WinAppTest
             try
             {
                 // Set User Password 
-                tW_USER = "devposctr";
-                tW_PSS = "Pn3Rbmd52";
-                tW_URL = "http://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLog";
+
                 ontMain.Visible = false;
                 this.Text = "POSLOG v" + cCNSP.GETtVertionDll();
                 SETxConfigDB();
@@ -194,16 +188,13 @@ namespace WinAppTest
             }
         }
 
-        private void W_GETxCash(string ptMode = "", string ptSaleDate = "", string[] patPlantCode = null)
+        private void W_GETxCash(string ptMode, string ptTransDate, string[] patPlantCode)
         {
             //----------------------------TEST-------------------
-            string tResult1 = "", tChk = "", tUPD = "", tDateToDay = "", tResult3 = "", tPlantCode = "";
-            string tResult2;
-            int nRowEff;
             cCash oCash;
             DataTable oDtChk, oDbChk;
             StringBuilder oSQL;
-            string[] atResult;
+            oRESMsg = new mlRESMsg();
             try
             {
                 oDtChk = new DataTable();
@@ -212,7 +203,6 @@ namespace WinAppTest
                 oDbChk = new DataTable();
 
                 //tDateToDay = DateTime.Now.ToString("yyyy-MM-dd");
-                tDateToDay = ptSaleDate;
 
                 if (ptMode == "AUTO")
                 {
@@ -220,105 +210,27 @@ namespace WinAppTest
                     {
                         oCash.CHKxAPIEnable("true");
                     }
-                    tResult1 = oCash.C_POSTtCash(ptSaleDate, ptMode, patPlantCode);
+                    oRESMsg = oCash.C_POSTtCash(ptMode, ptTransDate, null);
                 }
                 else if (ptMode == "MANUAL")
                 {
-                    tResult1 = oCash.C_POSTtCash(ptSaleDate, ptMode, patPlantCode);
+                    oRESMsg = oCash.C_POSTtCash(ptMode, ptTransDate, patPlantCode);
                 }
+                oC_Log.Debug("[RES ShortOver4 Status] = " + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
 
-                atResult = tResult1.Split('|');
-                tResult1 = atResult[0];
-                //rtResult += atResult[1] + Environment.NewLine;
-                tResult2 = atResult[1];
-                tResult3 = atResult[2];
-
-                oC_Log.Debug("[RES ShortOver4 Status] = " + tResult2 + "[Message]=" + tResult1);
-
-                if (ptMode == "AUTO")
-                {
-                    oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + tDateToDay + "'");
-                    oSQL.AppendLine("AND FTStaShortOver = '0'");
-                }
-                else if (ptMode == "MANUAL")
-                {
-                    oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + tDateToDay + "'");
-                }
-
-                if (!(patPlantCode == null))
-                {
-                    for (int nLoop = 0; nLoop < patPlantCode.Length; nLoop++)
-                    {
-                        if (int.Equals(nLoop, 0))
-                        {
-                            tPlantCode += "'" + patPlantCode[nLoop] + "'";
-                        }
-                        else
-                        {
-                            tPlantCode += ", '" + patPlantCode[nLoop] + "'";
-                        }
-                    }
-
-                    oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
-                }
-
-                oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
-
-                if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์" && tResult2 == "200")
-                {
-                    if (oDbChk.Rows.Count > 0)
-                    {
-                        for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
-                        {
-                            oSQL.Clear();
-                            oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
-                            oSQL.AppendLine("SET FTStaSentOnOff = '1'");
-                            oSQL.AppendLine("   ,FTStaShortOver = '1'");
-                            oSQL.AppendLine("   ,FTJsonFileShortOver = '" + tResult3 + "'");
-                            oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
-                            oSQL.AppendLine("AND FDSaleDate = '" + tDateToDay + "'");
-
-                            nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tW_ConSale);
-                        }
-
-                        if (ptMode == "MANUAL")
-                        {
-                            MessageBox.Show("ShortOver4 = " + tResult1, "ShortOver4", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }
-                    }
-                }
-                //}
-
-                if (tResult1 == "Error การทำงานเข้า catch")
-                {
-                    MessageBox.Show("ShortOver4 = " + tResult1, "ShortOver4", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (tResult1 == "สถานะ:สถานะ:ส่งข้อมูลสมบูรณ์")
-                {
-                    MessageBox.Show("ShortOver4 = " + tResult1, "ShortOver4", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
-            catch (Exception) { }
-            finally
+            catch (Exception oEx)
             {
-                tResult1 = null;
-                tResult2 = null;
-                oCash = null;
-                atResult = null;
+                throw oEx;
             }
         }
 
-        private void W_GETxEDC(string ptMode = "", string ptValueSaleDate = "", string[] patPlantCode = null)
+        private mlRESMsg W_GEToEDC(string ptMode, string ptTransDate, string[] patPlantCode)
         {
             cEDC oEDC;
             DataTable oDtChk, oDbChk;
-            int nAPIManual = 0, nRowEff;
             StringBuilder oSQL;
-            string[] atResult;
-            string tResult1 = "", tChk = "", tDateToDay = "", tResult2 = "", tResult3 = "", tPlantCode = "";
+            oRESMsg = new mlRESMsg();
             try
             {
                 oDtChk = new DataTable();
@@ -326,107 +238,25 @@ namespace WinAppTest
                 oSQL = new StringBuilder();
                 oEDC = new cEDC();
 
+                if (ockAPI.Checked == true)
+                {
+                    oEDC.CHKxAPIEnable("true");
+                }
                 if (ptMode == "AUTO")
                 {
-                    if (ockAPI.Checked == true)
-                    {
-                        oEDC.CHKxAPIEnable("true");
-                    }
-                    tResult1 = oEDC.C_POSTtEDC(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), 0, otbDTrn.Text, patPlantCode, ptMode);
+                    oRESMsg = oEDC.C_POSTtEDC(ptMode, ptTransDate, patPlantCode);
                 }
                 else if (ptMode == "MANUAL")
                 {
-                    tResult1 = oEDC.C_POSTtEDC(tW_Json, tW_URL.Trim(), tW_USER.Trim(), tW_PSS.Trim(), nAPIManual, ptValueSaleDate, patPlantCode, ptMode);
+                    oRESMsg = oEDC.C_POSTtEDC(ptMode, ptTransDate, patPlantCode);
                 }
+                oC_Log.Debug("[RES EDC Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
 
-                atResult = tResult1.Split('|');
-                tResult1 = atResult[0];
-                // rtResult += atResult[1] + Environment.NewLine;
-                //   oC_Log.Debug("RES EDC9 =" + rtResult);
-                tResult2 = atResult[1];
-                tResult3 = atResult[2];
-                oC_Log.Debug("[RES EDC Status]=" + tResult2 + "[Message]=" + tResult1);
-
-                //tDateToDay = DateTime.Now.ToString("yyyy-MM-dd");
-                tDateToDay = ptValueSaleDate;
-
-                if (ptMode != "MANUAL")
-                {
-                    oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + tDateToDay + "'");
-                    oSQL.AppendLine("AND FTStaEDC = '0'");
-                }
-                else
-                {
-                    oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + tDateToDay + "'");
-                }
-
-
-                if (!(patPlantCode == null))
-                {
-                    for (int nLoop = 0; nLoop < patPlantCode.Length; nLoop++)
-                    {
-                        if (int.Equals(nLoop, 0))
-                        {
-                            tPlantCode += "'" + patPlantCode[nLoop] + "'";
-                        }
-                        else
-                        {
-                            tPlantCode += ", '" + patPlantCode[nLoop] + "'";
-                        }
-                    }
-
-                    oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
-                }
-
-                //oSQL.AppendLine("AND FTPlantCode = '17KA'");
-
-                oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
-
-                if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์" && tResult2 == "200")
-                {
-                    if (oDbChk.Rows.Count > 0)
-                    {
-                        for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
-                        {
-                            oSQL.Clear();
-                            oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
-                            oSQL.AppendLine("SET FTStaSentOnOff = '1'");
-                            oSQL.AppendLine("   ,FTStaEDC = '1'");
-                            oSQL.AppendLine("   ,FTJsonFileEDC = '" + tResult3 + "'");
-                            oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
-                            oSQL.AppendLine("AND FDSaleDate = '" + tDateToDay + "'");
-
-                            nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tW_ConSale);
-                        }
-
-                        if (ptMode == "MANUAL")
-                        {
-                            MessageBox.Show("EDC9 = " + tResult1, "EDC9", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }
-                    }
-                }
-
-                if (tResult1 == "Error การทำงานเข้า catch")
-                {
-                    MessageBox.Show("EDC9 = " + tResult1, "EDC9", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์")
-                {
-                    MessageBox.Show("EDC9 = " + tResult1, "EDC9", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                //}
+                return oRESMsg;
             }
-            catch (Exception) { }
-            finally
+            catch (Exception oEx)
             {
-                tResult1 = null;
-                tResult2 = null;
-                oEDC = null;
-                atResult = null;
-
+                throw oEx;
             }
         }
 
@@ -449,96 +279,31 @@ namespace WinAppTest
             catch { }
         }
 
-        private void W_GETxBankIn(string ptMode, string ptSaleDate, string[] patPlantCodeBnk)
+        private void W_GETxBankIn(string ptMode, string ptTransDate, string[] patPlantCode)
         {
-            string tResult1 = "", tResult3 = "", tResult2, tDateToDay;
             cBankDeposit oBankIn;
-            string[] atResult;
-            int nRowEff = 0;
-            DataTable oDtChk, oDbChk;
-            StringBuilder oSQL;
             try
             {
-                oDtChk = new DataTable();
-                oDbChk = new DataTable();
-
-                oSQL = new StringBuilder();
                 oBankIn = new cBankDeposit();
 
                 if (ockAPI.Checked == true)
                 {
                     oBankIn.CHKxAPIEnable("true");
-                    tResult1 = oBankIn.C_POSTtBankDeposit(ptMode, ptSaleDate, patPlantCodeBnk);
                 }
-                else
+                if (ptMode == "AUTO")
                 {
-                    tResult1 = oBankIn.C_POSTtBankDeposit(ptMode, ptSaleDate, patPlantCodeBnk);
+                    oRESMsg = oBankIn.C_POSTtBankDeposit(ptMode, ptTransDate, patPlantCode);
                 }
-
-                atResult = tResult1.Split('|');
-                tResult1 = atResult[0];
-                tResult2 = atResult[1];
-                tResult3 = atResult[2];
-
-                oC_Log.Debug("[RES BankIn Status]=" + tResult2 + "[Message] = " + tResult1);
-
-                tDateToDay = ptSaleDate;
-
-                if (ptMode != "MANUAL")
+                else if (ptMode == "MANUAL")
                 {
-                    oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + tDateToDay + "'");
-                    oSQL.AppendLine("AND FTStaBankIn = '0'");
+                    oRESMsg = oBankIn.C_POSTtBankDeposit(ptMode, ptTransDate, patPlantCode);
                 }
-                else
-                {
-                    oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                    oSQL.AppendLine("WHERE FDSaleDate = '" + tDateToDay + "'");
-                }
+                oC_Log.Debug("[RES BankIn Status]=" + oRESMsg.tML_StatusCode + "[Message] = " + oRESMsg.tML_StatusMsg);
 
-                oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
-
-                if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์" && tResult2 == "200")
-                {
-                    if (oDbChk.Rows.Count > 0)
-                    {
-                        for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
-                        {
-                            oSQL.Clear();
-                            oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
-                            oSQL.AppendLine("SET FTStaSentOnOff = '1'");
-                            oSQL.AppendLine("   ,FTStaBankIn = '1'");
-                            oSQL.AppendLine("   ,FTJsonFileBankIn = '" + tResult3 + "'");
-                            oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
-                            oSQL.AppendLine("AND FDSaleDate = '" + tDateToDay + "'");
-
-                            nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tW_ConSale);
-                        }
-
-                        if (ptMode == "MANUAL")
-                        {
-                            MessageBox.Show("BankIn8 = " + tResult1, "BankIn8", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }
-                    }
-                }
-
-                if (tResult1 == "Error การทำงานเข้า catch")
-                {
-                    MessageBox.Show("BankIn8 = " + tResult1, "BankIn8", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์")
-                {
-                    MessageBox.Show("BankIn8 = " + tResult1, "BankIn8", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
-            catch { }
-            finally
+            catch (Exception oEx)
             {
-                tResult1 = null;
-                tResult2 = null;
-                oBankIn = null;
-                atResult = null;
+                throw oEx;
             }
         }
 
@@ -601,59 +366,32 @@ namespace WinAppTest
 
         private mlRESMsg W_SEToEOD(string ptMode, string ptTransDate, string[] patPlantCode = null)
         {
-            string tResult1 = "", tResult2 = "", tResult3 = "", tResultUseEOD = "", tPlantCode = "";
-            int nRowEff = 0;
-            DataTable oDbChk;
-            StringBuilder oSQL;
-            cEOD oEOD;
             oRESMsg = new mlRESMsg();
             try
             {
-                oSQL = new StringBuilder();
-                oDbChk = new DataTable();
-                oEOD = new cEOD();
+                var oEOD = new cEOD();
                 if (ockAPI.Checked == true)
                 {
                     oEOD.CHKxAPIEnable("true");
-                    if (ptMode == "AUTO")
-                    {
-
-                        oRESMsg = oEOD.C_POSTtEOD(ptMode, ptTransDate, null);
-                    }
-                    else if (ptMode == "MANUAL")
-                    {
-                        oRESMsg = oEOD.C_POSTtEOD(ptMode, ptTransDate, patPlantCode);
-                    }
+                }
+                if (ptMode == "AUTO")
+                {
+                    oRESMsg = oEOD.C_POSTtEOD(ptMode, ptTransDate, null);
+                }
+                else if (ptMode == "MANUAL")
+                {
+                    oRESMsg = oEOD.C_POSTtEOD(ptMode, ptTransDate, patPlantCode);
                 }
                 oC_Log.Debug("[EOD Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
-               //  return oRESMsg;
-
-                //}
-
-                if (tResult1 == "Error การทำงานเข้า catch")
-                {
-                    MessageBox.Show("DaySummary5 = " + tResult1, "DaySummary5", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (tResult1 == "สถานะ:ส่งข้อมูลสมบูรณ์")
-                {
-                    MessageBox.Show("DaySummary5 = " + tResult1, "DaySummary5", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                return oRESMsg;
             }
-            catch
+            catch (Exception oEx)
             {
-                tResultUseEOD = "";
+                throw oEx;
             }
-            finally
-            {
-                tResult1 = null;
-                tResult2 = null;
-                atResult = null;
-                oEOD = null;
-            }
-            return tResultUseEOD;
         }
 
-        private mlRESMsg W_GETxRedeem(string ptMode, string ptTransDate, cRcvRedeem poRcvRedeem, mlRedeem poRedeem)
+        private mlRESMsg W_GEToRedeem(string ptMode, string ptTransDate, cRcvRedeem poRcvRedeem, mlRedeem poRedeem)
         {
             oRESMsg = new mlRESMsg();
             try
@@ -1126,10 +864,13 @@ namespace WinAppTest
                 {
                     oRESMsg = W_GEToSale("MANUAL", tValueTransDate, tShdTransNo);
                 }
-            }
-            catch (Exception) { }
 
-            MessageBox.Show("[RES Manual Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg, "Manual Sale", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("[RES Manual Sale Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg, "Manual Sale", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception oEx)
+            {
+                throw oEx;
+            }
         }
 
         #endregion
@@ -1256,7 +997,7 @@ namespace WinAppTest
                     Field = "(Trn.FTRPDocNo+Trn.FTPremiumNo+Trn.FTOption+Trn.FTPremiumID+'_'+CONVERT(varchar(8),Trn.FDRPDocDate,112)) IN",
                     Value = tVal
                 };
-                W_GETxRedeem("MANUAL", tTransDate, oRcvRedeem, mlRedeem);
+                W_GEToRedeem("MANUAL", tTransDate, oRcvRedeem, mlRedeem);
                 MessageBox.Show("[RES Manual Redeem Status]=" + tResult2 + "[Message]=" + tResult1, "Manual Redeem", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception oEx)
@@ -1340,7 +1081,7 @@ namespace WinAppTest
         private void ocmSendBnk_Click(object sender, EventArgs e)
         {
             bool bCheck;
-            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
+            string tTransDate = "", tValuePlantCode = "", tFirstDate = "";
             List<string> atValuePlantCodeList;
             int nLoop = 0;
             try
@@ -1361,7 +1102,7 @@ namespace WinAppTest
                     if (bCheck)
                     {
 
-                        tValueSaleDate = Convert.ToDateTime(ogdBnk.Rows[nLoop].Cells["FDBdpSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                        tTransDate = Convert.ToDateTime(ogdBnk.Rows[nLoop].Cells["FDBdpSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
                         tValuePlantCode = ogdBnk.Rows[nLoop].Cells["FTBdpPlantCode"].Value.ToString();
                         atValuePlantCodeList.Add(tValuePlantCode);
                     }
@@ -1369,7 +1110,7 @@ namespace WinAppTest
                     nLoop++;
                 }
 
-                W_GETxBankIn("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
+                W_GETxBankIn("MANUAL", tTransDate, atValuePlantCodeList.ToArray());
             }
             catch (Exception) { }
         }
@@ -1429,7 +1170,7 @@ namespace WinAppTest
         private void ocmSendEOD_Click(object sender, EventArgs e)
         {
             bool bCheck;
-            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
+            string tValueSaleDate = "", tValuePlantCode = "";
             List<string> atPlantCodeList;
             int nLoop = 0;
             try
@@ -1459,7 +1200,6 @@ namespace WinAppTest
                 }
 
                 W_SEToEOD("MANUAL", tValueSaleDate, atPlantCodeList.ToArray());
-                //}
             }
             catch (Exception) { }
         }
@@ -1518,18 +1258,12 @@ namespace WinAppTest
         private void ocmSendCash_Click(object sender, EventArgs e)
         {
             bool bCheck;
-            string tValueSaleDate = "", tValuePlantCode = "", tFirstDate = "";
-            List<string> atValuePlantCodeList;
+            string tTransDate = "", tPlantCode = "", tFirstDate = "";
+            List<string> atPlantCodeList;
             int nLoop = 0;
             try
             {
-                //if (otbDateShortManual.Text == "")
-                //{
-                //    MessageBox.Show("กรอกข้อมูลไม่ครบ", "Manual ShortOver", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else
-                //{
-                atValuePlantCodeList = new List<string>();
+                atPlantCodeList = new List<string>();
 
                 foreach (DataGridViewRow oRow in ogdShortOver.Rows)
                 {
@@ -1544,28 +1278,16 @@ namespace WinAppTest
 
                     if (bCheck)
                     {
-                        //if (nLoop == 0)
-                        //{
-                        //    tFirstDate = cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD");
-                        //}
 
-                        //if (!(tFirstDate == cCNSP.SP_DTEtByFormat(oRow.Cells["FDShdTransDate"].Value.ToString(), "YYYYMMDD")))
-                        //{
-                        //    otbTrnDSale.Focus();
-                        //    MessageBox.Show("กรุณาเลือกวันที่เดียวกัน");
-                        //    return;
-                        //}
-
-                        tValueSaleDate = Convert.ToDateTime(ogdShortOver.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
-                        tValuePlantCode = ogdShortOver.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
-                        atValuePlantCodeList.Add(tValuePlantCode);
+                        tTransDate = Convert.ToDateTime(ogdShortOver.Rows[nLoop].Cells["FDSaleDate"].Value.ToString()).ToString("yyyy-MM-dd");
+                        tPlantCode = ogdShortOver.Rows[nLoop].Cells["FTPlantCode"].Value.ToString();
+                        atPlantCodeList.Add(tPlantCode);
                     }
 
                     nLoop++;
                 }
+                W_GETxCash("MANUAL", tTransDate, atPlantCodeList.ToArray());
 
-                W_GETxCash("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
-                //}
             }
             catch (Exception) { }
         }
@@ -1667,7 +1389,7 @@ namespace WinAppTest
                     //}
                 }
 
-                W_GETxEDC("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
+                W_GEToEDC("MANUAL", tValueSaleDate, atValuePlantCodeList.ToArray());
             }
             catch (Exception) { }
         }
@@ -1790,11 +1512,13 @@ namespace WinAppTest
 
         private void otmStart_Tick(object sender, EventArgs e)
         {
+            oRESMsg = new mlRESMsg();
             try
             {
-                var tTransDate = DateTime.Now.ToString("yyyy-MM-dd");
+                // var tTransDate = DateTime.Now.ToString("YYYY-MM-DD");
+                var tTransDate = cCNSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYY-MM-DD");
                 olaCountDown.Text = olaCountDown.Text = "On";
-
+                tTransDate += " 00:00:00";
                 if (ockSaleAuto.Checked == true)
                 {
                     W_GEToSale("AUTO", tTransDate, null);
@@ -1802,7 +1526,7 @@ namespace WinAppTest
 
                 if (ockRmdAuto.Checked == true)
                 {
-                    W_GETxRedeem("AUTO", tTransDate, null, null);
+                    W_GEToRedeem("AUTO", tTransDate, null, null);
                 }
                 if (ockDaySumAuto.Checked == true)
                 {
@@ -1810,17 +1534,17 @@ namespace WinAppTest
                     ockEDCAuto.Enabled = true;
                     ockBankInAuto.Enabled = true;
 
-                    var tDaySum = W_SEToEOD("AUTO", tTransDate, null);
+                    var oRESMsg = W_SEToEOD("AUTO", tTransDate, null);
 
-                    if (tDaySum == "OK")
+                    if (oRESMsg.tML_StatusMsg == "OK")
                     {
                         if (ockShortOverAuto.Checked == true)
                         {
-                            W_GETxCash("AUTO", tTransDate);
+                            W_GETxCash("AUTO", tTransDate, null);
                         }
                         if (ockEDCAuto.Checked == true)
                         {
-                            W_GETxEDC("AUTO", tTransDate);
+                            W_GEToEDC("AUTO", tTransDate, null);
                         }
                         if (ockBankInAuto.Checked == true)
                         {

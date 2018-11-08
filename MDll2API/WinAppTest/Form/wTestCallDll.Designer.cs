@@ -384,7 +384,7 @@
             // olaTerminalNo
             // 
             this.olaTerminalNo.AutoSize = true;
-            this.olaTerminalNo.Location = new System.Drawing.Point(379, 15);
+            this.olaTerminalNo.Location = new System.Drawing.Point(379, 16);
             this.olaTerminalNo.Name = "olaTerminalNo";
             this.olaTerminalNo.Size = new System.Drawing.Size(87, 16);
             this.olaTerminalNo.TabIndex = 16;
@@ -593,7 +593,7 @@
             // 
             // ocmDaySumSearch
             // 
-            this.ocmDaySumSearch.Location = new System.Drawing.Point(640, 12);
+            this.ocmDaySumSearch.Location = new System.Drawing.Point(640, 13);
             this.ocmDaySumSearch.Name = "ocmDaySumSearch";
             this.ocmDaySumSearch.Size = new System.Drawing.Size(80, 23);
             this.ocmDaySumSearch.TabIndex = 19;
@@ -745,7 +745,7 @@
             // 
             // ocmShortManual
             // 
-            this.ocmShortManual.Location = new System.Drawing.Point(640, 12);
+            this.ocmShortManual.Location = new System.Drawing.Point(640, 13);
             this.ocmShortManual.Name = "ocmShortManual";
             this.ocmShortManual.Size = new System.Drawing.Size(80, 23);
             this.ocmShortManual.TabIndex = 18;
@@ -772,7 +772,7 @@
             // olaTranShort
             // 
             this.olaTranShort.AutoSize = true;
-            this.olaTranShort.Location = new System.Drawing.Point(9, 15);
+            this.olaTranShort.Location = new System.Drawing.Point(9, 16);
             this.olaTranShort.Name = "olaTranShort";
             this.olaTranShort.Size = new System.Drawing.Size(114, 16);
             this.olaTranShort.TabIndex = 14;
@@ -913,7 +913,7 @@
             // 
             // ocmEDCSearch
             // 
-            this.ocmEDCSearch.Location = new System.Drawing.Point(640, 12);
+            this.ocmEDCSearch.Location = new System.Drawing.Point(640, 13);
             this.ocmEDCSearch.Name = "ocmEDCSearch";
             this.ocmEDCSearch.Size = new System.Drawing.Size(80, 23);
             this.ocmEDCSearch.TabIndex = 18;
@@ -924,7 +924,7 @@
             // olaTranDateEDC
             // 
             this.olaTranDateEDC.AutoSize = true;
-            this.olaTranDateEDC.Location = new System.Drawing.Point(9, 15);
+            this.olaTranDateEDC.Location = new System.Drawing.Point(9, 16);
             this.olaTranDateEDC.Name = "olaTranDateEDC";
             this.olaTranDateEDC.Size = new System.Drawing.Size(114, 16);
             this.olaTranDateEDC.TabIndex = 14;
@@ -994,7 +994,7 @@
             // 
             // ocmSchBnk
             // 
-            this.ocmSchBnk.Location = new System.Drawing.Point(640, 12);
+            this.ocmSchBnk.Location = new System.Drawing.Point(640, 13);
             this.ocmSchBnk.Name = "ocmSchBnk";
             this.ocmSchBnk.Size = new System.Drawing.Size(80, 23);
             this.ocmSchBnk.TabIndex = 18;
@@ -1203,7 +1203,7 @@
             // 
             // ocmSchRdm
             // 
-            this.ocmSchRdm.Location = new System.Drawing.Point(640, 12);
+            this.ocmSchRdm.Location = new System.Drawing.Point(640, 13);
             this.ocmSchRdm.Name = "ocmSchRdm";
             this.ocmSchRdm.Size = new System.Drawing.Size(80, 23);
             this.ocmSchRdm.TabIndex = 18;
@@ -1214,7 +1214,7 @@
             // olaRefDoc
             // 
             this.olaRefDoc.AutoSize = true;
-            this.olaRefDoc.Location = new System.Drawing.Point(6, 15);
+            this.olaRefDoc.Location = new System.Drawing.Point(6, 16);
             this.olaRefDoc.Name = "olaRefDoc";
             this.olaRefDoc.Size = new System.Drawing.Size(89, 16);
             this.olaRefDoc.TabIndex = 3;
@@ -1222,7 +1222,7 @@
             // 
             // otbIdRdm
             // 
-            this.otbIdRdm.Location = new System.Drawing.Point(482, 12);
+            this.otbIdRdm.Location = new System.Drawing.Point(482, 13);
             this.otbIdRdm.Name = "otbIdRdm";
             this.otbIdRdm.Size = new System.Drawing.Size(152, 23);
             this.otbIdRdm.TabIndex = 17;
@@ -1246,7 +1246,7 @@
             // olaPreminumNo
             // 
             this.olaPreminumNo.AutoSize = true;
-            this.olaPreminumNo.Location = new System.Drawing.Point(207, 15);
+            this.olaPreminumNo.Location = new System.Drawing.Point(207, 16);
             this.olaPreminumNo.Name = "olaPreminumNo";
             this.olaPreminumNo.Size = new System.Drawing.Size(83, 16);
             this.olaPreminumNo.TabIndex = 14;
@@ -1254,7 +1254,7 @@
             // 
             // otbNoRdm
             // 
-            this.otbNoRdm.Location = new System.Drawing.Point(296, 12);
+            this.otbNoRdm.Location = new System.Drawing.Point(296, 13);
             this.otbNoRdm.Name = "otbNoRdm";
             this.otbNoRdm.Size = new System.Drawing.Size(100, 23);
             this.otbNoRdm.TabIndex = 15;

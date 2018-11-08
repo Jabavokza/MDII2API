@@ -9,70 +9,81 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809120910113473",
+"SequenceNumber":"201809120910113487",
 "OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
 	"LocationDescription":"Bangkapi Super"},
 "RetailTransaction": {
-		"@ItemType": "11", 
+		"@ItemType": "04", 
 	"LineItem": [
 {
-			"Sale":{
+			"Return":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
 					"POSItemID": "2901325127824"
 					},
 				"Description": "GM-T กระเช้า1 2018",
 				"UnitListPrice": "1820.00",
-				"RegularSalesUnitPrice": "1700.93",
-				"ActualSalesUnitPrice": "1700.93",
-				"ExtendedAmount": "1700.93",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1320.00",
+				"ExtendedAmount": "1320.00",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
-					"$": "1"
+					"$": "-1"
 						},
-				"Associate": { "AssociateID": "555" },
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "500.00"
+						},
+					"PromotionID": "003000000021",
+					"Description": "M003 M Point EDC or mobile APP",
+					"PromotionArea": "",
+					"PromotionProfile": "M003"
+					}
+
+					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "1700.93"
+						"$": "1233.64"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "0.00",
+					"Amount": "86.36",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
-				"SerialNumber": ""				},
+				"SerialNumber": "",
+				"TransactionLink": {
+					"BusinessUnit": { "UnitID": "17KA" },
+					"WorkstationID": "09101",
+					"BusinessDayDate": { "Date": "2018-09-12" },
+					"SequenceNumber": "201809120910113485"
+					}
+				},
 			"SequenceNumber":"1"			},{
 			"Tender":{
 				"@TenderType": "T001",
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "1701.00"
+					"$": "1320.00"
 					},
 					"Reference": ""
 				},
-			"SequenceNumber":"2"			},{
-			"Tender": {
-				"@TenderType": "T032",
-				"@SequenceNumber": "2",
-				"Amount": {
-					"@Currency": "THB",
-					"$": "-0.07"
-					}
-				},
-
-			"SequenceNumber":"3"			}
+			"SequenceNumber":"2"			}
 		],
 	"Customer": { "CustomerID": "" }
 	},"BusinessDayDate": "2018-09-12",
-"BeginDateTime": "20180912131214",
-"EndDateTime": "20180912131255"
+"BeginDateTime": "20180912153551",
+"EndDateTime": "20180912153717"
 }
 ]
 }

@@ -81,7 +81,7 @@
     <DBName>SOL_SP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>140</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>

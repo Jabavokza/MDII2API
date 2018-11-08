@@ -9,7 +9,7 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809050910113419",
+"SequenceNumber":"201809130910113494",
 "OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
@@ -22,27 +22,41 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "2901324769476"
+					"POSItemID": "2901325127824"
 					},
-				"Description": "Chicken Soup&wonton#S",
-				"UnitListPrice": "110.00",
-				"RegularSalesUnitPrice": "110.00",
-				"ActualSalesUnitPrice": "110.00",
-				"ExtendedAmount": "110.00",
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1800.00",
+				"ExtendedAmount": "1800.00",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "" },
+				"Associate": { "AssociateID": "3" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "20.00"
+						},
+					"PromotionID": "003000000022",
+					"Description": "M004 M Cash Coupon Discount",
+					"PromotionArea": "",
+					"PromotionProfile": "M004"
+					}
+
+					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "102.80"
+						"$": "1682.24"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "7.20",
+					"Amount": "117.76",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -53,16 +67,16 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "110.00"
+					"$": "1800.00"
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"2"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-05",
-"BeginDateTime": "20180905125015",
-"EndDateTime": "20180905125200"
+	},"BusinessDayDate": "2018-09-13",
+"BeginDateTime": "20180913120911",
+"EndDateTime": "20180913121110"
 }
 ]
 }
