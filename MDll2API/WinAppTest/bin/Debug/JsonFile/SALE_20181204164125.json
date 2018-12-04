@@ -9,54 +9,40 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809130910113575",
-"OperatorID":"9999",
+"SequenceNumber":"201809120910113473",
+"OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
 	"LocationDescription":"Bangkapi Super"},
 "RetailTransaction": {
-		"@ItemType": "03", 
+		"@ItemType": "11", 
 	"LineItem": [
 {
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "205000000020"
+					"POSItemID": "2901325127824"
 					},
-				"Description": "เนสกาแฟ โกลด์เบลนด์ก",
-				"UnitListPrice": "329.00",
-				"RegularSalesUnitPrice": "329.00",
-				"ActualSalesUnitPrice": "129.00",
-				"ExtendedAmount": "129.00",
+				"Description": "GM-T กระเช้า1 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1700.93",
+				"ActualSalesUnitPrice": "1700.93",
+				"ExtendedAmount": "1700.93",
 				"Quantity": {
-					"@UnitOfMeasureCode": "CS",
+					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "" },
-				"RetailPriceModifier": [
-	{
-					"SequenceNumber": "1",
-					"Amount": {
-						"@Action": "Subtract",
-						"$": "200.00"
-						},
-					"PromotionID": "003000000061",
-					"Description": "M005 M Point Fully/Partial Burn",
-					"PromotionArea": "",
-					"PromotionProfile": "M005"
-					}
-
-					],
+				"Associate": { "AssociateID": "555" },
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "120.56"
+						"$": "1700.93"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "8.44",
+					"Amount": "0.00",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -67,16 +53,26 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "129.00"
+					"$": "1701.00"
 					},
 					"Reference": ""
 				},
-			"SequenceNumber":"2"			}
+			"SequenceNumber":"2"			},{
+			"Tender": {
+				"@TenderType": "T032",
+				"@SequenceNumber": "2",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "-0.07"
+					}
+				},
+
+			"SequenceNumber":"3"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-13",
-"BeginDateTime": "20180913170416",
-"EndDateTime": "20180913171050"
+	},"BusinessDayDate": "2018-09-12",
+"BeginDateTime": "20180912131214",
+"EndDateTime": "20180912131255"
 }
 ]
 }

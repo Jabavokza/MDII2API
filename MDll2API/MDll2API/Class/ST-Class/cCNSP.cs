@@ -45,6 +45,7 @@ namespace MDll2API.Class.ST_Class
             }
             catch (Exception)
             {
+
                 return rtResult;
             }
             finally

@@ -9,7 +9,7 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809120910113482",
+"SequenceNumber":"201809110910113465",
 "OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
@@ -22,27 +22,41 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "80525424"
+					"POSItemID": "4006067060977"
 					},
-				"Description": "AGNESI ARRABBIATA400",
-				"UnitListPrice": "124.00",
-				"RegularSalesUnitPrice": "124.00",
-				"ActualSalesUnitPrice": "124.00",
-				"ExtendedAmount": "124.00",
+				"Description": "DAVIDOFF INSTANT COF",
+				"UnitListPrice": "348.00",
+				"RegularSalesUnitPrice": "348.00",
+				"ActualSalesUnitPrice": "208.80",
+				"ExtendedAmount": "208.80",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "" },
+				"Associate": { "AssociateID": "666" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "139.20"
+						},
+					"PromotionID": "003000000046",
+					"Description": "P001 Promotion Supermarket",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P001"
+					}
+
+					],
 				"Tax": {
 					"@TaxType": "VAT",
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "115.89"
+						"$": "195.14"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "8.11",
+					"Amount": "13.66",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -53,16 +67,26 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "124.00"
+					"$": "208.75"
 					},
 					"Reference": ""
 				},
-			"SequenceNumber":"2"			}
+			"SequenceNumber":"2"			},{
+			"Tender": {
+				"@TenderType": "T032",
+				"@SequenceNumber": "2",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "0.05"
+					}
+				},
+
+			"SequenceNumber":"3"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-12",
-"BeginDateTime": "20180912150250",
-"EndDateTime": "20180912150321"
+	},"BusinessDayDate": "2018-09-11",
+"BeginDateTime": "20180911163703",
+"EndDateTime": "20180911163722"
 }
 ]
 }

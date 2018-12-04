@@ -46,7 +46,7 @@ namespace WinAppTest
             catch (Exception ex)
             {
                 oC_Log.Error(ex.Message);
-                MessageBox.Show("Unexpected error occur:"+ex);
+                MessageBox.Show("Program : Main//Unexpected error occur:" + ex);
             }
             finally
             {

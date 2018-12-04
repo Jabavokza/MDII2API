@@ -1,0 +1,22 @@
+[DEBUG] 2018-12-04 10:07:42,295 17268ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=[Message]=
+[DEBUG] 2018-12-04 10:07:44,991 19963ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=[Message]=
+[DEBUG] 2018-12-04 10:07:47,968 22941ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=[Message]=
+[DEBUG] 2018-12-04 10:07:51,011 25984ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=[Message]=
+[DEBUG] 2018-12-04 10:07:54,000 28973ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=[Message]=
+[DEBUG] 2018-12-04 10:07:57,012 31985ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=[Message]=
+[ERROR] 2018-12-04 10:08:08,623 43596ms [Program:Main(line:39)] - The remote server returned an error: (400) Bad Request.
+[ERROR] 2018-12-04 10:22:01,920 71897ms [Program:Main(line:39)] - The remote server returned an error: (400) Bad Request.
+[DEBUG] 2018-12-04 10:26:15,414 14563ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 10:26:15,729 14877ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 10:26:16,669 15817ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 10:26:19,652 18801ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 10:26:22,687 21836ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 11:13:30,699 151506ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=[Message]=
+[DEBUG] 2018-12-04 16:41:11,534 41062ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 16:41:12,436 41964ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 16:41:13,379 42907ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 16:41:16,391 45919ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 16:41:19,410 48938ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 16:41:22,369 51897ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 16:41:25,356 54883ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์
+[DEBUG] 2018-12-04 16:41:28,597 58125ms [wTestCallDll:W_GEToSale(line:182)] - [Sale Status]=200[Message]=ส่งข้อมูลสมบูรณ์

@@ -9,8 +9,8 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809130910113571",
-"OperatorID":"9999",
+"SequenceNumber":"201809110910113464",
+"OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
@@ -22,29 +22,29 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "2901325127824"
+					"POSItemID": "4902201418782"
 					},
-				"Description": "GT-1 BASKET GT 2018",
-				"UnitListPrice": "1820.00",
-				"RegularSalesUnitPrice": "1820.00",
-				"ActualSalesUnitPrice": "1456.00",
-				"ExtendedAmount": "1456.00",
+				"Description": "NESCAFE KOMIBISAN ME",
+				"UnitListPrice": "399.00",
+				"RegularSalesUnitPrice": "399.00",
+				"ActualSalesUnitPrice": "279.30",
+				"ExtendedAmount": "279.30",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
 						},
-				"Associate": { "AssociateID": "" },
+				"Associate": { "AssociateID": "222" },
 				"RetailPriceModifier": [
 	{
 					"SequenceNumber": "1",
 					"Amount": {
 						"@Action": "Subtract",
-						"$": "364.00"
+						"$": "119.70"
 						},
-					"PromotionID": "003000000021",
-					"Description": "M003 M Point EDC or mobile APP",
-					"PromotionArea": "",
-					"PromotionProfile": "M003"
+					"PromotionID": "003000000046",
+					"Description": "P001 Promotion Supermarket",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P001"
 					}
 
 					],
@@ -53,30 +53,54 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "1360.75"
+						"$": "261.03"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "95.25",
+					"Amount": "18.27",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
 				"SerialNumber": ""				},
 			"SequenceNumber":"1"			},{
 			"Tender":{
-				"@TenderType": "T001",
+				"@TenderType": "T004",
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "1456.00"
+					"$": "100.00"
+					},
+				"Voucher":{
+					"SerialNumber": "12562",
+					"IssuingStoreNumberID": "17KA"
 					},
 					"Reference": ""
 				},
-			"SequenceNumber":"2"			}
+			"SequenceNumber":"2"			},{
+			"Tender":{
+				"@TenderType": "T001",
+				"@SequenceNumber": "2",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "179.25"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"3"			},{
+			"Tender": {
+				"@TenderType": "T032",
+				"@SequenceNumber": "3",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "0.05"
+					}
+				},
+
+			"SequenceNumber":"4"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-13",
-"BeginDateTime": "20180913154623",
-"EndDateTime": "20180913164140"
+	},"BusinessDayDate": "2018-09-11",
+"BeginDateTime": "20180911163627",
+"EndDateTime": "20180911163659"
 }
 ]
 }

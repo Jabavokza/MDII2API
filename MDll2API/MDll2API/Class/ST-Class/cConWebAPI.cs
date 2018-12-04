@@ -13,7 +13,7 @@ namespace MDll2API.Class.ST_Class
             string tStatusCode = "" ;
             try
             {
-               // ptJson = " '"+ ptJson + "'  "; //ทดสอบ MOCK-API *เวลาใช้งานจริงจะลบออก 
+                ptJson = " '"+ ptJson + "'  "; //ทดสอบ MOCK-API *เวลาใช้งานจริงจะลบออก 
 
                 byte[] aData = Encoding.UTF8.GetBytes(ptJson.ToString());
                 HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(ptUriApi);

@@ -9,8 +9,8 @@
 "BusinessUnit":
 	{"UnitID":"17KA"},
 "WorkstationID":"09101",
-"SequenceNumber":"201809130910113570",
-"OperatorID":"9999",
+"SequenceNumber":"201809110910113466",
+"OperatorID":"1111",
 "CurrencyCode":"THB",
 "Reference": {
 	"LocationID":"001",
@@ -22,13 +22,13 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "8806087359312"
+					"POSItemID": "4902201418782"
 					},
-				"Description": "UP970 LG PLAYER",
-				"UnitListPrice": "90.00",
-				"RegularSalesUnitPrice": "90.00",
-				"ActualSalesUnitPrice": "72.73",
-				"ExtendedAmount": "72.73",
+				"Description": "NESCAFE KOMIBISAN ME",
+				"UnitListPrice": "399.00",
+				"RegularSalesUnitPrice": "399.00",
+				"ActualSalesUnitPrice": "279.30",
+				"ExtendedAmount": "279.30",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
@@ -39,12 +39,12 @@
 					"SequenceNumber": "1",
 					"Amount": {
 						"@Action": "Subtract",
-						"$": "17.27"
+						"$": "119.70"
 						},
-					"PromotionID": "003000000059",
-					"Description": "M001 VVIP Discount",
-					"PromotionArea": "",
-					"PromotionProfile": "M001"
+					"PromotionID": "003000000046",
+					"Description": "P001 Promotion Supermarket",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P001"
 					}
 
 					],
@@ -53,10 +53,10 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "67.97"
+						"$": "261.03"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "4.76",
+					"Amount": "18.27",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -65,13 +65,13 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "8887549519406"
+					"POSItemID": "4902201418805"
 					},
-				"Description": "DVDS500GJ-K PANSONIC",
-				"UnitListPrice": "900.00",
-				"RegularSalesUnitPrice": "900.00",
-				"ActualSalesUnitPrice": "727.28",
-				"ExtendedAmount": "727.28",
+				"Description": "NESCAFE KOMIBISAN DA",
+				"UnitListPrice": "399.00",
+				"RegularSalesUnitPrice": "399.00",
+				"ActualSalesUnitPrice": "319.20",
+				"ExtendedAmount": "319.20",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
@@ -82,12 +82,12 @@
 					"SequenceNumber": "1",
 					"Amount": {
 						"@Action": "Subtract",
-						"$": "172.72"
+						"$": "79.80"
 						},
-					"PromotionID": "003000000059",
-					"Description": "M001 VVIP Discount",
-					"PromotionArea": "",
-					"PromotionProfile": "M001"
+					"PromotionID": "003000000046",
+					"Description": "P001 Promotion Supermarket",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P001"
 					}
 
 					],
@@ -96,10 +96,10 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "679.70"
+						"$": "298.32"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "47.58",
+					"Amount": "20.88",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -108,13 +108,13 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "4948872610445"
+					"POSItemID": "4046234794885"
 					},
-				"Description": "PLAS10044 HC SONY",
-				"UnitListPrice": "20.00",
-				"RegularSalesUnitPrice": "20.00",
-				"ActualSalesUnitPrice": "16.16",
-				"ExtendedAmount": "16.16",
+				"Description": "TCHIBO BLACK & WHITE",
+				"UnitListPrice": "400.00",
+				"RegularSalesUnitPrice": "400.00",
+				"ActualSalesUnitPrice": "360.00",
+				"ExtendedAmount": "360.00",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
@@ -125,12 +125,12 @@
 					"SequenceNumber": "1",
 					"Amount": {
 						"@Action": "Subtract",
-						"$": "3.84"
+						"$": "40.00"
 						},
-					"PromotionID": "003000000059",
-					"Description": "M001 VVIP Discount",
-					"PromotionArea": "",
-					"PromotionProfile": "M001"
+					"PromotionID": "003000000046",
+					"Description": "P001 Promotion Supermarket",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P001"
 					}
 
 					],
@@ -139,10 +139,10 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "15.10"
+						"$": "336.45"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "1.06",
+					"Amount": "23.55",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -151,13 +151,13 @@
 			"Sale":{
 				"POSIdentity": {
 					"@POSIDType": "EAN",
-					"POSItemID": "4948872610766"
+					"POSItemID": "4046234794885"
 					},
-				"Description": "ASIA00213  SONY",
-				"UnitListPrice": "350.00",
-				"RegularSalesUnitPrice": "350.00",
-				"ActualSalesUnitPrice": "282.83",
-				"ExtendedAmount": "282.83",
+				"Description": "TCHIBO BLACK & WHITE",
+				"UnitListPrice": "400.00",
+				"RegularSalesUnitPrice": "400.00",
+				"ActualSalesUnitPrice": "360.00",
+				"ExtendedAmount": "360.00",
 				"Quantity": {
 					"@UnitOfMeasureCode": "EA",
 					"$": "1"
@@ -168,12 +168,12 @@
 					"SequenceNumber": "1",
 					"Amount": {
 						"@Action": "Subtract",
-						"$": "67.17"
+						"$": "40.00"
 						},
-					"PromotionID": "003000000059",
-					"Description": "M001 VVIP Discount",
-					"PromotionArea": "",
-					"PromotionProfile": "M001"
+					"PromotionID": "003000000046",
+					"Description": "P001 Promotion Supermarket",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P001"
 					}
 
 					],
@@ -182,10 +182,10 @@
 					"SequenceNumber": "1",
 					"TaxableAmount": {
 						"@TaxIncludedInTaxableAmountFlag": "false",
-						"$": "264.33"
+						"$": "336.45"
 						},
 					"TaxablePercentage": "100.00",
-					"Amount": "18.50",
+					"Amount": "23.55",
 					"Percent": "7",
 					"TaxRuleID": "O7"
 					},
@@ -196,16 +196,16 @@
 				"@SequenceNumber": "1",
 				"Amount": {
 					"@Currency": "THB",
-					"$": "1099.00"
+					"$": "1318.50"
 					},
 					"Reference": ""
 				},
 			"SequenceNumber":"5"			}
 		],
 	"Customer": { "CustomerID": "" }
-	},"BusinessDayDate": "2018-09-13",
-"BeginDateTime": "20180913154411",
-"EndDateTime": "20180913154618"
+	},"BusinessDayDate": "2018-09-11",
+"BeginDateTime": "20180911163726",
+"EndDateTime": "20180911164818"
 }
 ]
 }

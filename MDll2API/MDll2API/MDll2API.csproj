@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\ST-Class\cConWebAPI.cs" />
+    <Compile Include="Class\ST-Class\cFusionJSON.cs" />
     <Compile Include="Class\ST-Class\cKeepLog.cs" />
     <Compile Include="Class\X-Class\cAutomatic.cs" />
     <Compile Include="Class\POSLog\cBankDeposit.cs" />
