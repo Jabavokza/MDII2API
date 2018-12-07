@@ -1,0 +1,89 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809170910113622",
+"OperatorID":"1111",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "03", 
+	"LineItem": [
+{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "2901325127824"
+					},
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1456.00",
+				"ExtendedAmount": "1456.00",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "364.00"
+						},
+					"PromotionID": "003000000073",
+					"Description": "P006 Corporate coupon 20%",
+					"PromotionArea": "P1",
+					"PromotionProfile": "P006"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "1360.75"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "95.25",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"1"			},{
+			"Tender":{
+				"@TenderType": "T002",
+				"@SequenceNumber": "1",
+				"Amount": "1456.00",
+				"CreditDebit":{
+					"CardClassification": "VISA PLATINUM",
+					"CreditCardCompany": "SCB VISA PLAT",
+					"PrimaryAccountNumber": "47737600XXXX0000",
+					"CardName": "VISA",
+					"CardBrand": "SCB",
+					"Platinum": "Y",
+					"BonusBuyID": ""
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"2"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-17",
+"BeginDateTime": "20180917145334",
+"EndDateTime": "20180917145800"
+}
+]
+}
+}

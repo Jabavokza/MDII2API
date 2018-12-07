@@ -1,0 +1,70 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809170910113630",
+"OperatorID":"1111",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "03", 
+	"LineItem": [
+{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "2901325127824"
+					},
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1820.00",
+				"ExtendedAmount": "1820.00",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "" },
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "1700.93"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "119.07",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"1"			},{
+			"Tender":{
+				"@TenderType": "T007",
+				"@SequenceNumber": "1",
+				"Amount": "1820.00",
+				"Coupon":{
+					"PromotionCode": "",
+					"CouponMaterial": "1"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"2"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-17",
+"BeginDateTime": "20180917170425",
+"EndDateTime": "20180917170448"
+}
+]
+}
+}

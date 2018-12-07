@@ -124,9 +124,19 @@ namespace MDll2API.Class.POSLog
                     //Call API
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
+                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        if (oRESMsg.tML_StatusCode == "200")
+                        {
+                            tStaSentOnOff = "1";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                        }
+                        else
+                        {
+                            tStaSentOnOff = "2";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                        };
 
-
+                        #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
                         if (ptMode == "AUTO")
                         {
                             oSQL = new StringBuilder();
@@ -142,21 +152,6 @@ namespace MDll2API.Class.POSLog
                             oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
                         }
 
-
-                        if (oRESMsg.tML_StatusCode == "200")
-                        {
-                            tStaSentOnOff = "1";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
-                        }
-                        else
-                        {
-                            tStaSentOnOff = "2";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
-                        };
-
-
-
-                        //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
                         oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(tJson);
 
                         for (int i = 0; i < oPOSBankDeposit.oML_POSLog.Transaction.Length; i++)
@@ -174,15 +169,19 @@ namespace MDll2API.Class.POSLog
                                 oSQL.AppendLine("WHERE  FTBdpPlantCode ='" + tPlant + "'");
                                 oSQL.AppendLine("AND  FTBdpDepositBy ='" + tOper + "'");
                                 oSQL.AppendLine("WHERE  FDBdpDepositDate ='" + tDate + "'");
-
                                 var nResult = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
                             }
                         }
-                        //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff ---------------------------------
+                        #endregion
 
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForBank(aoRow, oRESMsg);
                         #endregion
+                    }
+                    else
+                    {
+                        oRESMsg.tML_StatusCode = "001";
+                        oRESMsg.tML_StatusMsg = "ฟังก์ชั่น APIไม่ทำงาน";
                     }
                 }
                 else

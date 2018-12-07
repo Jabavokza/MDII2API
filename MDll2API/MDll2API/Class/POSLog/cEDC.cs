@@ -21,7 +21,6 @@ namespace MDll2API.Class.POSLog
         public mlRESMsg C_POSTtEDC(string ptMode, string ptTransDate, string[] patPlantCode)
         {
             string tPlantCode ="";
-            string tJson = "";
             string tJsonTrn = "";
             string tSQL = "";
             string tExecute = "";
@@ -115,11 +114,21 @@ namespace MDll2API.Class.POSLog
                     oRESMsg.tML_FileName = cCNSP.SP_WRItJSON(oJson.ToString(), "EDC");
 
                     //Call API
-
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
+                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        if (oRESMsg.tML_StatusCode == "200")
+                        {
+                            tStaSentOnOff = "1";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                        }
+                        else
+                        {
+                            tStaSentOnOff = "2";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                        };
 
+                        #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
                         oSQL = new StringBuilder();
                         if (ptMode == "AUTO")
                         {
@@ -135,20 +144,7 @@ namespace MDll2API.Class.POSLog
                             oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
                             oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
                         }
-
                         var oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tConnDB);
-
-                        if (oRESMsg.tML_StatusCode == "200")
-                        {
-                            tStaSentOnOff = "1";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
-                        }
-                        else
-                        {
-                            tStaSentOnOff = "2";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
-                        };
-
                         if (oRESMsg.tML_StatusCode == "200")
                         {
                             if (oDbChk.Rows.Count > 0)
@@ -162,21 +158,26 @@ namespace MDll2API.Class.POSLog
                                     oSQL.AppendLine(" ,FTJsonFileEDC = '" + oRESMsg.tML_FileName + "'");
                                     oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
                                     oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
-
-                                  var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
-                                
+                                  var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);                              
                                 }
                             }
                         }
+                        #endregion
+
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForEDC(aoRow, oRESMsg);
                         #endregion
                     }
                     else
                     {
-                        oRESMsg.tML_StatusCode = "000";
-                        oRESMsg.tML_StatusMsg = "ไม่พบข้อมูลที่จะส่ง";
+                        oRESMsg.tML_StatusCode = "001";
+                        oRESMsg.tML_StatusMsg = "ฟังก์ชั่น APIไม่ทำงาน";
                     }
+                }
+                else
+                {
+                    oRESMsg.tML_StatusCode = "000";
+                    oRESMsg.tML_StatusMsg = "ไม่พบข้อมูลที่จะส่ง";
                 }
                 return oRESMsg;
             }

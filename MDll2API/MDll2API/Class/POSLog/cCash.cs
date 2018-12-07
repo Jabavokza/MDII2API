@@ -11,7 +11,7 @@ namespace MDll2API.Class.POSLog
 {
     public class cCash
     {
-        private string ptPlantCode = "";
+      //  private string ptPlantCode = "";
         private string tC_APIEnable;
         public void CHKxAPIEnable(string ptAPIEnable)
         {
@@ -41,7 +41,6 @@ namespace MDll2API.Class.POSLog
             //}
             //=====================TEST ===========
 
-            string tJson = "";
             string tJsonTrn = "";
             string tSQL = "";
             string tExecute = "";
@@ -135,14 +134,21 @@ namespace MDll2API.Class.POSLog
                     oRESMsg.tML_FileName = cCNSP.SP_WRItJSON(oJson.ToString(), "CASH");
 
                     //Call API
-                    //Call API
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
-
+                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        if (oRESMsg.tML_StatusCode == "200")
+                        {
+                            tStaSentOnOff = "1";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                        }
+                        else
+                        {
+                            tStaSentOnOff = "2";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                        };
 
                         #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
-
                         oSQL = new StringBuilder();
                         if (ptMode == "AUTO")
                         {
@@ -156,21 +162,9 @@ namespace MDll2API.Class.POSLog
                             oSQL = new StringBuilder();
                             oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
                             oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                            //oSQL.AppendLine("AND FTPlantCode = '"+ patPlantCode + "'");
-
                             oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
+                            //oSQL.AppendLine("AND FTPlantCode = '"+ patPlantCode + "'");
                         }
-  
-                        if (oRESMsg.tML_StatusCode == "200")
-                        {
-                            tStaSentOnOff = "1";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
-                        }
-                        else
-                        {
-                            tStaSentOnOff = "2";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
-                        };
 
                         var oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tConnDB);
                         if (oDbChk.Rows.Count > 0)
@@ -179,23 +173,24 @@ namespace MDll2API.Class.POSLog
                             {
                                 oSQL = new StringBuilder();
                                 oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
-                                oSQL.AppendLine("SET FTStaSentOnOff = '1'");
+                                oSQL.AppendLine("SET FTStaSentOnOff = '"+ tStaSentOnOff + "'");
                                 oSQL.AppendLine("   ,FTStaEDC = '1'");
                                 oSQL.AppendLine("   ,FTJsonFileEDC = '" + oRESMsg.tML_FileName + "'");
                                 oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
                                 oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
-
                                 var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
-
                             }
                         }
                         #endregion
 
-
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForEOD(aoRow, oRESMsg);
                         #endregion
-
+                    }
+                    else
+                    {
+                        oRESMsg.tML_StatusCode = "001";
+                        oRESMsg.tML_StatusMsg = "ฟังก์ชั่น APIไม่ทำงาน";
                     }
                 }
                 else

@@ -19,12 +19,14 @@ H:\GitHub\MDII2API\MDll2API\WinAppTest\obj\Debug\POSLog.pdb
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\POSLog.exe.config
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\POSLog.exe
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\POSLog.pdb
+D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\log4net.2.0.8.0.Fakes.dll
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\log4net.dll
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\MDll2API.dll
+D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\Newtonsoft.Json.dll
-D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\log4net.xml
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\MDll2API.pdb
-D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\Newtonsoft.Json.xml
+D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\log4net.xml
+D:\Project\2018\MDII2API\MDll2API\WinAppTest\bin\Debug\log4net.2.0.8.0.Fakes.xml
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\obj\Debug\WinAppTest.csprojAssemblyReference.cache
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\obj\Debug\WinAppTest.wEditConnection.resources
 D:\Project\2018\MDII2API\MDll2API\WinAppTest\obj\Debug\WinAppTest.wTestCallDll.resources

@@ -19,7 +19,7 @@ namespace MDll2API.Class.POSLog
         public mlRESMsg C_POSTtEOD(string ptMode, string ptTransDate, string[] patPlantCode)
         {
             //1:Point ,2:Redeem Premium ,3:Sale & Deposit ,4:Cash Overage/Shortage ,5:EOD ,6:AutoMatic Reservation ,7:Sale Order
-            string tWorkStationID = "", tWorkStation = "", tJson = "", tJsonTrn = "", tSQL = "", tExecute = "", tLastUpd = "", tUriApi = "", tUsrApi = "", tPwdApi = "", tConnDB = "", tFunction = "5";
+            string tWorkStationID = "", tWorkStation = "", tJsonTrn = "", tSQL = "", tExecute = "", tLastUpd = "", tUriApi = "", tUsrApi = "", tPwdApi = "", tConnDB = "", tFunction = "5";
 
             StringBuilder oSQL;
             DataTable oTblConfig;
@@ -111,11 +111,19 @@ namespace MDll2API.Class.POSLog
                     //Call API
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, tJson);
-
+                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        if (oRESMsg.tML_StatusCode == "200")
+                        {
+                            tStaSentOnOff = "1";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                        }
+                        else
+                        {
+                            tStaSentOnOff = "2";
+                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                        };
 
                         #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
-
                         oSQL = new StringBuilder();
                         if (ptMode == "AUTO")
                         {
@@ -128,24 +136,11 @@ namespace MDll2API.Class.POSLog
                         {
                             oSQL = new StringBuilder();
                             oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                            //oSQL.AppendLine("AND FTPlantCode = '"+ patPlantCode + "'");
-
+                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");;
                             oSQL.AppendLine("AND FTPlantCode IN (" + ptPlantCode + ")");
+                            //oSQL.AppendLine("AND FTPlantCode = '"+ patPlantCode + "'")
                         }
                         var oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tConnDB);
-
-                        if (oRESMsg.tML_StatusCode == "200")
-                        {
-                            tStaSentOnOff = "1";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
-                        }
-                        else
-                        {
-                            tStaSentOnOff = "2";
-                            oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
-                        };
-
                         if (oDbChk.Rows.Count > 0)
                         {
                             for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
@@ -157,23 +152,23 @@ namespace MDll2API.Class.POSLog
                                 oSQL.AppendLine(" ,FTJsonFileEOD = '" + oRESMsg.tML_FileName + "'");
                                 oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
                                 oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
-
                                 var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
-
-                                if (nRowEff > 0)
-
-                                {
-                                    oRESMsg.tML_StatusMsg = "OK";
-                                }
                             }
+                            //if (nRowEff > 0)
+                            //{
+                            //    oRESMsg.tML_StatusMsg = "OK";
+                            //}
                         }
                         #endregion
-
 
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForEOD(aoRow, oRESMsg);
                         #endregion
-
+                    }
+                    else
+                    {
+                        oRESMsg.tML_StatusCode = "001";
+                        oRESMsg.tML_StatusMsg = "ฟังก์ชั่น APIไม่ทำงาน";
                     }
                 }
                 else

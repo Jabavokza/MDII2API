@@ -10,14 +10,14 @@ namespace MDll2API.Class.POSLog
 {
     public class cRedeem
     {
-        cRcvRedeem oC_RcvRedeem = new cRcvRedeem();
+        mlRcvRedeem oC_RcvRedeem = new mlRcvRedeem();
         private string tC_Mode = "";
         private string tC_APIEnable;
         public void CHKxAPIEnable(string ptAPIEnable)
         {
             tC_APIEnable = ptAPIEnable;
         }
-        public mlRESMsg C_POSTtRedeem(string ptMode,string ptTransDate, cRcvRedeem oRcvRedeem, mlRedeem poRedeem)
+        public mlRESMsg C_POSTtRedeem(string ptMode,string ptTransDate, mlRcvRedeem oRcvRedeem, mlRedeem poRedeem)
         {
             string tJsonTrn = "";
             string tSQL = "";
@@ -95,53 +95,59 @@ namespace MDll2API.Class.POSLog
                     {
                         //Call API
                         oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
-                    }
-                    #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
-                    //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff --------------------------------- 
-                    if (ptMode.Equals("MANUAL"))
-                    {
-                        if (oRESMsg.tML_StatusCode == "200")
+
+                        #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
+                        //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff --------------------------------- 
+                        if (ptMode.Equals("MANUAL"))
                         {
-                            var oSQL = new StringBuilder();
-                            oSQL.AppendLine("UPDATE TPSTRPremium WITH (ROWLOCK)");
-                            oSQL.AppendLine("SET FTStaSentOnOff = '1'");
-                            //oSQL.AppendLine("   ,FTStaEOD = '1'");
-                            oSQL.AppendLine("   ,FTJsonFileName = '" + oRESMsg.tML_FileName + "'");
-                            oSQL.AppendLine("WHERE FDRPDocDate = '" + Convert.ToDateTime(poRedeem.tML_RPDocDate).ToString("yyyy-MM-dd") + "'");
-                            oSQL.AppendLine("AND FTPremiumNo = '" + poRedeem.tML_PremiumNo + "'");
-                            oSQL.AppendLine("AND FTPreMiumID = '" + poRedeem.tML_PremiumID + "'");
-                            oSQL.AppendLine("AND FTRPDocNo IN (" + poRedeem.tML_RPDocNo + ")");
-                          var  nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                            if (oRESMsg.tML_StatusCode == "200")
+                            {
+                                var oSQL = new StringBuilder();
+                                oSQL.AppendLine("UPDATE TPSTRPremium WITH (ROWLOCK)");
+                                oSQL.AppendLine("SET FTStaSentOnOff = '1'");
+                                //oSQL.AppendLine("   ,FTStaEOD = '1'");
+                                oSQL.AppendLine("   ,FTJsonFileName = '" + oRESMsg.tML_FileName + "'");
+                                oSQL.AppendLine("WHERE FDRPDocDate = '" + Convert.ToDateTime(poRedeem.tML_RPDocDate).ToString("yyyy-MM-dd") + "'");
+                                oSQL.AppendLine("AND FTPremiumNo = '" + poRedeem.tML_PremiumNo + "'");
+                                oSQL.AppendLine("AND FTPreMiumID = '" + poRedeem.tML_PremiumID + "'");
+                                oSQL.AppendLine("AND FTRPDocNo IN (" + poRedeem.tML_RPDocNo + ")");
+                                var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                            }
                         }
+                        else if (ptMode.Equals("AUTO"))
+                        {
+                            //if (oRESMsg.tML_StatusCode == "500" || oRESMsg.tML_StatusCode == "400")
+                            //{
+                            //    tStaSentOnOff = "2";
+                            //    oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                            //}
+                            //else
+                            //{
+                            //    tStaSentOnOff = "1";
+                            //    oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                            //};
+
+                            //var oSQL = new StringBuilder();
+                            //oSQL.AppendLine("UPDATE TPSTRPremium WITH (ROWLOCK)");
+                            //oSQL.AppendLine("SET FTStaSentOnOff = '"+ tStaSentOnOff + "'");
+                            ////oSQL.AppendLine("   ,FTStaEOD = '1'");
+                            //oSQL.AppendLine("   ,FTJsonFileName = '" + oRESMsg.tML_FileName + "'");
+                            //oSQL.AppendLine("WHERE FDRPDocDate = '" + Convert.ToDateTime(poRedeem.tML_RPDocDate).ToString("yyyy-MM-dd") + "'");
+
+                            //var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                        }
+                        //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff --------------------------------- 
+                        #endregion
+
+                        #region " Keep Log"
+                        cKeepLog.C_SETxKeepLogForReDeem(aoRow, oRESMsg);
+                        #endregion
                     }
-                    else if (ptMode.Equals("AUTO"))
+                    else
                     {
-                        //if (oRESMsg.tML_StatusCode == "500" || oRESMsg.tML_StatusCode == "400")
-                        //{
-                        //    tStaSentOnOff = "2";
-                        //    oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
-                        //}
-                        //else
-                        //{
-                        //    tStaSentOnOff = "1";
-                        //    oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
-                        //};
-
-                        //var oSQL = new StringBuilder();
-                        //oSQL.AppendLine("UPDATE TPSTRPremium WITH (ROWLOCK)");
-                        //oSQL.AppendLine("SET FTStaSentOnOff = '"+ tStaSentOnOff + "'");
-                        ////oSQL.AppendLine("   ,FTStaEOD = '1'");
-                        //oSQL.AppendLine("   ,FTJsonFileName = '" + oRESMsg.tML_FileName + "'");
-                        //oSQL.AppendLine("WHERE FDRPDocDate = '" + Convert.ToDateTime(poRedeem.tML_RPDocDate).ToString("yyyy-MM-dd") + "'");
-               
-                        //var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
-                    }
-                    //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff --------------------------------- 
-                    #endregion
-
-                    #region " Keep Log"
-                    cKeepLog.C_SETxKeepLogForReDeem(aoRow, oRESMsg);
-                    #endregion
+                        oRESMsg.tML_StatusCode = "001";
+                        oRESMsg.tML_StatusMsg = "ฟังก์ชั่น APIไม่ทำงาน";
+                    }  
                 }
                 else
                 {

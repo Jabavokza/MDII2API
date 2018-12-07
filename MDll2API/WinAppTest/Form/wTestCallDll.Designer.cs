@@ -133,7 +133,7 @@
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.ocmAct = new System.Windows.Forms.Button();
             this.olaSchSta1 = new System.Windows.Forms.Label();
-            this.olaSchSta2 = new System.Windows.Forms.Label();
+            this.olaSchSta = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.otbShcSS = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -1279,7 +1279,7 @@
             // 
             this.groupBox13.Controls.Add(this.ocmAct);
             this.groupBox13.Controls.Add(this.olaSchSta1);
-            this.groupBox13.Controls.Add(this.olaSchSta2);
+            this.groupBox13.Controls.Add(this.olaSchSta);
             this.groupBox13.Location = new System.Drawing.Point(6, 9);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(120, 73);
@@ -1308,15 +1308,15 @@
             this.olaSchSta1.TabIndex = 1;
             this.olaSchSta1.Text = "Status :";
             // 
-            // olaSchSta2
+            // olaSchSta
             // 
-            this.olaSchSta2.AutoSize = true;
-            this.olaSchSta2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.olaSchSta2.Location = new System.Drawing.Point(64, 14);
-            this.olaSchSta2.Name = "olaSchSta2";
-            this.olaSchSta2.Size = new System.Drawing.Size(54, 16);
-            this.olaSchSta2.TabIndex = 2;
-            this.olaSchSta2.Text = "Disable";
+            this.olaSchSta.AutoSize = true;
+            this.olaSchSta.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.olaSchSta.Location = new System.Drawing.Point(64, 14);
+            this.olaSchSta.Name = "olaSchSta";
+            this.olaSchSta.Size = new System.Drawing.Size(54, 16);
+            this.olaSchSta.TabIndex = 2;
+            this.olaSchSta.Text = "Disable";
             // 
             // groupBox8
             // 
@@ -1578,7 +1578,7 @@
         private System.Windows.Forms.Button ocmTestConnection;
         private System.Windows.Forms.Button ocmEdit;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label olaSchSta2;
+        private System.Windows.Forms.Label olaSchSta;
         private System.Windows.Forms.Label olaSchSta1;
         private System.Windows.Forms.Button ocmAct;
         private System.Windows.Forms.Label label1;

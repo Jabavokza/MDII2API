@@ -8,12 +8,12 @@ using MDll2API.Modale.POSLog;
 using MDll2API.Class.ST_Class;
 using MDll2API.Class.X_Class;
 
+
 namespace MDll2API.Class.POSLog
 {
     public class cSale
     {
-
-        cRcvSale oC_RcvSale = new cRcvSale();
+        mlRcvSale oC_RcvSale = new mlRcvSale();
         private string tC_Mode = "";
         private string tC_VenDor = "";
         private string tC_VenDes = "";
@@ -25,10 +25,10 @@ namespace MDll2API.Class.POSLog
         {
             tC_APIEnable = ptAPIEnable;
         }
-        public mlRESMsg C_POSTxSale(string ptMode, string ptTransDate, cRcvSale poRcvSale, string ptVenDorCodeSale, string ptVenDes, string ptDepositCode, string ptDepositDes, string ptShdTransNo)
+        public mlRESMsg C_POSTxSale(string ptMode, string ptTransDate, mlRcvSale poRcvSale, string ptVenDorCodeSale, string ptVenDes, string ptDepositCode, string ptDepositDes, string ptShdTransNo)
         {
-            string  tJsonTrn = "", tSQL = "", tExecute = "", tLastUpd = "", tUriApi = "", tUsrApi = "", tPwdApi = "";
-            string tFunction = "3", tConnDB = "", tStaSentOnOff; 
+            string tJsonTrn = "", tSQL = "", tExecute = "", tLastUpd = "", tUriApi = "", tUsrApi = "", tPwdApi = "";
+            string tFunction = "3", tConnDB = "", tStaSentOnOff;
             DataTable oTblConfig;
             DataRow[] aoRow;
             Double cPointValue = 1;  //*Em 61-08-04
@@ -114,14 +114,14 @@ namespace MDll2API.Class.POSLog
                         {
                             if (oRESMsg.tML_StatusCode == "200")
                             {
-                               var oSQL = new StringBuilder();
+                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                                var oSQL = new StringBuilder();
                                 oSQL.AppendLine("UPDATE TPSTSalHD WITH (ROWLOCK)");
                                 oSQL.AppendLine("SET FTStaSentOnOff = '1'");
                                 //oSQL.AppendLine("   ,FTStaEOD = '1'");
                                 oSQL.AppendLine("   ,FTJsonFileName = '" + oRESMsg.tML_FileName + "'");
                                 oSQL.AppendLine("WHERE FTShdTransNo IN (" + ptShdTransNo + ")");
-                                var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
-                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                                var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);   
                             }
                             else
                             {
@@ -130,11 +130,11 @@ namespace MDll2API.Class.POSLog
                         }
                         else if (ptMode.Equals("AUTO"))
                         {
-                           
+
                             if (oRESMsg.tML_StatusCode == "200")
                             {
                                 tStaSentOnOff = "1";
-                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";    
+                                oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
                             }
                             else
                             {
@@ -163,6 +163,12 @@ namespace MDll2API.Class.POSLog
                         cKeepLog.C_SETxKeepLogForSale(aoRow, oRESMsg);
                         #endregion
                     }
+                    else
+                    {
+                        oRESMsg.tML_StatusCode = "001";
+                        oRESMsg.tML_StatusMsg = "ฟังก์ชั่น APIไม่ทำงาน";
+                    }
+
                 }
                 else
                 {
@@ -673,10 +679,10 @@ namespace MDll2API.Class.POSLog
 
                 if (tC_Mode == "AUTO")
                 {
-                    oSQL.AppendLine("WHERE ISNULL(HD.FTStaSentOnOff, '0') <> '1' AND HD.FCShdGrand > 0");                  
+                    oSQL.AppendLine("WHERE ISNULL(HD.FTStaSentOnOff, '0') <> '1' AND HD.FCShdGrand > 0");
                 }
                 else if (tC_Mode == "MANUAL")
-                { 
+                {
                     oSQL.AppendLine("WHERE HD.FCShdGrand > 0 AND " + oC_RcvSale.Field + oC_RcvSale.Value + " ");
                 }
 

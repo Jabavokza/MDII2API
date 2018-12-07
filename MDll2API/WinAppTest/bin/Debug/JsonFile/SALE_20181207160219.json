@@ -1,0 +1,96 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KA"},
+"WorkstationID":"09101",
+"SequenceNumber":"201809140910113587",
+"OperatorID":"1111",
+"CurrencyCode":"THB",
+"Reference": {
+	"LocationID":"001",
+	"LocationDescription":"Bangkapi Super"},
+"RetailTransaction": {
+		"@ItemType": "03", 
+	"LineItem": [
+{
+			"Sale":{
+				"POSIdentity": {
+					"@POSIDType": "EAN",
+					"POSItemID": "2901325127824"
+					},
+				"Description": "GT-1 BASKET GT 2018",
+				"UnitListPrice": "1820.00",
+				"RegularSalesUnitPrice": "1820.00",
+				"ActualSalesUnitPrice": "1729.00",
+				"ExtendedAmount": "1729.00",
+				"Quantity": {
+					"@UnitOfMeasureCode": "EA",
+					"$": "1"
+						},
+				"Associate": { "AssociateID": "555" },
+				"RetailPriceModifier": [
+	{
+					"SequenceNumber": "1",
+					"Amount": {
+						"@Action": "Subtract",
+						"$": "91.00"
+						},
+					"PromotionID": "003000000055",
+					"Description": "P008 Mall Card 10%",
+					"PromotionArea": "",
+					"PromotionProfile": "P008"
+					}
+
+					],
+				"Tax": {
+					"@TaxType": "VAT",
+					"SequenceNumber": "1",
+					"TaxableAmount": {
+						"@TaxIncludedInTaxableAmountFlag": "false",
+						"$": "1615.89"
+						},
+					"TaxablePercentage": "100.00",
+					"Amount": "113.11",
+					"Percent": "7",
+					"TaxRuleID": "O7"
+					},
+				"SerialNumber": ""				},
+			"SequenceNumber":"1"			},{
+			"Tender":{
+				"@TenderType": "T001",
+				"@SequenceNumber": "1",
+				"Amount": {
+					"@Currency": "THB",
+					"$": "1729.00"
+					},
+					"Reference": ""
+				},
+			"SequenceNumber":"2"			},{
+			"LoyaltyReward": {
+				"SequenceNumber": "1",
+				"LoyaltyID": "7102100000003145",
+				"LoyaltyProgramID": "Basic",
+				"CustomerName": "Fujtisu Systems",
+				"ExpiryDate": "9999-12-31",
+				"PointsAwarded": {
+					"@Type": "PointsEarned",
+					"$": "69"
+					},
+				"Discount": {"Amount":"17.25"}
+				},
+			"SequenceNumber":"3"			}
+		],
+	"Customer": { "CustomerID": "" }
+	},"BusinessDayDate": "2018-09-14",
+"BeginDateTime": "20180914123917",
+"EndDateTime": "20180914125909"
+}
+]
+}
+}
