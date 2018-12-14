@@ -5,10 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDll2API", "MDll2API\MDll2API.csproj", "{9C80137D-10BC-489A-8D6F-496607291700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAppTest", "WinAppTest\WinAppTest.csproj", "{DE2CCAEC-18EA-4E3D-A722-247DB4FDCAA2}"
-	ProjectSection(ProjectDependencies) = postProject
-		{9C80137D-10BC-489A-8D6F-496607291700} = {9C80137D-10BC-489A-8D6F-496607291700}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POSLOG", "POSLOG\POSLOG.csproj", "{DE2CCAEC-18EA-4E3D-A722-247DB4FDCAA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,8 +35,8 @@ Global
 		SccProjectUniqueName1 = MDll2API\\MDll2API.csproj
 		SccLocalPath1 = .
 		SccProjectFilePathRelativizedFromConnection1 = MDll2API\\
-		SccProjectUniqueName2 = WinAppTest\\WinAppTest.csproj
+		SccProjectUniqueName2 = POSLOG\\POSLOG.csproj
 		SccLocalPath2 = .
-		SccProjectFilePathRelativizedFromConnection2 = WinAppTest\\
+		SccProjectFilePathRelativizedFromConnection2 = POSLOG\\
 	EndGlobalSection
 EndGlobal

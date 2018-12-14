@@ -1,0 +1,10 @@
+D:\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\MDll2API.dll
+D:\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\MDll2API.pdb
+D:\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\Newtonsoft.Json.dll
+D:\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\Newtonsoft.Json.pdb
+D:\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\Newtonsoft.Json.xml
+D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.csprojAssemblyReference.cache
+D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.csproj.CoreCompileInputs.cache
+D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.csproj.CopyComplete
+D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.dll
+D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.pdb

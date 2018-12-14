@@ -173,7 +173,7 @@ namespace MDll2API.Class.ST_Class
                 oTbl = oDs.Tables[1]; //POSCENTER
                 return oTbl;
             }
-            catch (Exception)
+            catch (Exception oEx)
             {
                 return null;
             }

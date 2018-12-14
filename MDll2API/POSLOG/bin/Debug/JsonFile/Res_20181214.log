@@ -1,0 +1,26 @@
+[INFO ] 2018-12-14 16:33:34,700  8767ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:34 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163334.json
+[DEBUG] 2018-12-14 16:33:34,724  8791ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:37,355 11422ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:37 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163337.json
+[DEBUG] 2018-12-14 16:33:37,356 11423ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:40,370 14437ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:40 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163340.json
+[DEBUG] 2018-12-14 16:33:40,371 14438ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:43,374 17441ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:43 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163343.json
+[DEBUG] 2018-12-14 16:33:43,374 17441ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:46,374 20441ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:46 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163346.json
+[DEBUG] 2018-12-14 16:33:46,375 20442ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:49,368 23435ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:49 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163349.json
+[DEBUG] 2018-12-14 16:33:49,368 23435ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:52,367 26434ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:52 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163352.json
+[DEBUG] 2018-12-14 16:33:52,368 26435ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:55,361 29428ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:55 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163355.json
+[DEBUG] 2018-12-14 16:33:55,361 29428ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:33:58,419 32487ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:33:58 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163358.json
+[DEBUG] 2018-12-14 16:33:58,419 32487ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:34:01,382 35449ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:34:01 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163401.json
+[DEBUG] 2018-12-14 16:34:01,382 35449ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:34:04,402 38469ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:34:04 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163404.json
+[DEBUG] 2018-12-14 16:34:04,402 38469ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:34:07,365 41432ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:34:07 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163407.json
+[DEBUG] 2018-12-14 16:34:07,365 41432ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.
+[INFO ] 2018-12-14 16:34:10,453 44520ms [wMain:W_GEToSale(line:183)] -  [Sale Time] = 2561-12-14  16:34:10 [Sale URL] = http://localhost/MOCKAPI/Api/MOCK-API [Sale FileName] = SALE_20181214163410.json
+[DEBUG] 2018-12-14 16:34:10,453 44520ms [wMain:W_GEToSale(line:184)] - [Sale Status]=[Message]=The remote server returned an error: (400) Bad Request.

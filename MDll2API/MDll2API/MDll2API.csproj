@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\ST-Class\cConWebAPI.cs" />
+    <Compile Include="Class\ST-Class\cConnectWebAPI.cs" />
     <Compile Include="Class\ST-Class\cFusionJSON.cs" />
     <Compile Include="Class\ST-Class\cKeepLog.cs" />
     <Compile Include="Class\X-Class\cAutomatic.cs" />
@@ -71,24 +71,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\MDll2API.csproj.CopyComplete" />
-    <None Include="obj\Debug\MDll2API.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\MDll2API.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\MDll2API.dll" />
-    <Content Include="bin\Debug\MDll2API.pdb" />
-    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
-    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
-    <Content Include="obj\Debug\MDll2API.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\MDll2API.dll" />
-    <Content Include="obj\Debug\MDll2API.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
-    <Folder Include="obj\Debug\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

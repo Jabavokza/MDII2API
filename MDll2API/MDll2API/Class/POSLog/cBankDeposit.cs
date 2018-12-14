@@ -20,7 +20,7 @@ namespace MDll2API.Class.POSLog
         {
             tC_APIEnable = ptAPIEnable;
         }
-        public mlRESMsg C_POSTtBankDeposit(string ptMode, string ptTransDate, string[] patPlantCode)
+        public mlRESMsg C_POSToBankDeposit(string ptMode, string ptTransDate, string[] patPlantCode)
         {
 
             string tJson = "";
@@ -120,12 +120,13 @@ namespace MDll2API.Class.POSLog
                     var oJson = oFusionJSON.oC_Json;
                     #endregion
                     oRESMsg.tML_FileName = cCNSP.SP_WRItJSON(oJson.ToString(), "BANK");
+                    oRESMsg.tML_TimeSent = DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss"); //เก็บเวลาที่ส่ง ไว้ลงLog
+                    oRESMsg.tML_UrlApi = tUriApi; //เก็บUrlApi ไว้ลงLog
 
-                    //Call API
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
-                        if (oRESMsg.tML_StatusCode == "200")
+                        oRESMsg.tML_StatusCode = cConnectWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());//Call API
+                        if (oRESMsg.tML_StatusCode == "200" || oRESMsg.tML_StatusCode == "202")
                         {
                             tStaSentOnOff = "1";
                             oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
@@ -136,43 +137,61 @@ namespace MDll2API.Class.POSLog
                             oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
                         };
 
-                        #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
-                        if (ptMode == "AUTO")
+                        for (int nRow = 0; nRow < oRow.Length; nRow++)
                         {
-                            oSQL = new StringBuilder();
-                            oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                            oSQL.AppendLine("AND FTStaBankIn = '0'");
-                        }
-                        else
-                        {
-                            oSQL = new StringBuilder();
-                            oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                            oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
-                        }
-
-                        oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(tJson);
-
-                        for (int i = 0; i < oPOSBankDeposit.oML_POSLog.Transaction.Length; i++)
-                        {
-                            for (int j = 0; j < oPOSBankDeposit.oML_POSLog.Transaction[i].Length; j++)
+                            // Create Connection String Db
+                            tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
+                            tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
+                            tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
+                            tConnDB += "; Connection Timeout = 60";
+                            #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
+                            if (ptMode == "AUTO")
                             {
-                                string tDate = oPOSBankDeposit.oML_POSLog.Transaction[i][j].tML_BusinessDayDate;
-                                string tOper = oPOSBankDeposit.oML_POSLog.Transaction[i][j].tML_OperatorID;
-                                string tPlant = oPOSBankDeposit.oML_POSLog.Transaction[i][j].oML_BusinessUnit.tML_UnitID;
-
                                 oSQL = new StringBuilder();
-                                oSQL.AppendLine("UPDATE TPSTBankDeposit");
-                                oSQL.AppendLine("SET FTStaSentOnOff = '" + tStaSentOnOff + "'");
-                                oSQL.AppendLine(",FTJsonFileName ='" + oRESMsg.tML_FileName + "'");
-                                oSQL.AppendLine("WHERE  FTBdpPlantCode ='" + tPlant + "'");
-                                oSQL.AppendLine("AND  FTBdpDepositBy ='" + tOper + "'");
-                                oSQL.AppendLine("WHERE  FDBdpDepositDate ='" + tDate + "'");
-                                var nResult = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                                oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
+                                oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
+                                oSQL.AppendLine("AND FTStaBankIn = '0'");
                             }
+                            else
+                            {
+                                oSQL = new StringBuilder();
+                                oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
+                                oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
+                                oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
+                            }
+
+                            oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(tJson);
+
+                            for (int i = 0; i < oPOSBankDeposit.oML_POSLog.Transaction.Length; i++)
+                            {
+                                for (int j = 0; j < oPOSBankDeposit.oML_POSLog.Transaction[i].Length; j++)
+                                {
+                                    string tDate = oPOSBankDeposit.oML_POSLog.Transaction[i][j].tML_BusinessDayDate;
+                                    string tOper = oPOSBankDeposit.oML_POSLog.Transaction[i][j].tML_OperatorID;
+                                    string tPlant = oPOSBankDeposit.oML_POSLog.Transaction[i][j].oML_BusinessUnit.tML_UnitID;
+
+                                    oSQL = new StringBuilder();
+                                    oSQL.AppendLine("UPDATE TPSTBankDeposit");
+                                    oSQL.AppendLine("SET FTStaSentOnOff = '" + tStaSentOnOff + "'");
+                                    oSQL.AppendLine(",FTJsonFileName ='" + oRESMsg.tML_FileName + "'");
+                                    oSQL.AppendLine("WHERE  FTBdpPlantCode ='" + tPlant + "'");
+                                    oSQL.AppendLine("AND  FTBdpDepositBy ='" + tOper + "'");
+                                    oSQL.AppendLine("WHERE  FDBdpDepositDate ='" + tDate + "'");
+                                    var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                                    //if (nRowEff > 0)// 10/812/82018
+                                    //{
+                                    //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตสำเร็จ";
+                                    //}
+                                    //else
+                                    //{
+                                    //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตไม่สำเร็จ";
+                                    //}
+                                }
+                            }
+                            #endregion
                         }
-                        #endregion
+
+
 
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForBank(aoRow, oRESMsg);

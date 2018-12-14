@@ -17,7 +17,7 @@ namespace MDll2API.Class.POSLog
         {
             tC_APIEnable = ptAPIEnable;
         }
-        public mlRESMsg C_POSTtCash(string ptMode ,string ptTransDate,string[] patPlantCash)
+        public mlRESMsg C_POSToCash(string ptMode ,string ptTransDate,string[] patPlantCash)
         {
             //=====================TEST ===========
             //try
@@ -136,8 +136,8 @@ namespace MDll2API.Class.POSLog
                     //Call API
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
-                        if (oRESMsg.tML_StatusCode == "200")
+                        oRESMsg.tML_StatusCode = cConnectWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        if (oRESMsg.tML_StatusCode == "200" || oRESMsg.tML_StatusCode == "202")
                         {
                             tStaSentOnOff = "1";
                             oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
@@ -147,41 +147,60 @@ namespace MDll2API.Class.POSLog
                             tStaSentOnOff = "2";
                             oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
                         };
-
-                        #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
-                        oSQL = new StringBuilder();
-                        if (ptMode == "AUTO")
+                        for (int nRow = 0; nRow < oRow.Length; nRow++)
                         {
-                            oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                            oSQL.AppendLine("AND FTStaEOD = '0'");
-                            //oSQL.AppendLine("AND FTPlantCode = '" + patPlantCode + "'");
-                        }
-                        else if (ptMode == "MANUAL")
-                        {
+                            // Create Connection String Db
+                            tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
+                            tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
+                            tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
+                            tConnDB += "; Connection Timeout = 60";
+                            #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
                             oSQL = new StringBuilder();
-                            oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
-                            oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                            oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
-                            //oSQL.AppendLine("AND FTPlantCode = '"+ patPlantCode + "'");
-                        }
-
-                        var oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tConnDB);
-                        if (oDbChk.Rows.Count > 0)
-                        {
-                            for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
+                            if (ptMode == "AUTO")
+                            {
+                                oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
+                                oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
+                                oSQL.AppendLine("AND FTStaEOD = '0'");
+                                //oSQL.AppendLine("AND FTPlantCode = '" + patPlantCode + "'");
+                            }
+                            else if (ptMode == "MANUAL")
                             {
                                 oSQL = new StringBuilder();
-                                oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
-                                oSQL.AppendLine("SET FTStaSentOnOff = '"+ tStaSentOnOff + "'");
-                                oSQL.AppendLine("   ,FTStaEDC = '1'");
-                                oSQL.AppendLine("   ,FTJsonFileEDC = '" + oRESMsg.tML_FileName + "'");
-                                oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
-                                oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
-                                var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                                oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
+                                oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
+                                oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
+                                //oSQL.AppendLine("AND FTPlantCode = '"+ patPlantCode + "'");
                             }
+
+                            var oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tConnDB);
+                            if (oDbChk.Rows.Count > 0)// 10/812/82018
+                            {
+                                for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
+                                {
+                                    oSQL = new StringBuilder();
+                                    oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
+                                    oSQL.AppendLine("SET FTStaSentOnOff = '" + tStaSentOnOff + "'");
+                                    oSQL.AppendLine("   ,FTStaEDC = '1'");
+                                    oSQL.AppendLine("   ,FTJsonFileEDC = '" + oRESMsg.tML_FileName + "'");
+                                    oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
+                                    oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
+                                    var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                                    //if (nRowEff > 0)
+                                    //{
+                                    //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตสำเร็จ";
+                                    //}
+                                    //else
+                                    //{
+                                    //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตไม่สำเร็จ";
+                                    //}
+                                }
+                            }
+                            #endregion
+
                         }
-                        #endregion
+
+
+
 
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForEOD(aoRow, oRESMsg);

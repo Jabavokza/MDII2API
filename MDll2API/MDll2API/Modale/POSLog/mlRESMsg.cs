@@ -9,5 +9,8 @@ namespace MDll2API.Modale.POSLog
         public string tML_StatusCode { get; set; }
         public string tML_StatusMsg { get; set; }
         public string tML_FileName { get; set; }
+        public string tML_TimeSent { get; set; }
+        public string tML_UrlApi { get; set; }
+
     }
 }
