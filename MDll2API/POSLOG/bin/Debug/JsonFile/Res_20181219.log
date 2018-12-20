@@ -1,0 +1,48 @@
+[INFO ] 2018-12-19 18:06:34,876 11446ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] = 2018-12-19  18:06:34 [Redeem URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [Redeem FileName] = REDEEM_20181219180634.json
+[DEBUG] 2018-12-19 18:06:34,905 11475ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=202[Message]=ส่งข้อมูลสมบูรณ์
+[INFO ] 2018-12-19 18:06:35,011 11582ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] = 2018-12-19  18:06:34 [Redeem URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [Redeem FileName] = REDEEM_20181219180634.json
+[DEBUG] 2018-12-19 18:06:35,011 11582ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=202[Message]=ส่งข้อมูลสมบูรณ์
+[INFO ] 2018-12-19 18:06:37,512 14083ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] = 2018-12-19  18:06:37 [Redeem URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [Redeem FileName] = REDEEM_20181219180637.json
+[DEBUG] 2018-12-19 18:06:37,513 14084ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=202[Message]=ส่งข้อมูลสมบูรณ์
+[INFO ] 2018-12-19 18:06:40,375 16945ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] = 2018-12-19  18:06:40 [Redeem URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [Redeem FileName] = REDEEM_20181219180640.json
+[DEBUG] 2018-12-19 18:06:40,376 16946ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=202[Message]=ส่งข้อมูลสมบูรณ์
+[INFO ] 2018-12-19 18:06:43,352 19923ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] = 2018-12-19  18:06:43 [Redeem URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [Redeem FileName] = REDEEM_20181219180643.json
+[DEBUG] 2018-12-19 18:06:43,352 19923ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=202[Message]=ส่งข้อมูลสมบูรณ์
+[INFO ] 2018-12-19 18:12:25,512  9483ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:25,541  9513ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:28,411 12382ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:28,411 12382ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:31,433 15404ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:31,433 15404ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:34,410 18381ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:34,410 18381ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:37,417 21388ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:37,417 21388ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:40,399 24370ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:40,400 24371ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:43,393 27364ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:43,393 27364ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:46,406 30377ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:46,406 30377ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:49,418 33389ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:49,419 33390ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:52,398 36369ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:52,398 36369ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:55,412 39383ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:55,412 39383ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:12:58,407 42378ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:12:58,407 42378ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:13:01,396 45367ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:13:01,396 45367ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:13:04,396 48367ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:13:04,396 48367ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:13:07,399 51371ms [wMain:W_GEToRedeem(line:421)] - [Redeem Time] =  [Redeem URL] =  [Redeem FileName] = 
+[DEBUG] 2018-12-19 18:13:07,400 51372ms [wMain:W_GEToRedeem(line:422)] - [Redeem Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง
+[INFO ] 2018-12-19 18:25:42,309 46783ms [wMain:W_SEToEOD(line:393)] -  [EOD Time] = 2018-12-19  18:25:41 [EOD URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [EOD FileName] = DAYSUMARY_20181219182541.json
+[DEBUG] 2018-12-19 18:25:42,337 46811ms [wMain:W_SEToEOD(line:394)] - [EOD Status]=202[Message]=ส่งข้อมูลสมบูรณ์[StatusUpdate]=อัพเดตสำเร็จ
+[INFO ] 2018-12-19 18:39:29,217 22497ms [wMain:W_SEToEOD(line:393)] -  [EOD Time] = 2018-12-19  18:39:29 [EOD URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [EOD FileName] = DAYSUMARY_20181219183929.json
+[DEBUG] 2018-12-19 18:39:29,247 22527ms [wMain:W_SEToEOD(line:394)] - [EOD Status]=202[Message]=ส่งข้อมูลสมบูรณ์[StatusUpdate]=อัพเดตสำเร็จ
+[INFO ] 2018-12-19 18:44:14,183 34030ms [wMain:W_SEToEOD(line:393)] -  [EOD Time] =  [EOD URL] =  [EOD FileName] = 
+[DEBUG] 2018-12-19 18:44:14,211 34058ms [wMain:W_SEToEOD(line:394)] - [EOD Status]=000[Message]=ไม่พบข้อมูลที่จะส่ง[StatusUpdate]=
+[ERROR] 2018-12-19 19:35:22,686 28416ms [Program:Main(line:39)] - Length cannot be less than zero.
+Parameter name: length

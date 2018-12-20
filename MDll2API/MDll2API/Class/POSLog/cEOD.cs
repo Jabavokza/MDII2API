@@ -66,7 +66,7 @@ namespace MDll2API.Class.POSLog
                     tConnDB = "Data Source = " + oRow[nRow]["Server"].ToString();
                     tConnDB += "; Initial Catalog = " + oRow[nRow]["DBName"].ToString();
                     tConnDB += "; User ID = " + oRow[nRow]["User"].ToString() + "; Password = " + oRow[nRow]["Password"].ToString();
-
+                    tConnDB += "; Connection Timeout = 120";
                     // Check TPOSLogHis  Existing
                     tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
@@ -81,7 +81,10 @@ namespace MDll2API.Class.POSLog
                     tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]), tWorkStationID, tWorkStation, ptPlantCode, ptTransDate);  //*Em 61-07-24
 
                     tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
-
+                    if (tExecute == "[]")
+                    {
+                        tExecute = "";
+                    }
                     if (tExecute != "")
                     {
                         if (tJsonTrn == "")
@@ -93,13 +96,7 @@ namespace MDll2API.Class.POSLog
                             tJsonTrn = tJsonTrn + ',' + tExecute;
                         }
                     }
-                    else
-                    {
-                        if (tJsonTrn == "[]")
-                        {
-                            tJsonTrn = "";
-                        }
-                    }
+
                 }
                 if (tJsonTrn != "")
                 {
@@ -113,7 +110,9 @@ namespace MDll2API.Class.POSLog
                     //Call API
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConnectWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        var oConnectWebAPI = new cConnectWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        oRESMsg.tML_StatusCode = oConnectWebAPI.tC_StatusCode;
+
                         if (oRESMsg.tML_StatusCode == "200" || oRESMsg.tML_StatusCode == "202")
                         {
                             tStaSentOnOff = "1";
@@ -132,14 +131,14 @@ namespace MDll2API.Class.POSLog
                             tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
                             tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
                             tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
-                            tConnDB += "; Connection Timeout = 60";
+                            tConnDB += "; Connection Timeout = 120";
                             #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
                             oSQL = new StringBuilder();
                             if (ptMode == "AUTO")
                             {
                                 oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
                                 oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                                oSQL.AppendLine("AND FTStaEOD = '0'");
+                                oSQL.AppendLine("AND ISNULL(FTStaEOD,'0') = '0'");
                                 //oSQL.AppendLine("AND FTPlantCode = '" + patPlantCode + "'");
                             }
                             else if (ptMode == "MANUAL")
@@ -165,19 +164,17 @@ namespace MDll2API.Class.POSLog
                                     nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
 
                                 }
-                            }
-                            if (nRowEff > 0)// 10/12/82018
-                            {
-                                oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตสำเร็จ";
-                            }
-                            else
-                            {
-                                oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตไม่สำเร็จ";
+                                if (nRowEff > 0)// 10/12/82018
+                                {
+                                    oRESMsg.tML_StatusUpdate = "อัพเดตสำเร็จ";
+                                }
+                                else
+                                {
+                                    oRESMsg.tML_StatusUpdate = "อัพเดตไม่สำเร็จ";
+                                }
                             }
                             #endregion
                         }
-
-
 
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForEOD(aoRow, oRESMsg);
@@ -521,6 +518,8 @@ namespace MDll2API.Class.POSLog
                     //if (ptLastUpd != "")
                     //{
                     oSQL.AppendLine("WHERE HD2.FCShdRnd <> 0 ");
+                    oSQL.AppendLine("AND HD2.FDShdTrantDate = HD.FDShdTrantDate");
+                    oSQL.AppendLine("AND HD2.FTShdPlantCode = HD.FTShdPlantCode");
                     //    oSQL.AppendLine("AND HD2.FTShdPlantCode IN(SELECT FTPlantCode FROM[dbo].TCNMPlnCloseSta where FDSaleDate = '" + tC_DateTrn + "' AND ISNULL(FTStaEOD, '0') = '0')");
                     //}
                     //else
@@ -557,7 +556,8 @@ namespace MDll2API.Class.POSLog
                     //    if (ptLastUpd != "")
                     //   {
                     oSQL.AppendLine("WHERE  HD.FDShdTransDate = '" + ptTransDate + "'");
-                    oSQL.AppendLine("AND HD.FTShdPlantCode IN(SELECT FTPlantCode FROM[dbo].TCNMPlnCloseSta WHERE FDSaleDate = '" + ptTransDate + "' AND ISNULL(FTStaEOD, '0') = '0')");
+                    oSQL.AppendLine("AND HD.FTShdPlantCode IN(SELECT FTPlantCode FROM[dbo].TCNMPlnCloseSta WHERE FDSaleDate = '" + ptTransDate + "' ");
+                    oSQL.AppendLine("AND ISNULL(FTStaEOD, '0') = '0')");
                     //   }
                     //   else
                     //  {

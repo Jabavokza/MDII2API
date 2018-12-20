@@ -79,6 +79,10 @@ namespace MDll2API.Class.POSLog
                     //tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]));
                     tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(aoRow[nRow]["TopRow"]), cPointValue); //*Em 61-08-04
                     tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
+                    if (tExecute == "[]")
+                    {
+                        tExecute = "";
+                    }
                     if (tExecute != "")
                     {
                         if (tJsonTrn == "")
@@ -100,15 +104,15 @@ namespace MDll2API.Class.POSLog
                     #endregion
 
                     oJson = oJson.Replace("amp;", ""); //คือ & เอาออก
-                   // oJson = oJson.Replace("Description", "");
+                                                       // oJson = oJson.Replace("Description", "");
                     oRESMsg.tML_FileName = cCNSP.SP_WRItJSON(oJson.ToString(), "SALE");
                     oRESMsg.tML_TimeSent = DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss"); //เก็บเวลาที่ส่ง ไว้ลงLog
                     oRESMsg.tML_UrlApi = tUriApi; //เก็บUrlApi ไว้ลงLog
                     if (tC_APIEnable == "true")
                     {
                         //Call API
-                        oRESMsg.tML_StatusCode = cConnectWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
-
+                        var oConnectWebAPI = new cConnectWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        oRESMsg.tML_StatusCode = oConnectWebAPI.tC_StatusCode;
                         for (int nRow = 0; nRow < aoRow.Length; nRow++)
                         {
                             // Create Connection String Db
@@ -322,6 +326,7 @@ namespace MDll2API.Class.POSLog
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Description\": \"' + FTScdBBYDesc + '\",' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionArea\": \"' + FTScdProArea + '\",' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionProfile\": \"' + FTScdBBYProfID + '\"' + CHAR(10) +");
+              //  oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionTire \": \"' + FTScdTierID + '\"' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '}' + CHAR(10) + ''");
                 oSQL.AppendLine("FROM");
                 oSQL.AppendLine("(SELECT DTB.FNSdtSeqNo, DTB.FNSdtSeqNo as FNScdSeqNo, CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), (DTB.FCSdtRegPrice - FCSdtSalePrice) * DTB.FCsdtQty)) as FCScdAmt, HDB.FTShdBBYNo as FTScdBBYNo, HDB.FTShdBBYDesc as FTScdBBYDesc,");
@@ -366,6 +371,7 @@ namespace MDll2API.Class.POSLog
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Description\": \"' + FTScdBBYDesc + '\",' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionArea\": \"' + FTScdProArea + '\",' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionProfile\": \"' + FTScdBBYProfID + '\"' + CHAR(10) +");
+               // oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"PromotionTire \": \"'+ FTScdTierID +'\"' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '}' + CHAR(10) + ''");
                 oSQL.AppendLine("FROM");
                 oSQL.AppendLine("(select FNSdtSeqNo, FNScdSeqNo, FCScdAmt, FTScdBBYNo, FTScdBBYDesc, FTScdProArea, FTScdBBYProfID");
@@ -505,6 +511,7 @@ namespace MDll2API.Class.POSLog
                 //oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCSrcAmt)) + '\",' + CHAR(10) +");
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCSrcNet)) + '\",' + CHAR(10) +");  //*Em 61-07-18
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CreditDebit\":{' + CHAR(10) +");
+              //  oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CardType\": \"' + (SELECT MAX(FTLNMCardTypeName) FROM "+ tPosLnkDB + "TLNKMapping WHERE LeFT(FTLNMRangeCard,8)= LEFT(FTSrcCardNo,8)) + '\",' + CHAR(10) +");// Kin 20 - 12 - 2018
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CardClassification\": \"' + FTSrcCrdCls + '\",' + CHAR(10) +");
                 //oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CreditCardCompany\": \"' + FTSrcRetDocRef + '\",' + CHAR(10) +");
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CreditCardCompany\": \"' + FTSrcCrdName + '\",' + CHAR(10) +"); //*Kin 12-12-18
@@ -521,6 +528,7 @@ namespace MDll2API.Class.POSLog
                 //oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCSrcAmt)) + '\",' + CHAR(10) +");
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"Amount\": \"' + CONVERT(VARCHAR, CONVERT(DECIMAL(18, 2), FCSrcNet)) + '\",' + CHAR(10) +");  //*Em 61-07-18
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CreditDebit\":{' + CHAR(10) +");
+              //  oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CardType\": \"' + (SELECT MAX(FTLNMCardTypeName) FROM " + tPosLnkDB + "TLNKMapping WHERE LeFT(FTLNMRangeCard,8)= LEFT(FTSrcCardNo,8)) + '\",' + CHAR(10) +");// Kin 20 - 12 - 2018
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CardClassification\": \"' + FTSrcCrdCls + '\",' + CHAR(10) +");
                 //oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CreditCardCompany\": \"' + FTSrcRetDocRef + '\",' + CHAR(10) +");
                 oSQL.AppendLine("               CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + CHAR(9) + '\"CreditCardCompany\": \"' + FTSrcCrdName + '\",' + CHAR(10) +"); //*Kin 12-12-18

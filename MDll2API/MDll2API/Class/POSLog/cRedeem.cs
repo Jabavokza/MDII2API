@@ -54,9 +54,9 @@ namespace MDll2API.Class.POSLog
                     tConnDB = "Data Source=" + aoRow[nRow]["Server"].ToString();
                     tConnDB += "; Initial Catalog=" + aoRow[nRow]["DBName"].ToString();
                     tConnDB += "; User ID=" + aoRow[nRow]["User"].ToString() + "; Password=" + aoRow[nRow]["Password"].ToString();
-
+                    tConnDB += "; Connection Timeout = 120";
                     // Check TPOSLogHis  Existing
-                   var tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
+                    var tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
 
                     // Get Max FTBathNo Condition To Json
@@ -68,6 +68,10 @@ namespace MDll2API.Class.POSLog
                     tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(aoRow[nRow]["TopRow"]), tWorkStationID, tWorkStation);  //*Em 61-08-09 Com.Sheet ML-POSC-0032
 
                   var  tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
+                    if (tExecute == "[]")
+                    {
+                        tExecute = "";
+                    }
                     if (tExecute != "")
                     {
                         if (tJsonTrn == "")
@@ -93,7 +97,8 @@ namespace MDll2API.Class.POSLog
                     if (tC_APIEnable == "true")
                     {
                         //Call API
-                        oRESMsg.tML_StatusCode = cConnectWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        var oConnectWebAPI = new cConnectWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        oRESMsg.tML_StatusCode = oConnectWebAPI.tC_StatusCode;
 
                         for (int nRow = 0; nRow < aoRow.Length; nRow++)
                         {
@@ -101,7 +106,7 @@ namespace MDll2API.Class.POSLog
                             tConnDB = "Data Source=" + aoRow[nRow]["Server"].ToString();
                             tConnDB += "; Initial Catalog=" + aoRow[nRow]["DBName"].ToString();
                             tConnDB += "; User ID=" + aoRow[nRow]["User"].ToString() + "; Password=" + aoRow[nRow]["Password"].ToString();
-                            tConnDB += "; Connection Timeout = 60";
+                            tConnDB += "; Connection Timeout = 120";
                             #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
                             //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff --------------------------------- 
                             if (ptMode.Equals("MANUAL"))
@@ -133,13 +138,13 @@ namespace MDll2API.Class.POSLog
                             {
                                 if (oRESMsg.tML_StatusCode == "200" || oRESMsg.tML_StatusCode == "202")
                                 {
-                                    tStaSentOnOff = "2";
-                                    oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
+                                    tStaSentOnOff = "1";
+                                    oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
                                 }
                                 else
                                 {
-                                    tStaSentOnOff = "1";
-                                    oRESMsg.tML_StatusMsg = "ส่งข้อมูลสมบูรณ์";
+                                    tStaSentOnOff = "2";
+                                    oRESMsg.tML_StatusMsg = "ส่งข้อมูลไม่สำเร็จ";
                                 };
 
                                 var oSQL = new StringBuilder();
@@ -149,14 +154,7 @@ namespace MDll2API.Class.POSLog
                                 // oSQL.AppendLine("WHERE FDRPDocDate = '" + Convert.ToDateTime(poRedeem.tML_RPDocDate).ToString("yyyy-MM-dd") + "'");
                                 oSQL.AppendLine("WHERE FDRPDocDate = '" + ptTransDate + "'");
                                 var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
-                                //if (nRowEff > 0)
-                                //{
-                                //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตสำเร็จ";
-                                //}
-                                //else
-                                //{
-                                //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตไม่สำเร็จ";
-                                //}
+      
                             }
                             //----------------------------UPDATE FLAG TPSTSalHD.FTStaSentOnOff --------------------------------- 
                             #endregion

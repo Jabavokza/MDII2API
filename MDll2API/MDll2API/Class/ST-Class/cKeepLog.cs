@@ -6,9 +6,9 @@ using System.Text;
 
 namespace MDll2API.Class.ST_Class
 {
-    public static class cKeepLog
+    public  class cKeepLog
     {
-        public static void C_SETxKeepLogForSale(DataRow[] poRow, mlRESMsg poRESMsg)
+        public  void C_SETxKeepLogForSale(DataRow[] poRow, mlRESMsg poRESMsg)
         {
             string tConnDB;
             string tFunction = "3";
@@ -57,10 +57,10 @@ namespace MDll2API.Class.ST_Class
             }
         }
 
-        public static void C_SETxKeepLogForReDeem(DataRow[] poRow, mlRESMsg poRESMsg)
+        public  void C_SETxKeepLogForReDeem(DataRow[] poRow, mlRESMsg poRESMsg)
         {
             string tConnDB;
-            string tFunction = "3";
+            string tFunction = "6";
             try
             {
                 #region " Keep Log"

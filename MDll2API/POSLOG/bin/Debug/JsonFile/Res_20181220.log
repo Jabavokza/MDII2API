@@ -1,0 +1,2 @@
+[INFO ] 2018-12-20 09:58:55,580 204208ms [wMain:W_SEToEOD(line:393)] -  [EOD Time] = 2018-12-20  09:58:55 [EOD URL] = https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx [EOD FileName] = DAYSUMARY_20181220095855.json
+[DEBUG] 2018-12-20 09:58:55,778 204407ms [wMain:W_SEToEOD(line:394)] - [EOD Status]=202[Message]=ส่งข้อมูลสมบูรณ์[StatusUpdate]=อัพเดตสำเร็จ

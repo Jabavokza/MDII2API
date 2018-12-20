@@ -40,7 +40,7 @@ namespace MDll2API.Class.POSLog
             DataRow[] oRow;
             string tWorkStationID = ""; //*Em 61-08-04
             string tWorkStation = ""; //*Em 61-08-04
-            mlPOSBankDeposit oPOSBankDeposit = null;
+            mlPOSBankDeposit oPOSBankDeposit = new mlPOSBankDeposit();
 
             cCHKDBLogHis oCHKDBLogHis = new cCHKDBLogHis();
             mlRESMsg oRESMsg = new mlRESMsg();
@@ -80,7 +80,7 @@ namespace MDll2API.Class.POSLog
                     tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
                     tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
                     tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
-
+                    tConnDB += "; Connection Timeout = 120";
                     // Check TPOSLogHis  Existing
                     tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
@@ -94,7 +94,10 @@ namespace MDll2API.Class.POSLog
                     tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]), tWorkStationID, tWorkStation, ptMode, tPlantCode, ptTransDate);  //*Em 61-07-24
 
                     tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
-
+                    if (tExecute == "[]")
+                    {
+                        tExecute = "";
+                    }
                     if (tExecute != "")
                     {
                         if (tJsonTrn == "")
@@ -106,11 +109,7 @@ namespace MDll2API.Class.POSLog
                             tJsonTrn = tJsonTrn + ',' + tExecute;
                         }
                     }
-
-                    if (tJsonTrn == "[]")
-                    {
-                        tJsonTrn = "";
-                    }
+  
                 }
 
                 if (tJsonTrn != "")
@@ -125,7 +124,9 @@ namespace MDll2API.Class.POSLog
 
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConnectWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());//Call API
+                        var oConnectWebAPI = new cConnectWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        oRESMsg.tML_StatusCode = oConnectWebAPI.tC_StatusCode;
+
                         if (oRESMsg.tML_StatusCode == "200" || oRESMsg.tML_StatusCode == "202")
                         {
                             tStaSentOnOff = "1";
@@ -143,14 +144,14 @@ namespace MDll2API.Class.POSLog
                             tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
                             tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
                             tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
-                            tConnDB += "; Connection Timeout = 60";
+                            tConnDB += "; Connection Timeout = 120";
                             #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
                             if (ptMode == "AUTO")
                             {
                                 oSQL = new StringBuilder();
                                 oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
                                 oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                                oSQL.AppendLine("AND FTStaBankIn = '0'");
+                                oSQL.AppendLine("AND ISNULL(FTStaBankIn,'0') = '0'");
                             }
                             else
                             {
@@ -159,9 +160,23 @@ namespace MDll2API.Class.POSLog
                                 oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
                                 oSQL.AppendLine("AND FTPlantCode IN (" + tPlantCode + ")");
                             }
+                            var oDbChk = cCNSP.SP_SQLvExecute(oSQL.ToString(), tConnDB);
+                            if (oDbChk.Rows.Count > 0)// 10/812/82018
+                            {
+                                for (int nLoop = 0; nLoop < oDbChk.Rows.Count; nLoop++)
+                                {
+                                    oSQL = new StringBuilder();
+                                    oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
+                                    oSQL.AppendLine("SET FTStaSentOnOff = '" + tStaSentOnOff + "'");
+                                    oSQL.AppendLine("   ,FTStaBankIn = '1'");
+                                    oSQL.AppendLine("   ,FTJsonFileBankIn = '" + oRESMsg.tML_FileName + "'");
+                                    oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
+                                    oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
+                                    var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
+                                }
+                            }
 
-                            oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(tJson);
-
+                            oPOSBankDeposit = JsonConvert.DeserializeObject<mlPOSBankDeposit>(oJson.ToString());
                             for (int i = 0; i < oPOSBankDeposit.oML_POSLog.Transaction.Length; i++)
                             {
                                 for (int j = 0; j < oPOSBankDeposit.oML_POSLog.Transaction[i].Length; j++)
@@ -176,22 +191,12 @@ namespace MDll2API.Class.POSLog
                                     oSQL.AppendLine(",FTJsonFileName ='" + oRESMsg.tML_FileName + "'");
                                     oSQL.AppendLine("WHERE  FTBdpPlantCode ='" + tPlant + "'");
                                     oSQL.AppendLine("AND  FTBdpDepositBy ='" + tOper + "'");
-                                    oSQL.AppendLine("WHERE  FDBdpDepositDate ='" + tDate + "'");
-                                    var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
-                                    //if (nRowEff > 0)// 10/812/82018
-                                    //{
-                                    //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตสำเร็จ";
-                                    //}
-                                    //else
-                                    //{
-                                    //    oRESMsg.tML_StatusMsg = oRESMsg.tML_StatusMsg + " : อัพเดตไม่สำเร็จ";
-                                    //}
+                                    oSQL.AppendLine("AND FDBdpDepositDate ='" + tDate + "'");
+                                    var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);  
                                 }
                             }
                             #endregion
                         }
-
-
 
                         #region " Keep Log"
                         //  cKeepLog.C_SETxKeepLogForBank(aoRow, oRESMsg);
@@ -256,28 +261,30 @@ namespace MDll2API.Class.POSLog
 
                 //oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) +  IIF(FCBdpDepositAmt>FCBdpActualAmt,',\"Over\": { \"Amount\": \"'+ CONVERT(VARCHAR,CONVERT(DECIMAL(18,2),FCBdpOverShort)) +'\" }',',\"Short\": { \"Amount\": \"'+ CONVERT(VARCHAR,CONVERT(DECIMAL(18,2),FCBdpOverShort)) +'\" }') + CHAR(10) +"); 
                 oSQL.AppendLine("(CASE WHEN  ISNULL(FCBdpOverShort, 0) > 0  THEN");
-                oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) +  IIF((FCBdpDepositAmt > FCBdpActualAmt) AND (FCBdpActualAmt >= 0),',\"Over\": { \"Amount\": \"'+ CONVERT(VARCHAR,CONVERT(DECIMAL(18,2),FCBdpOverShort)) +'\" }',',\"Short\": { \"Amount\": \"'+ CONVERT(VARCHAR,CONVERT(DECIMAL(18,2),FCBdpOverShort)) +'\" }') ");
+                oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) +  IIF((FCBdpDepositAmt > FCBdpActualAmt) AND (FCBdpActualAmt >= 0),' ,\"Over\": { \"Amount\": \"'+ CONVERT(VARCHAR,CONVERT(DECIMAL(18,2),FCBdpOverShort)) +'\" }',',\"Short\": { \"Amount\": \"'+ CONVERT(VARCHAR,CONVERT(DECIMAL(18,2),FCBdpOverShort)) +'\" }') ");
                 oSQL.AppendLine(" ELSE ");
                 oSQL.AppendLine(" '' ");
                 oSQL.AppendLine(" END) + ");
-                oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + '}' + CHAR(10) +");
+           //     oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + '}' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + CHAR(9) + '}' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + CHAR(9) + '}' + CHAR(10) +");
                 oSQL.AppendLine("CHAR(9) + '}' + CHAR(10) +");
                 oSQL.AppendLine("'}' + CHAR(10)");
                 oSQL.AppendLine("FROM TPSTBankDeposit WITH(NOLOCK)");
-                oSQL.AppendLine("WHERE ISNULL(FTBdpApproveBy,'') <> '' AND ISNULL(FTStaSentOnOff, '0') <> '1'   ");
+
+                oSQL.AppendLine("JOIN TCNMPlnCloseSta with(nolock) ON TPSTBankDeposit.FDBdpSaleDate = TCNMPlnCloseSta.FDSaleDate ");
+                oSQL.AppendLine("AND TPSTBankDeposit.FTBdpPlantCode = TCNMPlnCloseSta.FTPlantCode");
+                oSQL.AppendLine("WHERE ISNULL(TPSTBankDeposit.FTBdpApproveBy,'') <> '' AND ISNULL(TPSTBankDeposit.FTStaSentOnOff, '0') <> '1' ");
 
                 if (ptMode == "AUTO")
                 {
                     oSQL.AppendLine("AND FDBdpSaleDate = '" + ptTransDate + "'  ");
-
+                    oSQL.AppendLine("AND TCNMPlnCloseSta.FTStaEOD = '1'");
                 }
                 else if (ptMode == "MANUAL")
                 {
                     oSQL.AppendLine("AND FDBdpSaleDate = '" + ptTransDate + "' AND FTBdpPlantCode IN (" + ptPlantCode + ")");
                 }
-
                 oSQL.AppendLine("FOR XML PATH('')");
                 oSQL.AppendLine("),1,1,''),'') +']'");
                 oSQL.AppendLine("FOR XML PATH('')");

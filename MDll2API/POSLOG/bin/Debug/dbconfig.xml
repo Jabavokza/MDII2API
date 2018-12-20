@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <NewDataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>SOL_SP_TEST1</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_SP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
     <TopRow>1</TopRow>
@@ -20,11 +20,11 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>SOL_SP_SIT</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_DP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>20</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLog</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
@@ -39,11 +39,11 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>POSSDB_Center</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>sap2posdb_dev_database</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>20</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
@@ -58,11 +58,11 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>SOL_SP_SIT</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_DP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>30</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLog</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
@@ -77,11 +77,11 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>SOL_SP_SIT</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_DP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>140</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
@@ -96,11 +96,11 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>SOL_SP_SIT</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_DP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>150</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>https://wdipid.themall.co.th/RESTAdapter/TMGPOS/v1/POSLogxxx</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
@@ -115,11 +115,11 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>SOL_SP_SIT</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_DP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>160</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>https://wdepid.themall.co.th/RESTAdapter/TMGPOS/v1/ReceiveReservation</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
@@ -134,11 +134,11 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>ADAAMORN\SQLEXPRESS</Server>
-    <DBName>SOL_SP_SIT</DBName>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_DP_SIT</DBName>
     <User>sa</User>
     <Password>P@ssw0rd</Password>
-    <TopRow>160</TopRow>
+    <TopRow>1</TopRow>
     <UrlApi>https://wdepid.themall.co.th/RESTAdapter/TMGPOS/v1/ReceiveReservation</UrlApi>
     <UsrApi>devposctr</UsrApi>
     <PwdApi>Pn3Rbmd52</PwdApi>
@@ -153,15 +153,15 @@
     <Edit1>Edit</Edit1>
   </dbconfig>
   <dbconfig>
-    <Server>1</Server>
-    <DBName>1</DBName>
-    <User>11</User>
-    <Password>1</Password>
+    <Server>NBADA027\SQL2012</Server>
+    <DBName>SOL_DP_SIT</DBName>
+    <User>sa</User>
+    <Password>P@ssw0rd</Password>
     <TopRow>1</TopRow>
-    <UrlApi>1</UrlApi>
-    <UsrApi>12312</UsrApi>
-    <PwdApi>3333</PwdApi>
-    <GroupIndex>1312</GroupIndex>
+    <UrlApi>http://localhost/MOCKAPI/Api/MOCK-API</UrlApi>
+    <UsrApi>devposctr</UsrApi>
+    <PwdApi>Pn3Rbmd52</PwdApi>
+    <GroupIndex>3</GroupIndex>
     <WorkStationID>99999</WorkStationID>
     <WorkStation>POSCENTER</WorkStation>
     <PointValue>0.25</PointValue>

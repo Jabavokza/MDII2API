@@ -8,3 +8,11 @@ D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.csproj.CoreCompi
 D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.csproj.CopyComplete
 D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.dll
 D:\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.pdb
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\MDll2API.dll
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\MDll2API.pdb
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\Newtonsoft.Json.dll
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\Newtonsoft.Json.pdb
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\bin\Release\Newtonsoft.Json.xml
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.csproj.CoreCompileInputs.cache
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.dll
+D:\KIN\Project\2018\MDII2API\MDll2API\MDll2API\obj\Release\MDll2API.pdb

@@ -28,7 +28,7 @@ namespace POSLOG.From
         private int nW_CDWait = 10;
         private mlRESMsg oRESMsg;
 
-        private DataTable oW_DtSale = new DataTable();
+        private DataTable oW_DtSale1 = new DataTable();
         private DataTable oW_DtRdm = new DataTable();
         private DataTable oW_DtBnk = new DataTable();
 
@@ -43,7 +43,8 @@ namespace POSLOG.From
 
         private cDbConfig oC_DbConfig = new cDbConfig();
 
-        private string tW_ConSale = "";
+        private string tW_Dbcon1 = "";
+        private string tW_Dbcon2 = "";
         private string tW_ConRdm = "";
         private string tW_VenDorCodeSale = "";
         private string tW_VenDes = "";
@@ -135,7 +136,8 @@ namespace POSLOG.From
                                         where oObj.GroupIndex == "2"
                                         select oObj).ToList();
 
-                    tW_ConSale = oDbConfigSale[0].Conntect;
+                    tW_Dbcon1 = oDbConfigSale[0].Conntect;
+                    tW_Dbcon2 = oDbConfigSale[1].Conntect;
                     tW_ConRdm = oDbConfigRdm[0].Conntect;
                     tW_VenDorCodeSale = oDbConfigSale[0].VendorCode;
                     tW_VenDes = oDbConfigSale[0].VendorDes;
@@ -218,8 +220,8 @@ namespace POSLOG.From
                 {
                     oRESMsg = oCash.C_POSToCash(ptMode, ptTransDate, patPlantCode);
                 }
-                oC_Log.Info(" [Sale Time] = " + oRESMsg.tML_TimeSent + " [Sale URL] = " + oRESMsg.tML_UrlApi + " [Sale FileName] = " + oRESMsg.tML_FileName);
-                oC_Log.Debug("[RES ShortOver4 Status] = " + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
+                oC_Log.Info(" [ShortOver Time] = " + oRESMsg.tML_TimeSent + " [ShortOver URL] = " + oRESMsg.tML_UrlApi + " [ShortOver FileName] = " + oRESMsg.tML_FileName);
+                oC_Log.Debug("[RES ShortOver Status] = " + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
                 return oRESMsg;
             }
             catch (Exception oEx)
@@ -253,7 +255,7 @@ namespace POSLOG.From
                 {
                     oRESMsg = oEDC.C_POSToEDC(ptMode, ptTransDate, patPlantCode);
                 }
-                oC_Log.Info(" [Sale Time] = " + oRESMsg.tML_TimeSent + " [Sale URL] = " + oRESMsg.tML_UrlApi + " [Sale FileName] = " + oRESMsg.tML_FileName);
+                oC_Log.Info(" [EDC Time] = " + oRESMsg.tML_TimeSent + " [EDC URL] = " + oRESMsg.tML_UrlApi + " [EDC FileName] = " + oRESMsg.tML_FileName);
                 oC_Log.Debug("[RES EDC Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
 
                 return oRESMsg;
@@ -303,7 +305,7 @@ namespace POSLOG.From
                 {
                     oRESMsg = oBankIn.C_POSToBankDeposit(ptMode, ptTransDate, patPlantCode);
                 }
-                oC_Log.Info(" [Sale Time] = " + oRESMsg.tML_TimeSent + " [Sale URL] = " + oRESMsg.tML_UrlApi + " [Sale FileName] = " + oRESMsg.tML_FileName);
+                oC_Log.Info(" [BankIn Time] = " + oRESMsg.tML_TimeSent + " [BankIn URL] = " + oRESMsg.tML_UrlApi + " [BankIn FileName] = " + oRESMsg.tML_FileName);
                 oC_Log.Debug("[RES BankIn Status]=" + oRESMsg.tML_StatusCode + "[Message] = " + oRESMsg.tML_StatusMsg);
                 return oRESMsg;
             }
@@ -388,8 +390,8 @@ namespace POSLOG.From
                 {
                     oRESMsg = oEOD.C_POSToEOD(ptMode, ptTransDate, patPlantCode);
                 }
-                oC_Log.Info(" [Sale Time] = " + oRESMsg.tML_TimeSent + " [Sale URL] = " + oRESMsg.tML_UrlApi + " [Sale FileName] = " + oRESMsg.tML_FileName);
-                oC_Log.Debug("[EOD Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg);
+                oC_Log.Info(" [EOD Time] = " + oRESMsg.tML_TimeSent + " [EOD URL] = " + oRESMsg.tML_UrlApi + " [EOD FileName] = " + oRESMsg.tML_FileName);
+                oC_Log.Debug("[EOD Status]=" + oRESMsg.tML_StatusCode + "[Message]=" + oRESMsg.tML_StatusMsg +"[StatusUpdate]="+ oRESMsg.tML_StatusUpdate);
                 return oRESMsg;
             }
             catch (Exception oEx)
@@ -785,15 +787,19 @@ namespace POSLOG.From
                 tSql1 += tNewLine + "AND FTShdTransType IN('03', '04', '05', '06', '07', '10', '11', '14', '15', '16', '21', '22', '23', '26', '27')";
                 tSql1 += tNewLine + "ORDER BY FDShdTransDate ASC";
 
-                oW_DtSale = cCNSP.SP_SQLvExecute(tSql1, tW_ConSale);
+              var  oW_DT1 = cCNSP.SP_SQLvExecute(tSql1, tW_Dbcon1);
+              var  oW_DT2 = cCNSP.SP_SQLvExecute(tSql1, tW_Dbcon2);
 
-                if (oW_DtSale != null && oW_DtSale.Rows.Count > 0)
+                DataTable oDataMerge = new DataTable();
+                oDataMerge.Merge(oW_DT1);
+                oDataMerge.Merge(oW_DT2);
+                if (oDataMerge != null && oDataMerge.Rows.Count > 0)
                 {
                     //GRDxIniSale();
                     ogbSendSale.Enabled = true;
 
-                    oW_DtSale.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
-                    ogdSale.DataSource = oW_DtSale;
+                    oDataMerge.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+                    ogdSale.DataSource = oDataMerge;
                 }
                 else
                 {
@@ -803,7 +809,7 @@ namespace POSLOG.From
 
                 ordAllSale.Checked = true;
             }
-            catch { }
+            catch (Exception oEx){ }
         }
         private void ocmSendSale_Click(object sender, EventArgs e)
         {
@@ -1059,19 +1065,22 @@ namespace POSLOG.From
 
                 tSql1 += tNewLine + "ORDER BY FDBdpSaleDate ASC";
 
-                oW_DtBnk = cCNSP.SP_SQLvExecute(tSql1, tW_ConSale);
+                var oW_DT1 = cCNSP.SP_SQLvExecute(tSql1, tW_Dbcon1);
+                var oW_DT2 = cCNSP.SP_SQLvExecute(tSql1, tW_Dbcon2);
 
-                oW_DtBnk.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
-
-                if (oW_DtBnk != null && oW_DtBnk.Rows.Count > 0)
+                DataTable oDataMerge = new DataTable();
+                oDataMerge.Merge(oW_DT1);
+                oDataMerge.Merge(oW_DT2);
+                if (oDataMerge != null && oDataMerge.Rows.Count > 0)
                 {
-                    //GRDxIniBnk(ogdBnk);
-                    //ogbSendBnk.Enabled = true;
-                    ogdBnk.DataSource = oW_DtBnk;
+                    ogbSendSale.Enabled = true;
+
+                    oDataMerge.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+                    ogdBnk.DataSource = oDataMerge;
                 }
                 else
                 {
-                    MessageBox.Show("ไม่พบข้อมูลที่ค้นหา", "Bank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("ไม่พบข้อมูลที่ค้นหา", "Sale", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -1154,13 +1163,24 @@ namespace POSLOG.From
                     oSQL.AppendLine("ORDER BY FDSaleDate ASC");
                 }
 
-                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                var oW_DT1 = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
+                var oW_DT2 = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon2);
 
-                if (!Object.Equals(oDbTCNMPlnCloseSta, null))
+                DataTable oDataMerge = new DataTable();
+                oDataMerge.Merge(oW_DT1);
+                oDataMerge.Merge(oW_DT2);
+                if (oDataMerge != null && oDataMerge.Rows.Count > 0)
                 {
-                    oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+                    
+                    ogbSendSale.Enabled = true;
 
-                    ogdDaySum.DataSource = oDbTCNMPlnCloseSta;
+                    oDataMerge.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+                    ogdDaySum.DataSource = oDataMerge;
+                }
+                else
+                {
+                    MessageBox.Show("ไม่พบข้อมูลที่ค้นหา", "Sale", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
             }
@@ -1247,11 +1267,25 @@ namespace POSLOG.From
                     oSQL.AppendLine("ORDER BY FDSaleDate ASC");
                 }
 
-                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                var oW_DT1 = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
+                var oW_DT2 = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon2);
 
-                oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+                DataTable oDataMerge = new DataTable();
+                oDataMerge.Merge(oW_DT1);
+                oDataMerge.Merge(oW_DT2);
+                if (oDataMerge != null && oDataMerge.Rows.Count > 0)
+                {
 
-                ogdShortOver.DataSource = oDbTCNMPlnCloseSta;
+                    ogbSendSale.Enabled = true;
+
+                    oDataMerge.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+                    ogdShortOver.DataSource = oDataMerge;
+                }
+                else
+                {
+                    MessageBox.Show("ไม่พบข้อมูลที่ค้นหา", "Sale", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             catch { }
         }
@@ -1336,13 +1370,24 @@ namespace POSLOG.From
                     oSQL.AppendLine("ORDER BY FDSaleDate ASC");
                 }
 
-                oDbTCNMPlnCloseSta = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                var oW_DT1 = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
+                var oW_DT2 = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon2);
 
-                oDbTCNMPlnCloseSta.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
-
-                if (!Object.Equals(oDbTCNMPlnCloseSta, null))
+                DataTable oDataMerge = new DataTable();
+                oDataMerge.Merge(oW_DT1);
+                oDataMerge.Merge(oW_DT2);
+                if (oDataMerge != null && oDataMerge.Rows.Count > 0)
                 {
-                    ogdEDC.DataSource = oDbTCNMPlnCloseSta;
+
+                    ogbSendSale.Enabled = true;
+
+                    oDataMerge.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
+                    ogdEDC.DataSource = oDataMerge;
+                }
+                else
+                {
+                    MessageBox.Show("ไม่พบข้อมูลที่ค้นหา", "Sale", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
             }
             catch { }
@@ -1521,9 +1566,8 @@ namespace POSLOG.From
             try
             {
                 // var tTransDate = DateTime.Now.ToString("YYYY-MM-DD");
-                var tTransDate = cCNSP.SP_DTEtByFormat(DateTime.Now.ToString(), "YYYY-MM-DD");
+                var tTransDate = otbDTrn.Text;
                 //  olaCountDown.Text = olaCountDown.Text = "On";
-                tTransDate += " 00:00:00";
                 if (ockSaleAuto.Checked == true)
                 {
                     W_GEToSale("AUTO", null, tTransDate, null);
@@ -1536,22 +1580,22 @@ namespace POSLOG.From
                 if (ockDaySumAuto.Checked == true)
                 {
                     var oRESMsg = W_SEToEOD("AUTO", tTransDate, null);
-                    var aRESMsg = oRESMsg.tML_StatusMsg.Split(':');
-                    if (aRESMsg[1] == "อัพเดตสำเร็จ")
-                    {
-                        if (ockShortOverAuto.Checked == true)
-                        {
-                            W_GEToCash("AUTO", tTransDate, null);
-                        }
-                        if (ockEDCAuto.Checked == true)
-                        {
-                            W_GEToEDC("AUTO", tTransDate, null);
-                        }
-                        if (ockBankInAuto.Checked == true)
-                        {
-                            W_GEToBankIn("AUTO", tTransDate, null);
-                        }
-                    }
+                    //if (oRESMsg.tML_StatusUpdate == "อัพเดตสำเร็จ")
+                    //{
+                      
+                    //}
+                }
+                if (ockShortOverAuto.Checked == true)
+                {
+                    W_GEToCash("AUTO", tTransDate, null);
+                }
+                if (ockEDCAuto.Checked == true)
+                {
+                    W_GEToEDC("AUTO", tTransDate, null);
+                }
+                if (ockBankInAuto.Checked == true)
+                {
+                    W_GEToBankIn("AUTO", tTransDate, null);
                 }
                 otmWait.Enabled = true;
                 nW_CDWait = Convert.ToInt32(otbShcSS.Text);
@@ -1559,6 +1603,7 @@ namespace POSLOG.From
             }
             catch (Exception oEx)
             {
+                //MessageBox.Show("wMain : //otmStart_Tick" + oEx.Message,"", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw oEx;
             }
         }
@@ -1646,7 +1691,7 @@ namespace POSLOG.From
         {
             if (((RadioButton)sender).Checked)
             {
-                ogdSale.DataSource = oW_DtSale;
+                ogdSale.DataSource = oW_DtSale1;
             }
         }
 
@@ -1654,7 +1699,7 @@ namespace POSLOG.From
         {
             if (((RadioButton)sender).Checked)
             {
-                DataView oViewSale = new DataView(oW_DtSale);
+                DataView oViewSale = new DataView(oW_DtSale1);
                 oViewSale.RowFilter = "FTStaSend = 'Sent' ";
                 ogdSale.DataSource = oViewSale;
             }
@@ -1664,7 +1709,7 @@ namespace POSLOG.From
         {
             if (((RadioButton)sender).Checked)
             {
-                DataView oViewSale = new DataView(oW_DtSale);
+                DataView oViewSale = new DataView(oW_DtSale1);
                 oViewSale.RowFilter = "FTStaSend = 'Uncen' ";
                 ogdSale.DataSource = oViewSale;
             }
@@ -1840,7 +1885,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -1898,7 +1943,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -1959,7 +2004,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -1991,7 +2036,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -2021,7 +2066,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -2055,7 +2100,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -2179,7 +2224,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -2208,7 +2253,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -2241,7 +2286,7 @@ namespace POSLOG.From
                                     return;
                                 }
 
-                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_ConSale);
+                                oDbAnother = cCNSP.SP_SQLvExecute(oSQL.ToString(), tW_Dbcon1);
 
                                 oDbAnother.Columns.Add("เลือก", typeof(Boolean)).SetOrdinal(0);
 
@@ -2298,26 +2343,29 @@ namespace POSLOG.From
             catch { }
         }
 
-        private void ockDaySumAuto_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ockDaySumAuto.Checked == true)
-            {
-                ockShortOverAuto.Checked = true;
-                ockEDCAuto.Checked = true;
-                ockBankInAuto.Checked = true;
-                ockShortOverAuto.Enabled = true;
-                ockEDCAuto.Enabled = true;
-                ockBankInAuto.Enabled = true;
-            }
-            else
-            {
-                ockShortOverAuto.Checked = false;
-                ockEDCAuto.Checked = false;
-                ockBankInAuto.Checked = false;
-                ockShortOverAuto.Enabled = false;
-                ockEDCAuto.Enabled = false;
-                ockBankInAuto.Enabled = false;
-            }
-        }
+        //private void ockDaySumAuto_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (ockDaySumAuto.Checked == true)
+        //    {
+        //        ockShortOverAuto.Checked = true;
+        //        ockEDCAuto.Checked = true;
+        //        ockBankInAuto.Checked = true;
+        //        ockShortOverAuto.Enabled = true;
+        //        ockEDCAuto.Enabled = true;
+        //        ockBankInAuto.Enabled = true;
+            
+        //    }
+        //    else
+        //    {
+        //        ockShortOverAuto.Checked = false;
+        //        ockEDCAuto.Checked = false;
+        //        ockBankInAuto.Checked = false;
+        //        ockShortOverAuto.Enabled = false;
+        //        ockEDCAuto.Enabled = false;
+        //        ockBankInAuto.Enabled = false;
+               
+        //    }
+        //}
+
     }
 }

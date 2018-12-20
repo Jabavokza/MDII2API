@@ -239,7 +239,6 @@
             // ockBankInAuto
             // 
             this.ockBankInAuto.AutoSize = true;
-            this.ockBankInAuto.Enabled = false;
             this.ockBankInAuto.Location = new System.Drawing.Point(214, 55);
             this.ockBankInAuto.Name = "ockBankInAuto";
             this.ockBankInAuto.Size = new System.Drawing.Size(65, 20);
@@ -260,7 +259,6 @@
             // ockEDCAuto
             // 
             this.ockEDCAuto.AutoSize = true;
-            this.ockEDCAuto.Enabled = false;
             this.ockEDCAuto.Location = new System.Drawing.Point(214, 27);
             this.ockEDCAuto.Name = "ockEDCAuto";
             this.ockEDCAuto.Size = new System.Drawing.Size(50, 20);
@@ -277,12 +275,10 @@
             this.ockDaySumAuto.TabIndex = 26;
             this.ockDaySumAuto.Text = "DaySummary";
             this.ockDaySumAuto.UseVisualStyleBackColor = true;
-            this.ockDaySumAuto.CheckedChanged += new System.EventHandler(this.ockDaySumAuto_CheckedChanged);
             // 
             // ockShortOverAuto
             // 
             this.ockShortOverAuto.AutoSize = true;
-            this.ockShortOverAuto.Enabled = false;
             this.ockShortOverAuto.Location = new System.Drawing.Point(106, 56);
             this.ockShortOverAuto.Name = "ockShortOverAuto";
             this.ockShortOverAuto.Size = new System.Drawing.Size(85, 20);
@@ -1391,7 +1387,6 @@
             // 
             // otbDTrn
             // 
-            this.otbDTrn.Enabled = false;
             this.otbDTrn.Location = new System.Drawing.Point(317, 16);
             this.otbDTrn.Name = "otbDTrn";
             this.otbDTrn.Size = new System.Drawing.Size(100, 23);

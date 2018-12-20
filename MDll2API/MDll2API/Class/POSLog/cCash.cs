@@ -96,7 +96,7 @@ namespace MDll2API.Class.POSLog
                     tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
                     tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
                     tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
-
+                    tConnDB += "; Connection Timeout = 120";
                     // Check TPOSLogHis  Existing
                     tSQL = oCHKDBLogHis.C_GETtCHKDBLogHis();
                     cCNSP.SP_SQLnExecute(tSQL, tConnDB);
@@ -110,6 +110,10 @@ namespace MDll2API.Class.POSLog
                     tSQL = C_GETtSQL(tLastUpd, Convert.ToInt64(oRow[nRow]["TopRow"]), tWorkStationID, tWorkStation,ptMode,tPlantCode,ptTransDate);  //*Em 61-07-24
 
                     tExecute = cCNSP.SP_SQLtExecuteJson(tSQL, tConnDB);
+                    if (tExecute == "[]")
+                    {
+                        tExecute = "";
+                    }
                     if (tExecute != "")
                     {
                         if (tJsonTrn == "")
@@ -121,7 +125,7 @@ namespace MDll2API.Class.POSLog
                             tJsonTrn = tJsonTrn + ',' + tExecute;
                         }
                     }
-                    if (tJsonTrn=="[]") { tJsonTrn = ""; }
+  
                 }
                 
 
@@ -132,11 +136,13 @@ namespace MDll2API.Class.POSLog
                     var oJson = oFusionJSON.oC_Json;
                     #endregion
                     oRESMsg.tML_FileName = cCNSP.SP_WRItJSON(oJson.ToString(), "CASH");
-
+                    oRESMsg.tML_TimeSent = DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss"); //เก็บเวลาที่ส่ง ไว้ลงLog
+                    oRESMsg.tML_UrlApi = tUriApi; //เก็บUrlApi ไว้ลงLog
                     //Call API
                     if (tC_APIEnable == "true")
                     {
-                        oRESMsg.tML_StatusCode = cConnectWebAPI.C_CONtWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        var oConnectWebAPI = new cConnectWebAPI(tUriApi, tUsrApi, tPwdApi, oJson.ToString());
+                        oRESMsg.tML_StatusCode = oConnectWebAPI.tC_StatusCode;
                         if (oRESMsg.tML_StatusCode == "200" || oRESMsg.tML_StatusCode == "202")
                         {
                             tStaSentOnOff = "1";
@@ -153,14 +159,14 @@ namespace MDll2API.Class.POSLog
                             tConnDB = "Data Source=" + oRow[nRow]["Server"].ToString();
                             tConnDB += "; Initial Catalog=" + oRow[nRow]["DBName"].ToString();
                             tConnDB += "; User ID=" + oRow[nRow]["User"].ToString() + "; Password=" + oRow[nRow]["Password"].ToString();
-                            tConnDB += "; Connection Timeout = 60";
+                            tConnDB += "; Connection Timeout = 120";
                             #region "UPDATE FLAG TPSTSalHD.FTStaSentOnOff"
                             oSQL = new StringBuilder();
                             if (ptMode == "AUTO")
                             {
                                 oSQL.AppendLine("SELECT FDSaleDate, FTPlantCode FROM TCNMPlnCloseSta WITH (NOLOCK)");
                                 oSQL.AppendLine("WHERE FDSaleDate = '" + ptTransDate + "'");
-                                oSQL.AppendLine("AND FTStaEOD = '0'");
+                                oSQL.AppendLine("AND ISNULL(FTStaShortOver,'0') = '0'");
                                 //oSQL.AppendLine("AND FTPlantCode = '" + patPlantCode + "'");
                             }
                             else if (ptMode == "MANUAL")
@@ -180,8 +186,8 @@ namespace MDll2API.Class.POSLog
                                     oSQL = new StringBuilder();
                                     oSQL.AppendLine("UPDATE TCNMPlnCloseSta WITH (ROWLOCK)");
                                     oSQL.AppendLine("SET FTStaSentOnOff = '" + tStaSentOnOff + "'");
-                                    oSQL.AppendLine("   ,FTStaEDC = '1'");
-                                    oSQL.AppendLine("   ,FTJsonFileEDC = '" + oRESMsg.tML_FileName + "'");
+                                    oSQL.AppendLine("   ,FTStaShortOver = '1'");
+                                    oSQL.AppendLine("   ,FTJsonFileShortOver = '" + oRESMsg.tML_FileName + "'");
                                     oSQL.AppendLine("WHERE FTPlantCode = '" + oDbChk.Rows[nLoop]["FTPlantCode"].ToString() + "'");
                                     oSQL.AppendLine("AND FDSaleDate = '" + ptTransDate + "'");
                                     var nRowEff = cCNSP.SP_SQLnExecute(oSQL.ToString(), tConnDB);
@@ -343,8 +349,9 @@ namespace MDll2API.Class.POSLog
                 {
                     oSQL.AppendLine("WHERE RC3.FCSrcNet <> 0");
                     //oSQL.AppendLine("WHERE HD.FDShdTransDate = '" + tC_DateTrn + "'  and RC3.FCSrcNet <> 0");
-                    oSQL.AppendLine("AND HD.FTShdPlantCode IN(SELECT FTPlantCode FROM[dbo].TCNMPlnCloseSta where FDSaleDate = '" + ptTransDate + "' AND ISNULL(FTStaEOD, '0') = '1' AND ISNULL(FTStaShortOver, '0') = '0')");
-
+                    oSQL.AppendLine("AND HD.FTShdPlantCode IN(SELECT FTPlantCode FROM[dbo].TCNMPlnCloseSta where FDSaleDate = '" + ptTransDate + "' ");
+                    oSQL.AppendLine("AND ISNULL(FTStaEOD, '0') = '1'");
+                    oSQL.AppendLine("AND ISNULL(FTStaShortOver, '0') = '0')");
                 }
                 else if (ptMode == "MANUAL")
                 {

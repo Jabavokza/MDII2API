@@ -1,0 +1,1031 @@
+{
+"POSLog": {
+"@xmlns" : "http://themall.co.th/retail/sales_transaction",
+"@MajorVersion" : "6",
+"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+"@xsi:schemaLocation" : "http://themall.co.th/retail/sales_transaction",
+"Transaction": [
+{
+"BusinessUnit":
+	{"UnitID":"17KE"},
+"WorkstationID":"01121",
+"SequenceNumber":"201812179999900001",
+"OperatorID":"9999",
+"CurrencyCode":"THB",
+"BusinessDayDate": "2018-12-17",
+"BeginDateTime": "20181217122654",
+"EndDateTime": "20181217165759",
+"TenderControlTransaction": {
+	"OperatorID": "9999",
+	"TillSettle": [
+{
+		"@TransType": "Sale",
+		"@ItemType": "03",
+		"TransactionCount": "16",
+		"TotalNetSalesAmount": "6415.79"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "11",
+		"TransactionCount": "2",
+		"TotalNetSalesAmount": "770.09"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "45",
+		"TransactionCount": "2",
+		"TotalNetSalesAmount": "1100.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "04",
+		"TransactionCount": "2",
+		"TotalNetSalesAmount": "-764.50"
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "I001",
+		"MiscellaneousDiscounts": {
+			"Amount": "-69.40",
+			"Count": "2"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M004",
+		"MiscellaneousDiscounts": {
+			"Amount": "-69.00",
+			"Count": "2"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P001",
+		"MiscellaneousDiscounts": {
+			"Amount": "-59.70",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P006",
+		"MiscellaneousDiscounts": {
+			"Amount": "-98.16",
+			"Count": "3"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P008",
+		"MiscellaneousDiscounts": {
+			"Amount": "-64.50",
+			"Count": "2"
+			}
+			},{
+		"@TransType": "Tax",
+		"@ItemType": "VAT",
+		"TransactionCount": "22",
+		"TotalNetSalesAmount": "441.68"
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T001",
+		"TransactionCount": "11",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "5796.75"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T003",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "624.60"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T008",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1100.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "5",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.11"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.07"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.34"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.03"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "28",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.31"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "35",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.19"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "26",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1.25"
+				}
+			}
+			}
+		]
+	}
+},{
+"BusinessUnit":
+	{"UnitID":"17KU"},
+"WorkstationID":"01121",
+"SequenceNumber":"201812179999900002",
+"OperatorID":"2222",
+"CurrencyCode":"THB",
+"BusinessDayDate": "2018-12-17",
+"BeginDateTime": "20181217150031",
+"EndDateTime": "20181217200301",
+"TenderControlTransaction": {
+	"OperatorID": "2222",
+	"TillSettle": [
+{
+		"@TransType": "Sale",
+		"@ItemType": "03",
+		"TransactionCount": "7",
+		"TotalNetSalesAmount": "5869.90"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "45",
+		"TransactionCount": "2",
+		"TotalNetSalesAmount": "200.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "04",
+		"TransactionCount": "1",
+		"TotalNetSalesAmount": "-130.00"
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P006",
+		"MiscellaneousDiscounts": {
+			"Amount": "-11.10",
+			"Count": "2"
+			}
+			},{
+		"@TransType": "Tax",
+		"@ItemType": "VAT",
+		"TransactionCount": "10",
+		"TotalNetSalesAmount": "323.17"
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T001",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "5740.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T008",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "200.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "5",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.11"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.07"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.34"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.03"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "28",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.31"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "35",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.19"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "26",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1.25"
+				}
+			}
+			}
+		]
+	}
+},{
+"BusinessUnit":
+	{"UnitID":"34KB"},
+"WorkstationID":"01121",
+"SequenceNumber":"201812179999900003",
+"OperatorID":"2222",
+"CurrencyCode":"THB",
+"BusinessDayDate": "2018-12-17",
+"BeginDateTime": "20181217141420",
+"EndDateTime": "20181217201920",
+"TenderControlTransaction": {
+	"OperatorID": "2222",
+	"TillSettle": [
+{
+		"@TransType": "Sale",
+		"@ItemType": "03",
+		"TransactionCount": "11",
+		"TotalNetSalesAmount": "17990.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "06",
+		"TransactionCount": "8",
+		"TotalNetSalesAmount": "77211.78"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "45",
+		"TransactionCount": "1",
+		"TotalNetSalesAmount": "7560.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "04",
+		"TransactionCount": "2",
+		"TotalNetSalesAmount": "-2250.00"
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "I001",
+		"MiscellaneousDiscounts": {
+			"Amount": "-50.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M001",
+		"MiscellaneousDiscounts": {
+			"Amount": "-840.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M003",
+		"MiscellaneousDiscounts": {
+			"Amount": "-150.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M004",
+		"MiscellaneousDiscounts": {
+			"Amount": "-60.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P003",
+		"MiscellaneousDiscounts": {
+			"Amount": "-6800.00",
+			"Count": "7"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P006",
+		"MiscellaneousDiscounts": {
+			"Amount": "-90.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P008",
+		"MiscellaneousDiscounts": {
+			"Amount": "-90.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P010",
+		"MiscellaneousDiscounts": {
+			"Amount": "-120.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Tax",
+		"@ItemType": "VAT",
+		"TransactionCount": "22",
+		"TotalNetSalesAmount": "6575.53"
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T001",
+		"TransactionCount": "19",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "92501.75"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T003",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "450.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T008",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "7560.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "5",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.11"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.07"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.34"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.03"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "28",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.31"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "35",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.19"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "26",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1.25"
+				}
+			}
+			}
+		]
+	}
+},{
+"BusinessUnit":
+	{"UnitID":"34KC"},
+"WorkstationID":"01101",
+"SequenceNumber":"201812179999900004",
+"OperatorID":"2222",
+"CurrencyCode":"THB",
+"BusinessDayDate": "2018-12-17",
+"BeginDateTime": "20181217140727",
+"EndDateTime": "20181217194859",
+"TenderControlTransaction": {
+	"OperatorID": "2222",
+	"TillSettle": [
+{
+		"@TransType": "Sale",
+		"@ItemType": "03",
+		"TransactionCount": "6",
+		"TotalNetSalesAmount": "8400.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "15",
+		"TransactionCount": "1",
+		"TotalNetSalesAmount": "1200.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "21",
+		"TransactionCount": "1",
+		"TotalNetSalesAmount": "1200.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "45",
+		"TransactionCount": "2",
+		"TotalNetSalesAmount": "1200.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "04",
+		"TransactionCount": "2",
+		"TotalNetSalesAmount": "-1700.00"
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M002",
+		"MiscellaneousDiscounts": {
+			"Amount": "-200.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P001",
+		"MiscellaneousDiscounts": {
+			"Amount": "-1300.00",
+			"Count": "2"
+			}
+			},{
+		"@TransType": "Tax",
+		"@ItemType": "VAT",
+		"TransactionCount": "12",
+		"TotalNetSalesAmount": "516.82"
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T001",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "5500.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T008",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1200.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "5",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.11"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.07"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.34"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.03"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "28",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.31"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "35",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.19"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "26",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1.25"
+				}
+			}
+			}
+		]
+	}
+},{
+"BusinessUnit":
+	{"UnitID":"34KD"},
+"WorkstationID":"01121",
+"SequenceNumber":"201812179999900005",
+"OperatorID":"2222",
+"CurrencyCode":"THB",
+"BusinessDayDate": "2018-12-17",
+"BeginDateTime": "20181217142927",
+"EndDateTime": "20181217175357",
+"TenderControlTransaction": {
+	"OperatorID": "2222",
+	"TillSettle": [
+{
+		"@TransType": "Sale",
+		"@ItemType": "03",
+		"TransactionCount": "1",
+		"TotalNetSalesAmount": "3600.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "11",
+		"TransactionCount": "3",
+		"TotalNetSalesAmount": "794.40"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "15",
+		"TransactionCount": "1",
+		"TotalNetSalesAmount": "1000.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "21",
+		"TransactionCount": "1",
+		"TotalNetSalesAmount": "1000.00"
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M002",
+		"MiscellaneousDiscounts": {
+			"Amount": "-400.00",
+			"Count": "1"
+			}
+			},{
+		"@TransType": "Tax",
+		"@ItemType": "VAT",
+		"TransactionCount": "6",
+		"TotalNetSalesAmount": "0.00"
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T001",
+		"TransactionCount": "4",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "3394.25"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "5",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.11"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.07"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.34"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.03"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "28",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.31"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "35",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.19"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "26",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1.25"
+				}
+			}
+			}
+		]
+	}
+},{
+"BusinessUnit":
+	{"UnitID":"63KG"},
+"WorkstationID":"01001",
+"SequenceNumber":"201812179999900006",
+"OperatorID":"2222",
+"CurrencyCode":"THB",
+"BusinessDayDate": "2018-12-17",
+"BeginDateTime": "20181217164125",
+"EndDateTime": "20181217184750",
+"TenderControlTransaction": {
+	"OperatorID": "2222",
+	"TillSettle": [
+{
+		"@TransType": "Sale",
+		"@ItemType": "03",
+		"TransactionCount": "5",
+		"TotalNetSalesAmount": "11158.39"
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M004",
+		"MiscellaneousDiscounts": {
+			"Amount": "-64.61",
+			"Count": "2"
+			}
+			},{
+		"@TransType": "Tax",
+		"@ItemType": "VAT",
+		"TransactionCount": "5",
+		"TotalNetSalesAmount": "546.80"
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T001",
+		"TransactionCount": "2",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "3658.50"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T002",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "6000.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T012",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1500.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "5",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.11"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.07"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.34"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.03"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "28",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.31"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "35",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.19"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "26",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1.25"
+				}
+			}
+			}
+		]
+	}
+},{
+"BusinessUnit":
+	{"UnitID":"85KT"},
+"WorkstationID":"01106",
+"SequenceNumber":"201812179999900007",
+"OperatorID":"9999",
+"CurrencyCode":"THB",
+"BusinessDayDate": "2018-12-17",
+"BeginDateTime": "20181217120226",
+"EndDateTime": "20181217193433",
+"TenderControlTransaction": {
+	"OperatorID": "9999",
+	"TillSettle": [
+{
+		"@TransType": "Sale",
+		"@ItemType": "03",
+		"TransactionCount": "6",
+		"TotalNetSalesAmount": "79922.00"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "06",
+		"TransactionCount": "7",
+		"TotalNetSalesAmount": "41188.10"
+			},{
+		"@TransType": "Sale",
+		"@ItemType": "11",
+		"TransactionCount": "3",
+		"TotalNetSalesAmount": "2897.20"
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "I001",
+		"MiscellaneousDiscounts": {
+			"Amount": "-4047.45",
+			"Count": "3"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M003",
+		"MiscellaneousDiscounts": {
+			"Amount": "-3792.50",
+			"Count": "4"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M004",
+		"MiscellaneousDiscounts": {
+			"Amount": "-1755.00",
+			"Count": "4"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "M006",
+		"MiscellaneousDiscounts": {
+			"Amount": "-483.05",
+			"Count": "4"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P003",
+		"MiscellaneousDiscounts": {
+			"Amount": "-38700.00",
+			"Count": "6"
+			}
+			},{
+		"@TransType": "Discount",
+		"@ItemType": "P005",
+		"MiscellaneousDiscounts": {
+			"Amount": "-300.00",
+			"Count": "3"
+			}
+			},{
+		"@TransType": "Tax",
+		"@ItemType": "VAT",
+		"TransactionCount": "16",
+		"TotalNetSalesAmount": "7923.08"
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T001",
+		"TransactionCount": "9",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "74185.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T003",
+		"TransactionCount": "4",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "49822.00"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "5",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.11"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.07"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "6",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.34"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "1",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.03"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "28",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "-0.31"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "35",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "0.19"
+				}
+			}
+			},{
+		"@TransType": "Tender",
+		"@ItemType": "T032",
+		"TransactionCount": "26",
+		"TenderSummary": {
+			"Ending": {
+				"Amount": "1.25"
+				}
+			}
+			}
+		]
+	}
+}
+]
+}
+}

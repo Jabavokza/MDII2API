@@ -5,15 +5,16 @@ using System.Text;
 
 namespace MDll2API.Class.ST_Class
 {
-    public static class cConnectWebAPI
+    public class cConnectWebAPI
     {
-        public static string C_CONtWebAPI(string ptUriApi, string ptUsrApi, string ptPwdApi, string ptJson)
+        public string tC_StatusCode { get; set; }
+        public cConnectWebAPI(string ptUriApi, string ptUsrApi, string ptPwdApi, string ptJson)
         {
             #region "Call API"
-            string tStatusCode = "" ;
+            string tStatusCode = "";
+          // tC_StatusCode = "202";
             try
             {
-               // ptJson = " '"+ ptJson + "'  "; //ทดสอบ MOCK-API *เวลาใช้งานจริงจะคอมเม้นไว้ 
                 byte[] aData = Encoding.UTF8.GetBytes(ptJson.ToString());
                 HttpWebRequest oWebReq = (HttpWebRequest)WebRequest.Create(ptUriApi);
                 oWebReq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(ptUsrApi + ":" + ptPwdApi)));
@@ -49,13 +50,14 @@ namespace MDll2API.Class.ST_Class
                             break;
                     }
                 }
-                return tStatusCode;
+                tC_StatusCode = tStatusCode;
             }
             catch (Exception oEx)
             {
-                return null;
+                tC_StatusCode = oEx.Message;
             }
             #endregion "Call API"
         }
     }
 }
+
